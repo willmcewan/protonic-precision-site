@@ -5,6 +5,7 @@
   var FINISH = {
     black: { color: 0x15171A, rough: 0.62, metal: 0.1 },
     fde: { color: 0x7A6648, rough: 0.66, metal: 0.08 },
+    sand: { color: 0x8F7756, rough: 0.68, metal: 0.06, bare: '#6F7378' },
     tungsten: { color: 0x55595D, rough: 0.6, metal: 0.15 },
     nitride: { color: 0x1A1B1D, rough: 0.42, metal: 0.55 },
     stainless: { color: 0xB9BCBF, rough: 0.34, metal: 1 }
@@ -63,7 +64,7 @@
       var ga = a.getContext('2d'), gb = b.getContext('2d');
       ga.fillStyle = hex(s.color); ga.fillRect(0, 0, w, h);
       gb.fillStyle = 'rgb(0,' + Math.round(s.rough * 255) + ',' + Math.round(s.metal * 255) + ')'; gb.fillRect(0, 0, w, h);
-      var bare = f === 'stainless' ? ['#7d8185', 'rgb(0,150,150)'] : ['#B4B7BA', 'rgb(0,115,140)'];
+      var bare = f === 'stainless' ? ['#7d8185', 'rgb(0,150,150)'] : [s.bare || '#B4B7BA', 'rgb(0,115,140)'];
       draw(ga, bare[0]); draw(gb, bare[1]);
       var map = new T.CanvasTexture(a); map.encoding = T.sRGBEncoding; map.anisotropy = aniso;
       var rm = new T.CanvasTexture(b); rm.anisotropy = aniso;

@@ -1,5 +1,6 @@
 // Illustrations drawn in the brand's drafting style. Standalone SVG strings (used as files and inline).
 import { lockups, COLORWAYS } from '../tools/brand/marks.mjs';
+import { ARCHIVO_800X, PLEX_MONO_500 } from './art-fonts.mjs';
 
 const L = lockups();
 const paths = (Lk, cw, tx = 0, ty = 0, s = 1) =>
@@ -35,15 +36,28 @@ export const patch = () => svg('0 0 300 200', `
   <rect x="12" y="12" width="276" height="176" rx="20" fill="none" stroke="#76797c" stroke-width="1.4" stroke-dasharray="5 4"/>
   ${paths(L.stacked, { m: '#c5c7c8', s: '#a2a5a8', x: '#d3212d' }, 65, 52 + 75 * 170 / 948, 170 / 948)}`);
 
+// Flat-lay tee, front and back. Shown through <img>, so it carries its own font subsets.
 export const tee = () => {
-  const shirt = (x, back) => `<g transform="translate(${x} 60)">
-    <path d="M150 0c20 26 80 26 100 0l120 44-36 96-54-20v300H120V120l-54 20-36-96z" fill="#15181c" stroke="#2a3037" stroke-width="3"/>
-    <path d="M150 0c20 26 80 26 100 0" fill="none" stroke="#2a3037" stroke-width="6"/>
-    ${back
-      ? `<g text-anchor="middle" fill="#c5c7c8" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="24" letter-spacing="1"><text x="200" y="140">PLINKER</text><text x="200" y="178">SIDEARM</text><text x="200" y="216">BIG GAME</text><text x="200" y="254">CROSSOVER</text></g>` + paths(L.mark, { m: '#c5c7c8', x: '#d3212d' }, 182, 285, .15)
-      : paths(L.mark, { m: '#c5c7c8', x: '#d3212d' }, 230, 92, .2)}
-    <text x="200" y="455" text-anchor="middle" ${MONO} font-size="16" fill="#4b4f54" letter-spacing="2">${back ? 'BACK' : 'FRONT'}</text></g>`;
-  return svg('0 0 900 560', shirt(20, false) + shirt(460, true));
+  const ink = { m: '#c5c7c8', s: '#a2a5a8', x: '#d3212d' };
+  const fontFace = `<style>@font-face{font-family:PPx;src:url(data:font/woff2;base64,${ARCHIVO_800X}) format('woff2')}@font-face{font-family:PPm;src:url(data:font/woff2;base64,${PLEX_MONO_500}) format('woff2')}</style>`;
+  const body = 'M200 16L88 46C64 56 30 112 6 176L78 206C86 188 94 172 104 158C102 260 104 380 106 480Q260 488 414 480C416 380 418 260 416 158C426 172 434 188 442 206L514 176C490 112 456 56 432 46L320 16';
+  const neck = back => back ? 'C296 34 224 34 200 16Z' : 'C300 66 220 66 200 16Z';
+  const rows = [['.22', 'PLINKER'], ['9MM', 'SIDEARM'], ['.30', 'BIG GAME'], ['.46', 'CROSSOVER']];
+  const backPrint = paths(L.horizontal, ink, 165, 103, 190 / 1208) +
+    `<path d="M160 150H360M160 296H360" stroke="#5a5e63" stroke-width="1.5"/><path d="M160 192H360M160 226H360M160 260H360" stroke="#33383e" stroke-width="1"/>` +
+    rows.map(([cal, name], i) => `<text x="160" y="${180 + i * 34}" font-family="PPm" font-size="12" letter-spacing="1" fill="#8d9094">${cal}</text><text x="206" y="${181 + i * 34}" font-family="PPx" font-size="17.5" fill="#dadcdd">${name}</text>`).join('') +
+    `<text x="260" y="322" text-anchor="middle" font-family="PPm" font-size="10.5" letter-spacing="2.4" fill="#8d9094">STABLE UNDER PRESSURE<tspan fill="#d3212d">.</tspan></text>`;
+  const shirt = (x, back) => `<g transform="translate(${x} 150) scale(1.05)">
+    <path d="${body}${neck(back)}" fill="#000" opacity=".2" filter="url(#tee-sh)" transform="translate(5 9)"/>
+    <path d="${body}${neck(back)}" fill="url(#tee-g)"/>
+    <path d="M320 16${neck(back).replace('Z', '')}" fill="none" stroke="#24282d" stroke-width="12" stroke-linejoin="round" transform="translate(0 2)"/>
+    <g fill="none" stroke="#2e3238" stroke-width="1.4" stroke-dasharray="5 4"><path d="M110 466Q260 474 410 466M14 165L84 194M506 165L436 194"/></g>
+    <g fill="none" stroke="#23262b" stroke-width="2.5" stroke-linecap="round" opacity=".55"><path d="M106 166C128 182 138 206 134 236M414 166C392 182 382 206 386 236"/></g>
+    ${back ? backPrint : paths(L.mark, ink, 318, 100, .2)}
+    <text x="260" y="548" text-anchor="middle" font-family="PPm" font-size="13" letter-spacing="3" fill="#76797c">${back ? 'BACK' : 'FRONT'}</text></g>`;
+  return svg('0 0 1200 900', `<defs>${fontFace}
+    <linearGradient id="tee-g" x1="0" x2="1"><stop offset="0" stop-color="#0e1013"/><stop offset=".24" stop-color="#191c20"/><stop offset=".5" stop-color="#1e2126"/><stop offset=".76" stop-color="#191c20"/><stop offset="1" stop-color="#0e1013"/></linearGradient>
+    <filter id="tee-sh" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="9"/></filter></defs>` + shirt(50, false) + shirt(604, true));
 };
 
 export const stickers = () => svg('0 0 900 600', `

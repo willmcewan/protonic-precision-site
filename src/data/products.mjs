@@ -1,6 +1,6 @@
 // The catalog. Every page, card, menu, filter and search result is built from this file.
 // Nothing is for sale yet: status says where each product stands, and any number not yet measured says so.
-export const STATUS = { dev: 'In development', design: 'In design', soon: 'Coming soon' };
+export const STATUS = { dev: 'In development', design: 'In design', soon: 'Coming soon', out: 'Sold out' };
 export const TBD = 'Published after testing';
 
 export const CATEGORIES = [
@@ -14,11 +14,20 @@ export const CATEGORIES = [
     blurb: 'Challenge coins, patches, stickers and shirts. Made in small runs.' },
 ];
 
+// Every can comes in these three. `finish` is the 3D viewer's finish key; images are rendered per colorway.
+export const COLORWAYS = [
+  { key: 'black', name: 'Black', finish: 'black', hex: '#1d1f22', status: STATUS.out },
+  { key: 'desert-sand', name: 'Desert Sand', finish: 'sand', hex: '#c8b089', status: STATUS.dev },
+  { key: 'grey', name: 'Grey', finish: 'tungsten', hex: '#868a8e', status: STATUS.dev },
+];
+export const colorway = key => COLORWAYS.find(c => c.key === key);
+const COLOR_SPEC = ['Colorways', 'Black, Desert Sand, Grey', 'Black sold out · Desert Sand and Grey in development'];
+
 const SOUND = ['Sound', TBD, 'MIL-STD-1474E method, published with ammo and host'];
 
 export const PRODUCTS = [
   {
-    slug: 'proton-plinker', cat: 'suppressors', name: 'Proton Plinker', status: STATUS.dev, featured: true,
+    slug: 'proton-plinker', cat: 'suppressors', color: 'black', name: 'Proton Plinker', status: STATUS.dev, featured: true,
     kicker: '.22 rimfire suppressor', caliber: '.22 LR – .17 HMR', length: '5.3 in', material: 'Titanium', mount: '1/2-28',
     short: 'A titanium can for every .22 and .17 rimfire, light enough to forget it\'s on the gun.',
     long: [
@@ -32,6 +41,7 @@ export const PRODUCTS = [
       ['Diameter', '1.00 in', 'Target'],
       ['Length', '5.3 in', 'Target'],
       ['Weight', TBD],
+      COLOR_SPEC,
       SOUND,
       ['Service', 'Takes apart for cleaning', 'Design goal'],
       ['In the box', 'Can, thread protector, cleaning wrench, manual'],
@@ -42,10 +52,10 @@ export const PRODUCTS = [
       ['Numbers, not adjectives', 'Weight and dB go on this page when production samples are tested.'],
     ],
     filters: { caliber: ['.22 LR', '.22 WMR', '.17 HMR'], material: 'Titanium', mount: ['1/2-28'] },
-    render: { type: 'can', r: 0.5, L: 5.3, finish: 'black', model: 'Proton Plinker', big: 'PLINKER', cal: '.22 LR' },
+    render: { type: 'can', r: 0.5, L: 5.3, model: 'Proton Plinker', big: 'PLINKER', cal: '.22 LR' },
   },
   {
-    slug: 'proton-sidearm', cat: 'suppressors', name: 'Proton Sidearm', status: STATUS.dev, featured: true,
+    slug: 'proton-sidearm', cat: 'suppressors', color: 'black', name: 'Proton Sidearm', status: STATUS.dev, featured: true,
     kicker: '9mm pistol and carbine suppressor', caliber: '9mm', length: '7 in', material: 'Stainless + aluminum', mount: 'Pion',
     short: 'For the handgun on your hip and the carbine in the safe. The piston and the fixed spacer come in the box.',
     long: [
@@ -59,6 +69,7 @@ export const PRODUCTS = [
       ['Diameter', '1.375 in', 'Target'],
       ['Length', '7 in', 'Target'],
       ['Weight', TBD],
+      COLOR_SPEC,
       SOUND,
       ['Service', 'Takes apart for cleaning', 'Design goal'],
       ['In the box', 'Can, Pion booster with 1/2-28 piston, 1/2-28 fixed spacer, manual'],
@@ -69,10 +80,10 @@ export const PRODUCTS = [
       ['Nothing extra to buy', 'The piston and the spacer ship with the can.'],
     ],
     filters: { caliber: ['9mm', '.380 ACP', '5.7x28'], material: 'Stainless + aluminum', mount: ['Pion'] },
-    render: { type: 'can', r: 0.6875, L: 7, finish: 'black', model: 'Proton Sidearm', big: 'SIDEARM', cal: '9MM' },
+    render: { type: 'can', r: 0.6875, L: 7, model: 'Proton Sidearm', big: 'SIDEARM', cal: '9MM' },
   },
   {
-    slug: 'proton-big-game', cat: 'suppressors', name: 'Proton Big Game', status: STATUS.dev, featured: true,
+    slug: 'proton-big-game', cat: 'suppressors', color: 'desert-sand', name: 'Proton Big Game', status: STATUS.dev, featured: true,
     kicker: 'Rifle suppressor, 5.56 to .300 Win Mag', caliber: '5.56 – .300 WM', length: '7 in', material: 'Stainless steel', mount: 'Gluon DT',
     short: 'Built for deer camp and elk country, and it fits your AR too.',
     long: [
@@ -87,6 +98,7 @@ export const PRODUCTS = [
       ['Diameter', '1.5 in', 'Target'],
       ['Length', '7 in', 'Target'],
       ['Weight', TBD],
+      COLOR_SPEC,
       SOUND,
       ['In the box', 'Can, one Gluon DT mount (5/8-24 or 1/2-28), mount wrench, manual'],
     ],
@@ -96,10 +108,10 @@ export const PRODUCTS = [
       ['Stellite where it counts', 'A cobalt-alloy blast baffle where erosion is worst.'],
     ],
     filters: { caliber: ['5.56 NATO', '.300 BLK', '6.5 Creedmoor', '.308 Win', '.300 Win Mag'], material: 'Stainless steel', mount: ['Gluon DT'] },
-    render: { type: 'can', r: 0.75, L: 7, finish: 'fde', model: 'Proton Big Game', big: 'BIG GAME', cal: '5.56-.300WM' },
+    render: { type: 'can', r: 0.75, L: 7, model: 'Proton Big Game', big: 'BIG GAME', cal: '5.56-.300WM' },
   },
   {
-    slug: 'proton-crossover', cat: 'suppressors', name: 'Proton Crossover', status: STATUS.dev, featured: true,
+    slug: 'proton-crossover', cat: 'suppressors', color: 'grey', name: 'Proton Crossover', status: STATUS.dev, featured: true,
     kicker: 'Multi-caliber suppressor, pistol to big bore', caliber: '9mm – .45-70', length: '7.5 in', material: 'Stainless steel', mount: 'Gluon DT · Pion',
     short: '.45 ACP on Saturday, .45-70 on Sunday. One can that crosses over from pistols to big-bore rifles.',
     long: [
@@ -114,6 +126,7 @@ export const PRODUCTS = [
       ['Diameter', '1.5 in', 'Target'],
       ['Length', '7.5 in long, 5.8 in short', 'Target'],
       ['Weight', TBD],
+      COLOR_SPEC,
       SOUND,
       ['In the box', 'Can, Gluon DT 5/8-24 mount, .46 and 9mm front caps, manual'],
     ],
@@ -123,7 +136,7 @@ export const PRODUCTS = [
       ['Long or short', 'Modular, with front caps to tune it for the caliber.'],
     ],
     filters: { caliber: ['9mm', '10mm', '.45 ACP', '.300 BLK', '.308 Win', '.450 Bushmaster', '.45-70'], material: 'Stainless steel', mount: ['Gluon DT', 'Pion'] },
-    render: { type: 'can', r: 0.75, L: 7.5, finish: 'tungsten', model: 'Proton Crossover', big: 'CROSSOVER', cal: '.46' },
+    render: { type: 'can', r: 0.75, L: 7.5, model: 'Proton Crossover', big: 'CROSSOVER', cal: '.46' },
   },
   {
     slug: 'gluon-dt', cat: 'mounts', name: 'Gluon DT', status: STATUS.dev, featured: true,
@@ -257,6 +270,9 @@ export const PRODUCTS = [
     image: 'stickers',
   },
 ];
+
+// Cans carry the colorways; the default one is what cards, menus and the first gallery view show.
+for (const p of PRODUCTS) if (p.color) { p.colors = COLORWAYS; p.render.finish = colorway(p.color).finish; }
 
 export const bySlug = Object.fromEntries(PRODUCTS.map(p => [p.slug, p]));
 export const inCat = cat => PRODUCTS.filter(p => p.cat === cat);

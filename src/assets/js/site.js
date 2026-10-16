@@ -191,6 +191,32 @@
         })
         .catch(function () { hint.textContent = '3D view unavailable on this device'; });
     }
+
+    // Colorway picker: swaps the gallery images, the 3D finish and the notify link.
+    var cw = $('[data-colorways]');
+    if (cw) {
+      var sws = $$('[data-cw]', cw), stills = thumbs.filter(function (t) { return !t.hasAttribute('data-3d'); });
+      var notifyBtn = $('a[data-notify]'), notifyLabel = notifyBtn && $('[data-notify-label]', notifyBtn);
+      function pick(sw) {
+        sws.forEach(function (o) { o.setAttribute('aria-checked', String(o === sw)); o.tabIndex = o === sw ? 0 : -1; });
+        $('[data-cw-name]', cw).textContent = sw.getAttribute('data-name');
+        $('[data-cw-status]', cw).textContent = sw.getAttribute('data-status');
+        var srcs = sw.getAttribute('data-views').split('|');
+        stills.forEach(function (t, i) { t.setAttribute('data-view', srcs[i]); $('img', t).src = srcs[i]; if (t.getAttribute('aria-pressed') === 'true') img.src = srcs[i]; });
+        if (window.PP_MODEL) window.PP_MODEL = Object.assign({}, window.PP_MODEL, { finish: sw.getAttribute('data-finish') });
+        if (viewer) viewer.setModel(window.PP_MODEL);
+        if (notifyBtn) { notifyBtn.href = sw.getAttribute('data-cw-href'); notifyLabel.textContent = sw.getAttribute('data-cw-cta'); }
+      }
+      sws.forEach(function (sw, i) {
+        sw.tabIndex = sw.getAttribute('aria-checked') === 'true' ? 0 : -1;
+        sw.addEventListener('click', function () { pick(sw); });
+        sw.addEventListener('keydown', function (e) {
+          var d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+          if (!d) return; e.preventDefault();
+          var n = sws[(i + d + sws.length) % sws.length]; pick(n); n.focus();
+        });
+      });
+    }
   }
 
   // ---------- email helpers ----------

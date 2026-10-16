@@ -31,8 +31,9 @@ export const logo = (kind = 'horizontal', style = '--m:#edeeee;--s:#a2a5a8;--x:#
   return `<svg viewBox="${vb.join(' ')}" style="${style}" role="img" aria-label="${esc(label)}"><use href="#s-${kind}" x="${vb[0]}" y="${vb[1]}" width="${vb[2]}" height="${vb[3]}"/></svg>`;
 };
 
-export function productImg(p, variant = 'card') {
+export function productImg(p, variant = 'card', color = p.color) {
   if (p.image) return `/assets/img/products/${p.slug}.svg`;
+  if (p.colors) return `/assets/img/products/${p.slug}-${color}-${variant}.webp`;
   return `/assets/img/products/${p.slug}-${variant}.webp`;
 }
 
@@ -172,7 +173,9 @@ export function secHead(eyebrow, title, { center = false, extra = '', id = '' } 
 export function chip(status) {
   return `<span class="chip${/develop|design/i.test(status) ? ' chip--dev' : ''}"><i></i>${esc(status)}</span>`;
 }
+// Small colorway dots for cards. Sold-out colorways are struck through.
+export const swatchDots = p => p.colors ? `<span class="dots" aria-label="${p.colors.length} colorways: ${esc(p.colors.map(c => `${c.name} (${c.status.toLowerCase()})`).join(', '))}">${p.colors.map(c => `<i class="${c.status === 'Sold out' ? 'out' : ''}" style="--sw:${c.hex}" title="${esc(c.name)} · ${esc(c.status)}"></i>`).join('')}</span>` : '';
 export function productCard(p) {
   return `<a class="pcard" href="${purl(p)}"><div class="well">${chip(p.status)}<img src="${productImg(p, 'card')}" alt="${esc(p.name)}" loading="lazy" width="600" height="600"></div>
-    <div class="body"><p class="eyebrow">${esc(p.kicker)}</p><h3>${esc(p.name)}</h3><p>${esc(p.short)}</p>${arrowLink('View product')}</div></a>`;
+    <div class="body"><p class="eyebrow">${esc(p.kicker)}</p><h3>${esc(p.name)}</h3><p>${esc(p.short)}</p>${swatchDots(p)}${arrowLink('View product')}</div></a>`;
 }

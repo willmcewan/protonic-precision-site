@@ -55,7 +55,10 @@ var v=ProtonicViewer(document.getElementById('c'),{still:true,preserve:true,pixe
 }
 
 const jobs = [];
-for (const p of PRODUCTS) if (p.render && (!only.length || only.includes(p.slug))) for (const [n, w, h, cfg] of views(p)) jobs.push([p.slug, n, w, h, cfg]);
+for (const p of PRODUCTS) if (p.render && (!only.length || only.includes(p.slug))) {
+  // Cans render once per colorway: <slug>-<colorway>-<view>.webp
+  for (const c of p.colors || [null]) for (const [n, w, h, cfg] of views(p)) jobs.push([c ? `${p.slug}-${c.key}` : p.slug, n, w, h, c ? { ...cfg, finish: c.finish } : cfg]);
+}
 let i = 0;
 async function worker() { while (i < jobs.length) { const j = jobs[i++]; const f = await shot(...j); console.log('rendered', path.basename(f)); } }
 await Promise.all([worker(), worker(), worker(), worker()]);

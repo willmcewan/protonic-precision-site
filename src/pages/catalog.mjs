@@ -1,4 +1,4 @@
-import { page, esc, ICON, arrowLink, banner, crumbs, chip, productCard, productImg, secHead } from '../layout.mjs';
+import { page, esc, ICON, arrowLink, banner, crumbs, chip, productCard, productImg, secHead, swatchDots } from '../layout.mjs';
 import { CATEGORIES, PRODUCTS, inCat, url, TBD } from '../data/products.mjs';
 import { mailto } from '../data/site.mjs';
 
@@ -18,7 +18,7 @@ function listingCard(p) {
     <div class="well">${chip(p.status)}${p.el && p.z ? `<span class="el">${p.el}<small>${p.z}</small></span>` : ''}<img src="${productImg(p, 'card')}" alt="${esc(p.name)}" loading="lazy" width="600" height="450"></div>
     <div class="body"><p class="eyebrow">${esc(p.kicker)}</p><h3>${esc(p.name)}</h3>
       <dl class="specs">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
-      <div class="foot"><span class="mat">${esc(p.el && p.z ? `${p.elName} · ${p.z} protons` : p.status)}</span>${arrowLink('View')}</div></div></a>`;
+      <div class="foot">${p.colors ? swatchDots(p) : `<span class="mat">${esc(p.el && p.z ? `${p.elName} · ${p.z} protons` : p.status)}</span>`}${arrowLink('View')}</div></div></a>`;
 }
 
 export function categoryPages() {
@@ -71,14 +71,26 @@ export function productPages() {
   return PRODUCTS.map(p => {
     const isCan = p.cat === 'suppressors', has3d = !!p.render;
     const cat = { suppressors: 'Suppressors', firearms: 'Firearms', mounts: 'Mounts', apparel: 'Apparel & Swag' }[p.cat];
-    const views = p.image ? [['card', productImg(p), 'Main']] : [['wide', productImg(p, 'wide'), 'Side A'], ...(isCan ? [['side', productImg(p, 'side'), 'Side B']] : []), ['card', productImg(p, 'card'), 'Angle']];
+    const viewsFor = color => p.image ? [['card', productImg(p), 'Main']] : [['wide', productImg(p, 'wide', color), 'Side A'], ...(isCan ? [['side', productImg(p, 'side', color), 'Side B']] : []), ['card', productImg(p, 'card', color), 'Angle']];
+    const views = viewsFor(p.color);
     const thumbs = views.map(([k, src, label], i) => `<button type="button" aria-pressed="${i === 0}" data-view="${src}" aria-label="View: ${label}"><img src="${src}" alt="" loading="lazy"></button>`).join('') +
       (has3d ? `<button type="button" aria-pressed="false" data-3d aria-label="Rotate in 3D">360° view</button>` : '');
     const keys = p.cat === 'apparel' ? [['Type', p.kicker], ['Material', p.material], ['Status', p.status]] : [['Caliber', p.caliber], [p.cat === 'firearms' ? 'Barrel' : 'Length', p.length], ['Material', p.material]];
     const specRows = p.specs.map(([k, v, n]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}${n ? `<small>${esc(n)}</small>` : ''}</td></tr>`).join('');
     const hasTarget = p.specs.some(s => s[2] && /target|goal/i.test(s[2])) || p.specs.some(s => s[1] === TBD);
     const related = PRODUCTS.filter(q => q.slug !== p.slug && (q.cat === p.cat || (isCan && q.cat === 'mounts') || (p.cat === 'mounts' && q.cat === 'suppressors'))).slice(0, 4);
-    const notify = mailto(`Notify me: ${p.name}`, `Please let me know when the ${p.name} is available.\n\nMy state: `);
+    const notifyFor = c => c
+      ? mailto(`Notify me: ${p.name} in ${c.name}`, `Please let me know when the ${p.name} in ${c.name} is ${c.status === 'Sold out' ? 'back in stock' : 'available'}.\n\nMy state: `)
+      : mailto(`Notify me: ${p.name}`, `Please let me know when the ${p.name} is available.\n\nMy state: `);
+    const cur = p.colors && p.colors.find(c => c.key === p.color);
+    const notify = notifyFor(cur);
+    const notifyLabel = c => c && c.status === 'Sold out' ? 'Notify me when it\'s back' : 'Get notified';
+    const picker = p.colors ? `<div class="colorways" data-colorways>
+          <p class="cw-label">Colorway <b data-cw-name>${esc(cur.name)}</b><span data-cw-status>${esc(cur.status)}</span></p>
+          <div class="swatches" role="radiogroup" aria-label="Colorway">${p.colors.map(c => `<button type="button" role="radio" class="sw${c.status === 'Sold out' ? ' out' : ''}" aria-checked="${c === cur}" style="--sw:${c.hex}"
+            data-cw="${c.key}" data-name="${esc(c.name)}" data-status="${esc(c.status)}" data-finish="${c.finish}" data-cw-href="${esc(notifyFor(c))}" data-cw-cta="${esc(notifyLabel(c))}"
+            data-views="${esc(viewsFor(c.key).map(v => v[1]).join('|'))}"><i></i><span>${esc(c.name)}<small>${esc(c.status)}</small></span></button>`).join('')}</div>
+        </div>` : '';
     const body = crumbs([['Home', '/'], [cat, `/${p.cat}/`], [p.name, url(p)]]) + `
     <section class="sec--paper on-paper"><div class="wrap pdp">
       <div class="gallery" data-gallery data-slug="${p.slug}">
@@ -91,12 +103,13 @@ export function productPages() {
         <h1>${esc(p.name)}</h1>
         ${p.cat !== 'apparel' ? `<p class="sub">${esc(p.caliber)}<span>|</span>${esc(p.length)}</p>` : ''}
         <p class="desc">${esc(p.short)}</p>
+        ${picker}
         <div class="keyspecs">${keys.map(([k, v]) => `<div><b>${esc(v || '—')}</b><span>${esc(k)}</span></div>`).join('')}</div>
         <div class="actions">
-          <a class="btn btn--ink btn--block" href="${notify}">Get notified ${ICON.arrow}</a>
+          <a class="btn btn--ink btn--block" href="${notify}" data-notify><span data-notify-label>${notifyLabel(cur)}</span> ${ICON.arrow}</a>
           ${isCan || p.cat === 'firearms' ? `<a class="btn btn--line btn--block" href="/dealers/">Find a dealer</a>` : ''}
         </div>
-        <p class="note">${p.status}. We aren't taking orders or deposits.${hasTarget ? ' Numbers marked "Target" are design goals; anything unmeasured says so.' : ''}</p>
+        <p class="note">${p.colors ? 'Black is sold out. Desert Sand and Grey are in development' : p.status}. We aren't taking orders or deposits.${hasTarget ? ' Numbers marked "Target" are design goals; anything unmeasured says so.' : ''}</p>
       </div>
     </div></section>
     <section class="sec sec--paper" style="padding-top:0"><div class="wrap">
