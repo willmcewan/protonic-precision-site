@@ -7,6 +7,7 @@ import { PRODUCTS, url } from './src/data/products.mjs';
 import { productImg } from './src/layout.mjs';
 import { bold, med, WORD, SUB, SUB_S, P_D, PLUS, plusD, glyphTable } from './tools/brand/marks.mjs';
 import * as art from './src/art.mjs';
+import { tee } from './src/art-tee.mjs';
 import { home } from './src/pages/home.mjs';
 import { categoryPages, productPages } from './src/pages/catalog.mjs';
 import { about, labPages, faqPage, buyingGuide, threadChart, dealers, contact, legal, searchPage, notFound } from './src/pages/content.mjs';
@@ -22,7 +23,7 @@ fs.cpSync(path.join(ROOT, 'src/static'), DIST, { recursive: true });
 // Drawn product images
 const imgDir = path.join(DIST, 'assets/img/products');
 fs.mkdirSync(imgDir, { recursive: true });
-const DRAWN = { 'linac-16': art.linac, 'pvc-patch': art.patch, 'lineup-tee': art.tee, 'sticker-pack': art.stickers };
+const DRAWN = { 'linac-16': art.linac, 'pvc-patch': art.patch, 'lineup-tee': tee, 'sticker-pack': art.stickers };
 for (const [slug, fn] of Object.entries(DRAWN)) fs.writeFileSync(path.join(imgDir, `${slug}.svg`), fn());
 
 // Data for the 3D viewer
@@ -35,6 +36,13 @@ for (const p of pages) {
   const file = p.file ? path.join(DIST, p.file) : path.join(DIST, p.path, 'index.html');
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, p.html);
+}
+
+// Old product URLs (renamed 16 Oct 2026) forward to the new pages
+const REDIRECTS = { '/suppressors/proton-big-game/': '/suppressors/proton-safari/', '/suppressors/proton-crossover/': '/suppressors/proton-adapt/' };
+for (const [from, to] of Object.entries(REDIRECTS)) {
+  fs.mkdirSync(path.join(DIST, from), { recursive: true });
+  fs.writeFileSync(path.join(DIST, from, 'index.html'), `<!doctype html><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="${SITE.url}${to}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${to}"><p>This page moved to <a href="${to}">${SITE.url}${to}</a>.</p>`);
 }
 
 // Search index: products from the catalog, everything else from page text
