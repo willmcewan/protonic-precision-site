@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { SITE } from './src/data/site.mjs';
-import { PRODUCTS, url } from './src/data/products.mjs';
+import { PRODUCTS, url, money } from './src/data/products.mjs';
 import { productImg } from './src/layout.mjs';
 import { bold, med, WORD, SUB, SUB_S, P_D, PLUS, plusD, glyphTable } from './tools/brand/marks.mjs';
 import * as art from './src/art.mjs';
@@ -47,7 +47,7 @@ for (const [from, to] of Object.entries(REDIRECTS)) {
 
 // Search index: products from the catalog, everything else from page text
 const strip = h => h.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<svg[\s\S]*?<\/svg>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/g, ' ').replace(/\s+/g, ' ').trim();
-const index = PRODUCTS.map(p => ({ type: 'product', title: p.name, kicker: `${p.kicker} · ${p.status}`, url: url(p), img: productImg(p, 'card'),
+const index = PRODUCTS.map(p => ({ type: 'product', title: p.name, kicker: `${p.kicker} · ${money(p.price)} · ${p.status}`, url: url(p), img: productImg(p, 'card'),
   text: [p.short, ...p.long, p.caliber, p.material, p.mount, p.elName || '', ...p.specs.map(s => s.join(' '))].join(' ') }));
 const productPaths = new Set(PRODUCTS.map(url));
 for (const p of pages) {

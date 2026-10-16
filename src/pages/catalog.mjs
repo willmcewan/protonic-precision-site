@@ -1,5 +1,5 @@
 import { page, esc, ICON, arrowLink, banner, crumbs, chip, productCard, productImg, secHead, swatchDots } from '../layout.mjs';
-import { CATEGORIES, PRODUCTS, inCat, url, TBD } from '../data/products.mjs';
+import { CATEGORIES, PRODUCTS, inCat, url, TBD, money } from '../data/products.mjs';
 import { mailto } from '../data/site.mjs';
 
 const FILTERS = [
@@ -14,9 +14,9 @@ function listingCard(p) {
   const rows = p.cat === 'apparel'
     ? [['Type', p.kicker], ['Material', p.material || '—'], ['Status', p.status]]
     : [['Caliber', p.caliber], ['Length', p.length], ['Material', p.material], ['Mount', p.mount]];
-  return `<a class="lcard" href="${url(p)}" ${data} data-name="${esc(p.name)}" data-z="${p.z || 999}">
+  return `<a class="lcard" href="${url(p)}" ${data} data-name="${esc(p.name)}" data-z="${p.z || 999}" data-price="${p.price}">
     <div class="well">${chip(p.status)}${p.el && p.z ? `<span class="el">${p.el}<small>${p.z}</small></span>` : ''}<img src="${productImg(p, 'card')}" alt="${esc(p.name)}" loading="lazy" width="600" height="450"></div>
-    <div class="body"><p class="eyebrow">${esc(p.kicker)}</p><h3>${esc(p.name)}</h3>
+    <div class="body"><p class="eyebrow">${esc(p.kicker)}</p><h3>${esc(p.name)}</h3><p class="price">${money(p.price)}</p>
       <dl class="specs">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
       <div class="foot">${p.colors ? swatchDots(p) : `<span class="mat">${esc(p.el && p.z ? `${p.elName} · ${p.z} protons` : p.status)}</span>`}${arrowLink('View')}</div></div></a>`;
 }
@@ -45,7 +45,7 @@ export function categoryPages() {
         <aside class="filters" aria-label="Filter products"><h2>Filter</h2>${groups}<button class="clear" type="button" data-clear>Clear filters</button></aside>
         <div>
           <div class="toolbar"><p><b data-count>${items.length}</b> of ${items.length} products</p>
-            <label>Sort <select data-sort><option value="pos">Featured</option><option value="name">Name</option></select></label></div>
+            <label>Sort <select data-sort><option value="pos">Featured</option><option value="name">Name</option><option value="price">Price, low to high</option><option value="price-desc">Price, high to low</option></select></label></div>
           <div class="grid" data-grid>${items.map(listingCard).join('')}</div>
           <p class="empty" data-empty hidden>Nothing matches those filters. <button class="clear" type="button" data-clear>Clear filters</button></p>
         </div>
@@ -101,6 +101,7 @@ export function productPages() {
         <div style="display:flex;gap:8px;flex-wrap:wrap">${chip(p.status)}</div>
         <p class="eyebrow">${esc(p.kicker)}</p>
         <h1>${esc(p.name)}</h1>
+        <p class="price price--lg">${money(p.price)}${p.priceNote ? `<small>${esc(p.priceNote)}</small>` : ''}</p>
         ${p.cat !== 'apparel' ? `<p class="sub">${esc(p.caliber)}<span>|</span>${esc(p.length)}</p>` : ''}
         <p class="desc">${esc(p.short)}</p>
         ${picker}

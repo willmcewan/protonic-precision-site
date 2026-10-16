@@ -152,6 +152,8 @@
       var v = sortSel.value, list = original.slice();
       if (v === 'name') list.sort(function (a, b) { return a.dataset.name.localeCompare(b.dataset.name); });
       if (v === 'z') list.sort(function (a, b) { return a.dataset.z - b.dataset.z; });
+      if (v === 'price') list.sort(function (a, b) { return a.dataset.price - b.dataset.price; });
+      if (v === 'price-desc') list.sort(function (a, b) { return b.dataset.price - a.dataset.price; });
       list.forEach(function (c) { grid.appendChild(c); });
     }
     new URLSearchParams(location.search).forEach(function (v, k) { var i = listing.querySelector('input[name="' + k + '"][value="' + CSS.escape(v) + '"]'); if (i) i.checked = true; });

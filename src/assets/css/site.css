@@ -495,3 +495,11 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(3px); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Prices: the shelf price, in the display face, wherever a product appears */
+.price { font: 800 18px/1.1 var(--f-disp); font-stretch: 125%; color: var(--ink); font-variant-numeric: tabular-nums; }
+.pcard p.price { font-size: 17px; color: var(--ink); display: block; -webkit-line-clamp: none; }
+.mega-feature p.price { font-size: 16px; color: var(--ink); margin-top: 4px; }
+.price--lg { font-size: clamp(28px, 3vw, 36px); margin: 4px 0 2px; display: grid; gap: 6px; }
+.price--lg small { font: 500 11px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+.price--slide { color: var(--flash); font-size: 28px; margin: -14px 0 26px; }

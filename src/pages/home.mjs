@@ -1,5 +1,5 @@
 import { page, esc, ICON, arrowLink, secHead, productCard, productImg, logo } from '../layout.mjs';
-import { PRODUCTS, bySlug, url } from '../data/products.mjs';
+import { PRODUCTS, bySlug, url, money } from '../data/products.mjs';
 import { FAQ, SITE, mailto } from '../data/site.mjs';
 import { bafflesArt, testingArt, materialsArt, markArt } from '../art.mjs';
 import { POSTS } from './journal.mjs';
@@ -20,7 +20,7 @@ export function home() {
       <div class="slide-bg"></div><span class="slide-big" aria-hidden="true">${s.big}</span>
       <div class="slide-art"><img src="${productImg(p, 'hero')}" alt="" ${i ? 'loading="lazy"' : 'fetchpriority="high"'} width="1600" height="1000"></div>
       <div class="wrap" style="height:100%"><div class="slide-copy"><p class="eyebrow">${esc(s.eyebrow)}</p><h2 class="h-xl" style="margin-top:14px">${s.title}</h2><span class="tick"></span>
-        <p class="lede">${esc(s.text)}</p><div><a class="btn btn--ti" href="${s.href || url(p)}"${i ? ' tabindex="-1"' : ''}>${esc(s.cta)} ${ICON.arrow}</a></div></div></div>
+        <p class="lede">${esc(s.text)}</p>${s.href ? '' : `<p class="price price--slide">${money(p.price)}</p>`}<div><a class="btn btn--ti" href="${s.href || url(p)}"${i ? ' tabindex="-1"' : ''}>${esc(s.cta)} ${ICON.arrow}</a></div></div></div>
     </article>`;
   }).join('');
 

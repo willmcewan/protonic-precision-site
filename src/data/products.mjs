@@ -25,7 +25,7 @@ const COLOR_SPEC = ['Colorways', 'Black, Desert Sand, Grey', 'Black sold out in 
 
 export const PRODUCTS = [
   {
-    slug: 'proton-plinker', cat: 'suppressors', color: 'black', name: 'Proton Plinker', status: STATUS.out, featured: true,
+    slug: 'proton-plinker', priceNote: 'Threads straight onto 1/2-28', price: 249, cat: 'suppressors', color: 'black', name: 'Proton Plinker', status: STATUS.out, featured: true,
     kicker: '.22 rimfire suppressor', caliber: '.22 LR – .17 HMR', length: '5.3 in', material: 'Aluminum + stainless', mount: '1/2-28',
     short: 'A light, tough can for every .22 and .17 rimfire, priced to be the first suppressor you buy.',
     long: [
@@ -52,7 +52,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.5, L: 5.3, model: 'Proton Plinker', big: 'PLINKER', cal: '.22 LR' },
   },
   {
-    slug: 'proton-sidearm', cat: 'suppressors', color: 'black', name: 'Proton Sidearm', status: STATUS.out, featured: true,
+    slug: 'proton-sidearm', priceNote: 'Piston and fixed spacer included', price: 349, cat: 'suppressors', color: 'black', name: 'Proton Sidearm', status: STATUS.out, featured: true,
     kicker: '9mm pistol and carbine suppressor', caliber: '9mm', length: '7 in', material: 'Stainless + aluminum', mount: 'Pion',
     short: 'For the handgun on your hip and the carbine in the safe. The piston and the fixed spacer come in the box.',
     long: [
@@ -79,7 +79,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.6875, L: 7, model: 'Proton Sidearm', big: 'SIDEARM', cal: '9MM' },
   },
   {
-    slug: 'proton-safari', cat: 'suppressors', color: 'desert-sand', name: 'Proton Safari', status: STATUS.out, featured: true,
+    slug: 'proton-safari', priceNote: 'Gluon DT mount included', price: 449, cat: 'suppressors', color: 'desert-sand', name: 'Proton Safari', status: STATUS.out, featured: true,
     kicker: 'Rifle suppressor, 5.56 to .300 Win Mag', caliber: '5.56 – .300 WM', length: '7 in', material: 'Stainless steel', mount: 'Gluon DT',
     short: 'Built for deer camp, elk country and the hunt of a lifetime, and it fits your AR too.',
     long: [
@@ -106,7 +106,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.75, L: 7, model: 'Proton Safari', big: 'SAFARI', cal: '5.56-.300WM' },
   },
   {
-    slug: 'proton-adapt', cat: 'suppressors', color: 'grey', name: 'Proton Adapt', status: STATUS.out, featured: true,
+    slug: 'proton-adapt', priceNote: 'Gluon DT mount and 9mm cap included', price: 479, cat: 'suppressors', color: 'grey', name: 'Proton Adapt', status: STATUS.out, featured: true,
     kicker: 'Multi-caliber suppressor, pistol to big bore', caliber: '9mm – .45-70', length: '7.5 in', material: 'Stainless steel', mount: 'Gluon DT · Pion',
     short: '.45 ACP on Saturday, .45-70 on Sunday. One can that adapts from pistols to big-bore rifles.',
     long: [
@@ -133,7 +133,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.75, L: 7.5, model: 'Proton Adapt', big: 'ADAPT', cal: '.46' },
   },
   {
-    slug: 'gluon-dt', cat: 'mounts', name: 'Gluon DT', status: STATUS.out, featured: true,
+    slug: 'gluon-dt', price: 49, cat: 'mounts', name: 'Gluon DT', status: STATUS.out, featured: true,
     kicker: 'Direct-thread rifle mount', caliber: 'Rifles', length: '1.3 in', material: 'Stainless steel', mount: '1-3/8x24 rear',
     short: 'Threads onto the barrel, and Proton Safari or Proton Adapt threads onto it.',
     long: [
@@ -156,7 +156,7 @@ export const PRODUCTS = [
     render: { type: 'mount', kind: 'direct', finish: 'nitride' },
   },
   {
-    slug: 'pion', cat: 'mounts', name: 'Pion', status: STATUS.out, featured: true,
+    slug: 'pion', price: 45, cat: 'mounts', name: 'Pion', status: STATUS.out, featured: true,
     kicker: 'Booster piston', caliber: 'Pistols', length: '', material: 'Stainless steel', mount: '1/2-28 · M13.5x1 LH · .578-28 · 9/16-24',
     short: 'The piston that lets a tilting-barrel pistol cycle with Proton Sidearm or Proton Adapt on it.',
     long: [
@@ -177,7 +177,7 @@ export const PRODUCTS = [
     render: { type: 'mount', kind: 'piston', finish: 'nitride' },
   },
   {
-    slug: 'pion-fixed', cat: 'mounts', name: 'Pion Fixed', status: STATUS.out,
+    slug: 'pion-fixed', price: 25, cat: 'mounts', name: 'Pion Fixed', status: STATUS.out,
     kicker: 'Fixed spacer for carbines', caliber: 'Carbines', length: '', material: 'Stainless steel', mount: '1/2-28 · M13.5x1 LH',
     short: 'Locks the booster for carbines and fixed-barrel guns, where a piston isn\'t needed.',
     long: [
@@ -198,7 +198,7 @@ export const PRODUCTS = [
     render: { type: 'mount', kind: 'spacer', finish: 'nitride' },
   },
   {
-    slug: 'linac-16', cat: 'firearms', name: 'LINAC 16', el: null, z: null, status: STATUS.soon,
+    slug: 'linac-16', price: 999, cat: 'firearms', name: 'LINAC 16', el: null, z: null, status: STATUS.soon,
     kicker: 'Suppressor-first rifle', caliber: 'To be announced', length: '16 in barrel', material: 'To be announced', mount: 'Gluon',
     short: 'A rifle designed around the can from the first drawing. Coming soon.',
     long: [
@@ -221,7 +221,7 @@ export const PRODUCTS = [
     image: 'linac',
   },
   {
-    slug: 'challenge-coin', cat: 'apparel', name: 'p⁺ Challenge Coin', el: null, z: null, status: STATUS.soon, featured: true,
+    slug: 'challenge-coin', price: 15, cat: 'apparel', name: 'p⁺ Challenge Coin', el: null, z: null, status: STATUS.soon, featured: true,
     kicker: 'Machined coin', caliber: '', length: '1.75 in', material: 'Metal, red enamel', mount: '',
     short: 'Raised p⁺ with a red plus, with PROTONIC PRECISION around the rim.',
     long: ['The first thing we\'ll make in quantity, and the thing we hand to the people who help us get here.'],
@@ -231,7 +231,7 @@ export const PRODUCTS = [
     render: { type: 'coin' },
   },
   {
-    slug: 'pvc-patch', cat: 'apparel', name: 'p⁺ PVC Patch', el: null, z: null, status: STATUS.soon,
+    slug: 'pvc-patch', price: 10, cat: 'apparel', name: 'p⁺ PVC Patch', el: null, z: null, status: STATUS.soon,
     kicker: '3 × 2 in, hook backed', caliber: '', length: '3 × 2 in', material: 'PVC', mount: '',
     short: 'Black PVC, Neutron Grey border, red plus. Hook backing for bags, hats and plate carriers.',
     long: ['The stacked lockup on a 3 × 2 in PVC patch with a hook-backed fastener.'],
@@ -241,7 +241,7 @@ export const PRODUCTS = [
     image: 'patch',
   },
   {
-    slug: 'lineup-tee', cat: 'apparel', name: 'Lineup Tee', el: null, z: null, status: STATUS.soon,
+    slug: 'lineup-tee', price: 30, cat: 'apparel', name: 'Lineup Tee', el: null, z: null, status: STATUS.soon,
     kicker: 'Heavyweight cotton', caliber: '', length: '', material: 'Cotton', mount: '',
     short: 'The four cans down the back, the p⁺ mark on the chest.',
     long: ['Plinker, Sidearm, Safari and Adapt down the back. Black shirt, titanium-grey print, one red plus.'],
@@ -251,7 +251,7 @@ export const PRODUCTS = [
     image: 'tee',
   },
   {
-    slug: 'sticker-pack', cat: 'apparel', name: 'Sticker Pack', el: null, z: null, status: STATUS.soon,
+    slug: 'sticker-pack', price: 8, cat: 'apparel', name: 'Sticker Pack', el: null, z: null, status: STATUS.soon,
     kicker: 'Die-cut vinyl', caliber: '', length: '', material: 'Vinyl', mount: '',
     short: 'Three die-cut stickers: the p⁺ mark, the wordmark and a Stable Under Pressure tag.',
     long: ['Weatherproof vinyl, die-cut to shape.'],
@@ -268,3 +268,5 @@ for (const p of PRODUCTS) if (p.color) { p.colors = COLORWAYS; p.render.finish =
 export const bySlug = Object.fromEntries(PRODUCTS.map(p => [p.slug, p]));
 export const inCat = cat => PRODUCTS.filter(p => p.cat === cat);
 export const url = p => `/${p.cat}/${p.slug}/`;
+// Shelf price (MAP for cans and mounts). Shown on every card, menu, page and search result.
+export const money = n => '$' + n.toLocaleString('en-US');

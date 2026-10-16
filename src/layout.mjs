@@ -1,7 +1,7 @@
 // Page frame shared by every page: head, stock bar, header with mega menu and search, footer, age gate.
 import { lockups } from '../tools/brand/marks.mjs';
 import { SITE, NAV, FOOTER, mailto } from './data/site.mjs';
-import { bySlug, url as purl } from './data/products.mjs';
+import { bySlug, url as purl, money } from './data/products.mjs';
 
 export const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -41,7 +41,7 @@ function megaMenu(item) {
   const cols = item.cols.map(c => `<div><h4>${esc(c.h)}</h4><ul>${c.links.map(([t, h]) => `<li><a href="${h}">${esc(t)}</a></li>`).join('')}</ul></div>`).join('');
   const f = item.feature && bySlug[item.feature];
   const feature = f ? `<a class="mega-feature" href="${purl(f)}"><img src="${productImg(f, 'card')}" alt="" loading="lazy"><div>
-      <span class="chip chip--dev"><i></i>${esc(f.status)}</span><p class="h-s">${esc(f.name)}</p><p>${esc(f.short)}</p></div></a>` : '<div></div>';
+      <span class="chip chip--dev"><i></i>${esc(f.status)}</span><p class="h-s">${esc(f.name)}</p><p class="price">${money(f.price)}</p><p>${esc(f.short)}</p></div></a>` : '<div></div>';
   return `<div class="mega" id="mega-${item.slug}"><div class="wrap">${cols}${'<div></div>'.repeat(Math.max(0, 3 - item.cols.length))}${feature}</div></div>`;
 }
 
@@ -177,5 +177,5 @@ export function chip(status) {
 export const swatchDots = p => p.colors ? `<span class="dots" aria-label="${p.colors.length} colorways: ${esc(p.colors.map(c => `${c.name} (${c.status.toLowerCase()})`).join(', '))}">${p.colors.map(c => `<i class="${c.status === 'Sold out' ? 'out' : ''}" style="--sw:${c.hex}" title="${esc(c.name)} · ${esc(c.status)}"></i>`).join('')}</span>` : '';
 export function productCard(p) {
   return `<a class="pcard" href="${purl(p)}"><div class="well">${chip(p.status)}<img src="${productImg(p, 'card')}" alt="${esc(p.name)}" loading="lazy" width="600" height="600"></div>
-    <div class="body"><p class="eyebrow">${esc(p.kicker)}</p><h3>${esc(p.name)}</h3><p>${esc(p.short)}</p>${swatchDots(p)}${arrowLink('View product')}</div></a>`;
+    <div class="body"><p class="eyebrow">${esc(p.kicker)}</p><h3>${esc(p.name)}</h3><p class="price">${money(p.price)}</p><p>${esc(p.short)}</p>${swatchDots(p)}${arrowLink('View product')}</div></a>`;
 }
