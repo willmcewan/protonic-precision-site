@@ -35,7 +35,6 @@ export function categoryPages() {
     }).join('');
     const intro = {
       suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Adapt for rifles and Safari for the big bores. Black is sold out in every size; Desert Sand and Grey are coming soon.`,
-      firearms: `The LINAC line is a rifle designed suppressor-first. Coming soon.`,
       mounts: `Gluon mounts hold Proton Adapt and Proton Safari to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Safari to a pistol or carbine. Every can uses the same 1-3/8x24 rear thread.`,
       apparel: `Coins, patches, stickers and shirts in small runs. These ship straight to you.`,
     }[c.slug];
@@ -72,12 +71,12 @@ function buyingStrip() {
 export function productPages() {
   return PRODUCTS.map(p => {
     const isCan = p.cat === 'suppressors', has3d = !!p.render;
-    const cat = { suppressors: 'Suppressors', firearms: 'Firearms', mounts: 'Mounts', apparel: 'Apparel & Swag' }[p.cat];
+    const cat = { suppressors: 'Suppressors', mounts: 'Mounts', apparel: 'Apparel & Swag' }[p.cat];
     const viewsFor = color => p.image ? [['card', productImg(p), 'Main']] : [['wide', productImg(p, 'wide', color), 'Side A'], ...(p.chart ? [['sizes', `/assets/img/products/${p.slug}-sizes.webp`, 'Caliber chart']] : []), ...(isCan ? [['side', productImg(p, 'side', color), 'Side B']] : []), ['card', productImg(p, 'card', color), 'Angle'], ...(GALLERY[p.slug] || []).map(([f, l]) => ['photo', photo(f), l])];
     const views = viewsFor(p.color);
     const thumbs = views.map(([k, src, label], i) => `<button type="button" aria-pressed="${i === 0}" data-view="${src}" aria-label="View: ${label}"><img src="${src}" alt="" loading="lazy"></button>`).join('') +
       (has3d ? `<button type="button" aria-pressed="false" data-3d aria-label="Rotate in 3D">360° view</button>` : '');
-    const keys = p.cat === 'apparel' ? [['Type', p.kicker], ['Material', p.material], ['Status', p.status]] : [['Caliber', p.caliber], [p.cat === 'firearms' ? 'Barrel' : 'Length', p.length], ['Material', p.material]];
+    const keys = p.cat === 'apparel' ? [['Type', p.kicker], ['Material', p.material], ['Status', p.status]] : [['Caliber', p.caliber], ['Length', p.length], ['Material', p.material]];
     const specRows = p.specs.map(([k, v, n]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}${n ? `<small>${esc(n)}</small>` : ''}</td></tr>`).join('');
     const hasTarget = p.specs.some(s => s[2] && /target|goal/i.test(s[2])) || p.specs.some(s => s[1] === TBD);
     const related = PRODUCTS.filter(q => q.slug !== p.slug && (q.cat === p.cat || (isCan && q.cat === 'mounts') || (p.cat === 'mounts' && q.cat === 'suppressors'))).slice(0, 4);
@@ -110,7 +109,7 @@ export function productPages() {
         <div class="keyspecs">${keys.map(([k, v]) => `<div><b>${esc(v || '—')}</b><span>${esc(k)}</span></div>`).join('')}</div>
         <div class="actions">
           <a class="btn btn--ink btn--block" href="${notify}" data-notify><span data-notify-label>${notifyLabel(cur)}</span> ${ICON.arrow}</a>
-          ${isCan || p.cat === 'firearms' ? `<a class="btn btn--line btn--block" href="/dealers/">Find a dealer</a>` : ''}
+          ${isCan ? `<a class="btn btn--line btn--block" href="/dealers/">Find a dealer</a>` : ''}
         </div>
         <p class="note">${p.colors ? 'Black is sold out in every size. Desert Sand and Grey are coming soon' : p.status}.${isCan ? ' Ships to any licensed dealer in your state.' : ''}</p>
       </div>

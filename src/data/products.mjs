@@ -5,8 +5,6 @@ export const TBD = 'Coming soon';
 export const CATEGORIES = [
   { slug: 'suppressors', name: 'Suppressors', eyebrow: 'Rimfire · Pistol · Rifle · Big bore', tag: 'Suppressors named for the <em>job</em> they do',
     blurb: 'Four cans, each named for what it\'s for: Plinker, Sidearm, Adapt and Safari.' },
-  { slug: 'firearms', name: 'Firearms', eyebrow: 'Rifles · Coming soon', tag: 'A rifle designed <em>around</em> the can',
-    blurb: 'Suppressors contain energy. Rifles aim it. The LINAC line is coming soon.' },
   { slug: 'mounts', name: 'Mounts', eyebrow: 'Rifle mounts · Pistons', tag: 'What holds the can <em>to</em> the gun',
     blurb: 'Gluon mounts hold a can on a rifle. Pion pistons and spacers hold it on a pistol or carbine.' },
   { slug: 'apparel', name: 'Apparel & Swag', eyebrow: 'Coins · Patches · Tees', tag: 'Gear for people who <em>already</em> get it',
@@ -196,29 +194,6 @@ export const PRODUCTS = [
     ],
     filters: { caliber: [], material: 'Stainless steel', mount: ['1/2-28', 'M13.5x1 LH'] },
     render: { type: 'mount', kind: 'spacer', finish: 'nitride' },
-  },
-  {
-    slug: 'linac-16', price: 999, cat: 'firearms', name: 'LINAC 16', el: null, z: null, status: STATUS.soon,
-    kicker: 'Suppressor-first rifle', caliber: 'To be announced', length: '16 in barrel', material: 'To be announced', mount: 'Gluon',
-    short: 'A rifle designed around the can from the first drawing. Coming soon.',
-    long: [
-      'A rifle barrel is a short linear accelerator, so the rifle line is called LINAC, and the number is the barrel length.',
-      'Most rifles get a suppressor bolted on later, and run dirty and over-gassed because of it. LINAC starts from the other end: gas, weight and balance are designed for the can from day one.',
-      'Coming soon. Get on the list and we\'ll tell you first.',
-    ],
-    specs: [
-      ['Barrel', '16 in'],
-      ['Caliber', 'To be announced'],
-      ['Gas system', 'Designed for suppressed use'],
-      ['Mount', 'Gluon'],
-    ],
-    features: [
-      ['Can first', 'Gas and balance are set for suppressed fire from the start.'],
-      ['One system', 'Rifle, mount and can designed together.'],
-      ['First to know', 'Join the list and we\'ll email you when it drops.'],
-    ],
-    filters: { caliber: [], material: '', mount: [] },
-    image: 'linac',
   },
   {
     slug: 'challenge-coin', price: 15, cat: 'apparel', name: 'p⁺ Challenge Coin', el: null, z: null, status: STATUS.soon, featured: true,

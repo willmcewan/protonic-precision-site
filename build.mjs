@@ -23,7 +23,7 @@ fs.cpSync(path.join(ROOT, 'src/static'), DIST, { recursive: true });
 // Drawn product images
 const imgDir = path.join(DIST, 'assets/img/products');
 fs.mkdirSync(imgDir, { recursive: true });
-const DRAWN = { 'linac-16': art.linac, 'pvc-patch': art.patch, 'lineup-tee': tee, 'sticker-pack': art.stickers };
+const DRAWN = { 'pvc-patch': art.patch, 'lineup-tee': tee, 'sticker-pack': art.stickers };
 for (const [slug, fn] of Object.entries(DRAWN)) fs.writeFileSync(path.join(imgDir, `${slug}.svg`), fn());
 
 // Data for the 3D viewer
@@ -38,8 +38,9 @@ for (const p of pages) {
   fs.writeFileSync(file, p.html);
 }
 
-// Old product URLs (renamed 16 Oct 2026) forward to the new pages
-const REDIRECTS = { '/suppressors/proton-big-game/': '/suppressors/proton-adapt/', '/suppressors/proton-crossover/': '/suppressors/proton-safari/' };
+// Old URLs forward to their replacements: cans renamed 16 Oct 2026; Firearms section removed 16 Oct 2026
+const REDIRECTS = { '/suppressors/proton-big-game/': '/suppressors/proton-adapt/', '/suppressors/proton-crossover/': '/suppressors/proton-safari/',
+  '/firearms/': '/suppressors/', '/firearms/linac-16/': '/suppressors/' };
 for (const [from, to] of Object.entries(REDIRECTS)) {
   fs.mkdirSync(path.join(DIST, from), { recursive: true });
   fs.writeFileSync(path.join(DIST, from, 'index.html'), `<!doctype html><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="${SITE.url}${to}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${to}"><p>This page moved to <a href="${to}">${SITE.url}${to}</a>.</p>`);

@@ -31,7 +31,7 @@ export function about() {
     <div class="feat">
       <div><h3 class="h-s">Physics is the story</h3><p>Protons explain our name. They are never a product claim. Nothing we make uses "proton technology."</p></div>
       <div><h3 class="h-s">Specs sell the product</h3><p>dB with the test method, length, material and thread. If we haven't measured it, we don't print it.</p></div>
-      <div><h3 class="h-s">Cans first, rifles next</h3><p>The suppressors come first. The LINAC rifle is built around them, and it's coming soon.</p></div>
+      <div><h3 class="h-s">One system</h3><p>Every can, mount and piston shares one 1-3/8x24 rear thread, so the parts work together.</p></div>
     </div>
     <div class="stats" style="margin-top:clamp(36px,5vw,60px)">
       <div class="stat"><b>p<sup>+</sup></b><span>The mark · charge +1</span></div>
@@ -71,7 +71,7 @@ export function labPages() {
     <h2 id="blast">The blast chamber</h2>
     <p>The first chamber sees the hottest, fastest gas on every shot and erodes first. That's why the blast baffle in Proton Adapt and Proton Safari is 17-4 stainless, and why a worn one is replaced under warranty.</p>
     <h2 id="system">The system</h2>
-    <p>A can is only as good as what holds it on. Gluon mounts hold the cans on rifles and Pion pistons hold them on pistols, all on one 1-3/8x24 rear thread. The LINAC rifle line, coming soon, is designed with the can in place from the first drawing, rather than having one bolted on afterwards.</p>
+    <p>A can is only as good as what holds it on. Gluon mounts hold the cans on rifles and Pion pistons hold them on pistols, all on one 1-3/8x24 rear thread.</p>
     <p><a class="btn btn--ink" href="/lab/materials/">Next: Materials ${ICON.arrow}</a></p>`);
 
   const test = article([['method', 'The method'], ['publish', 'What we publish'], ['never', 'What we never say']], `${art(testingArt())}

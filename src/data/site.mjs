@@ -5,7 +5,7 @@ export const SITE = {
   email: 'will@protonicprecision.com',
   instagram: { handle: '@protonicprecision', url: 'https://www.instagram.com/protonicprecision/' },
   tagline: 'Stable under pressure.',
-  description: 'Protonic Precision builds suppressors from first principles: four cans named for the job they do, from .22 rimfire to .45-70. Firearms to follow.',
+  description: 'Protonic Precision builds suppressors from first principles: four cans named for the job they do, from .22 rimfire to .45-70.',
   legalAsOf: '15 Oct 2026',
 };
 
@@ -19,10 +19,6 @@ export const NAV = [
     { h: 'By caliber', links: [['.22 rimfire', '/suppressors/?caliber=.22%20LR'], ['9mm', '/suppressors/?caliber=9mm'], ['.308 Win', '/suppressors/?caliber=.308%20Win'], ['.45 ACP', '/suppressors/?caliber=.45%20ACP']] },
     { h: 'Know before you buy', links: [['How to buy a suppressor', '/buying-a-suppressor/'], ['Thread pitch chart', '/resources/thread-pitches/'], ['How we test sound', '/lab/testing/']] },
   ], feature: 'proton-plinker' },
-  { slug: 'firearms', label: 'Firearms', cols: [
-    { h: 'Rifles', links: [['LINAC 16', '/firearms/linac-16/'], ['All firearms', '/firearms/']] },
-    { h: 'Why suppressor-first', links: [['Suppressor-first design', '/lab/engineering/']] },
-  ], feature: 'linac-16' },
   { slug: 'mounts', label: 'Mounts', cols: [
     { h: 'Rifles', links: [['Gluon DT', '/mounts/gluon-dt/']] },
     { h: 'Pistols & carbines', links: [['Pion', '/mounts/pion/'], ['Pion Fixed', '/mounts/pion-fixed/']] },
@@ -40,7 +36,7 @@ export const NAV = [
 export const FOOTER = [
   { h: 'Owners & buyers', links: [['FAQ', '/faq/'], ['How to buy a suppressor', '/buying-a-suppressor/'], ['Thread pitch chart', '/resources/thread-pitches/'], ['Find a dealer', '/dealers/'], ['Warranty', '/faq/#warranty']] },
   { h: 'Company', links: [['About', '/about/'], ['The Lab', '/lab/'], ['Journal', '/journal/'], ['Dealer program', '/dealers/#program'], ['Contact', '/contact/']] },
-  { h: 'Products', links: [['Suppressors', '/suppressors/'], ['Firearms', '/firearms/'], ['Mounts', '/mounts/'], ['Apparel & Swag', '/apparel/'], ['Search', '/search/']] },
+  { h: 'Products', links: [['Suppressors', '/suppressors/'], ['Mounts', '/mounts/'], ['Apparel & Swag', '/apparel/'], ['Search', '/search/']] },
 ];
 
 const ATF_UPDATE = 'https://www.atf.gov/firearms/update-to-nfa-transfer-guidance';
@@ -50,7 +46,7 @@ const SS_HUNT = 'https://www.silencershop.com/where-silencers-are-legal-for-hunt
 // [id, question, answer html, onHome]
 export const FAQ = [
   ['what', 'What is Protonic Precision?',
-    `<p>Two brothers making suppressors from first principles. Four cans, from .22 rimfire to .45-70, each named for the job it does. A rifle line, LINAC, is coming soon.</p>`, true],
+    `<p>Two brothers making suppressors from first principles. Four cans, from .22 rimfire to .45-70, each named for the job it does.</p>`, true],
   ['when', 'Where can I buy one?',
     `<p>Through any licensed suppressor dealer (FFL/SOT) in your state. Black is sold out in every size right now, and Desert Sand and Grey are coming soon. <a href="/contact/#updates">Get a restock alert</a> and we'll tell you the moment they're back.</p>`, true],
   ['name', 'Why "Protonic"?',

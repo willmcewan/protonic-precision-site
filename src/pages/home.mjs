@@ -29,8 +29,7 @@ export function home() {
   const cats = `<section class="sec sec--paper" aria-labelledby="h-lineup"><div class="wrap">
     ${secHead('Product lineup', 'Pick the job', { center: true, id: 'h-lineup' })}
     <div class="cats">
-      ${cat('', '/suppressors/', 'Rimfire · Pistol · Rifle · Big bore', 'Suppressors', 'Four cans named for the job they do: Proton Plinker, Sidearm, Adapt and Safari.', `<img src="${productImg(bySlug['proton-adapt'], 'card')}" alt="" loading="lazy">`)}
-      ${cat('', '/firearms/', 'Rifles · Coming soon', 'Firearms', 'LINAC: a rifle designed around the can from the first drawing. Coming soon.', `<img class="inv" src="/assets/img/products/linac-16.svg" alt="" loading="lazy" style="filter:invert(.9)">`, 'See what\'s coming')}
+      ${cat('wide', '/suppressors/', 'Rimfire · Pistol · Rifle · Big bore', 'Suppressors', 'Four cans named for the job they do: Proton Plinker, Sidearm, Adapt and Safari.', `<img src="${productImg(bySlug['proton-adapt'], 'card')}" alt="" loading="lazy">`)}
       ${cat('sm', '/mounts/', 'Rifle mounts · Pistons', 'Mounts', 'Gluon mounts hold a can on a rifle. Pion pistons hold it on a pistol.', `<img src="${productImg(bySlug['gluon-dt'], 'card')}" alt="" loading="lazy">`)}
       ${cat('sm', '/lab/', 'Engineering · Testing · Materials', 'The Lab', 'How we design, what we build from, and how we prove it.', bafflesArt(), 'Go inside')}
       ${cat('sm', '/apparel/', 'Coins · Patches · Tees', 'Apparel & Swag', 'Challenge coins, patches and shirts in small runs.', `<img src="${productImg(bySlug['challenge-coin'], 'card')}" alt="" loading="lazy">`)}
@@ -66,12 +65,12 @@ export function home() {
       <div>${secHead('About Protonic Precision', 'Stable under pressure<span class="plus-red">.</span>', { id: 'h-about' })}</div>
       <div class="prose">
         <p>Protonic Precision is two brothers making suppressors from first principles. The name comes from the proton, from the Greek <em>prōtos</em>, "first." Protons push apart with enormous force, the strongest force in nature holds them together anyway, and no one has ever seen one fail.</p>
-        <p>That's the whole job of a suppressor: hold violent energy in a small space, shot after shot, without breaking. Cans come first. A rifle line designed around them comes next.</p>
+        <p>That's the whole job of a suppressor: hold violent energy in a small space, shot after shot, without breaking.</p>
         <div><a class="btn btn--line" href="/about/">Our story ${ICON.arrow}</a></div>
       </div>
     </div>
     <div class="boxes">
-      <div><p class="eyebrow">What we make</p><p>Four suppressors from .22 rimfire to .45-70, the Gluon and Pion mounts that hold them on, and, coming soon, rifles built suppressor-first. Each part of the system is designed to work with the rest.</p></div>
+      <div><p class="eyebrow">What we make</p><p>Four suppressors from .22 rimfire to .45-70, and the Gluon and Pion mounts that hold them on. Each part of the system is designed to work with the rest.</p></div>
       <div><p class="eyebrow">How we work</p><p>Physics is the story; specs sell the product. We publish measured numbers with the method behind them, and we don't publish anything we haven't measured.</p></div>
       <div><p class="eyebrow">Who we are</p><p>Two brothers. Like a proton, most of what holds us together is the bond, not the parts.</p></div>
     </div>

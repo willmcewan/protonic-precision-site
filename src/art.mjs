@@ -17,20 +17,6 @@ export function tile(x, y, s, sym, z, name, { stroke = '#c5c7c8', fill = 'none',
 }
 
 // ---------- product images ----------
-export const linac = () => svg('0 0 1200 900', `
-  <g fill="none" stroke="#2a2e33" stroke-width="3" stroke-linejoin="round">
-    <path d="M150 430h250l30-26h170v26h240v40H600v22H470l-20 40h-60l20-40h-60l-10 92-70 18-18-72H150z" fill="#d4d6d7"/>
-    <path d="M840 438h230v24H840z" fill="#c3c6c8"/>
-    <path d="M430 404h170" />
-    <rect x="1070" y="432" width="70" height="36" fill="#1c1f23"/>
-    <path d="M150 430v62M150 492l-40 30v-120l40 28" fill="#c3c6c8"/>
-  </g>
-  <g stroke="#4b4f54" stroke-width="2" fill="none"><path d="M600 560v60M1070 560v60M600 600h470"/><path d="M590 610l20-20M1060 610l20-20"/></g>
-  <text x="835" y="642" text-anchor="middle" ${MONO} font-size="26" fill="#4b4f54">BARREL 16.0 IN</text>
-  <text x="1105" y="420" text-anchor="middle" ${MONO} font-size="20" fill="#4b4f54">CAN</text>
-  <text x="600" y="270" text-anchor="middle" ${DISP} font-weight="840" font-size="120" fill="#111418">LINAC 16</text>
-  <text x="600" y="320" text-anchor="middle" ${MONO} font-size="24" fill="#4b4f54" letter-spacing="3">IN DESIGN · SUPPRESSOR-FIRST RIFLE</text>`);
-
 export const patch = () => svg('0 0 300 200', `
   <rect x="2" y="2" width="296" height="196" rx="28" fill="#15181c" stroke="#76797c" stroke-width="4"/>
   <rect x="12" y="12" width="276" height="176" rx="20" fill="none" stroke="#76797c" stroke-width="1.4" stroke-dasharray="5 4"/>

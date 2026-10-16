@@ -161,13 +161,15 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(3px); }
 .cats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
 .cat { grid-column: span 3; position: relative; min-height: 330px; overflow: hidden; background: var(--black-2); color: var(--flash); text-decoration: none; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(20px, 2.4vw, 30px); isolation: isolate; }
 .cat.sm { grid-column: span 2; min-height: 300px; }
+.cat.wide { grid-column: 1 / -1; }
+.cat.wide .art { width: 52%; height: 100%; }
 .cat::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11, 13, 16, 0) 25%, rgba(11, 13, 16, .92) 80%), radial-gradient(80% 90% at 70% 30%, #262d35 0%, #14181c 70%); }
 .cat .art { position: absolute; z-index: -1; top: 0; right: 0; width: 64%; height: 66%; display: grid; place-items: center; padding: 18px; transition: transform .5s ease; }
 .cat.sm .art { width: 70%; height: 58%; }
 .cat::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(12, 14, 17, .78) 0%, rgba(12, 14, 17, .2) 55%, transparent 75%), linear-gradient(0deg, rgba(12, 14, 17, .9) 0%, transparent 52%); }
 .cat .art img, .cat .art svg { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; }
 .cat:hover .art { transform: scale(1.04) translateX(-6px); }
-.cat .eyebrow { font-size: 11px; margin-bottom: 8px; }
+.cat .eyebrow { font-size: 11px; margin-bottom: 8px; max-width: none; }
 .cat h3 { font-size: clamp(28px, 3vw, 40px); font-weight: 820; line-height: 1; text-transform: uppercase; }
 .cat p { font-size: 14.5px; color: var(--ti); max-width: 44ch; margin: 10px 0 16px; }
 .cat .link-arrow { color: var(--flash); }
@@ -465,7 +467,8 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(3px); }
   .slide-art { width: 120%; right: -26%; top: 30%; opacity: .9; }
   .slide-copy { justify-content: flex-end; padding-bottom: 96px; }
   .cats { grid-template-columns: minmax(0, 1fr); }
-  .cat, .cat.sm { grid-column: auto; min-height: 280px; }
+  .cat, .cat.sm, .cat.wide { grid-column: auto; min-height: 280px; }
+  .cat.wide .art { width: 64%; height: 66%; }
   .track { grid-auto-columns: 72%; }
   .labs, .posts { grid-template-columns: minmax(0, 1fr); }
   .about, .faq, .detail { grid-template-columns: minmax(0, 1fr); }
