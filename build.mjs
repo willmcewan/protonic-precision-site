@@ -66,6 +66,38 @@ const urls = pages.filter(p => !p.file && p.path !== '/search/').map(p => `  <ur
 fs.writeFileSync(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 fs.writeFileSync(path.join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE.url}/sitemap.xml\n`);
 
+// llms.txt (llmstxt.org): a plain-text summary for AI assistants, built from the catalog and each page's own title and description
+const meta = (h, re) => ((h.match(re) || [])[1] || '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+const pageLine = p => `- [${meta(p.html, /<title>([^<]*)<\/title>/).replace(/ \| Protonic Precision.*/, '')}](${SITE.url}${p.path}): ${meta(p.html, /<meta name="description" content="([^"]*)"/)}`;
+const productLine = p => `- [${p.name}](${SITE.url}${url(p)}): ${p.kicker}. ${money(p.price)}${p.priceNote ? ` (${p.priceNote})` : ''}. ${p.caliber && p.cat !== 'apparel' ? `${p.caliber}, ` : ''}${p.material}. ${p.short}${p.colors ? '' : ` Status: ${p.status}.`}`;
+const infoPages = pages.filter(p => !p.file && !p.html.includes('content="noindex"') && p.path !== '/' && p.path !== '/search/' && !productPaths.has(p.path) && !/^\/(suppressors|mounts|apparel)\/$/.test(p.path));
+fs.writeFileSync(path.join(DIST, 'llms.txt'), `# ${SITE.name}
+
+> ${SITE.description} Every can, mount and piston shares one 1-3/8x24 rear thread. Cans ship to any licensed FFL/SOT dealer.
+
+${SITE.name} is a suppressor company run by two brothers. The four Proton cans are named for the job each does: Plinker (.22 rimfire), Sidearm (9mm), Adapt (.30 rifle) and Safari (big bore, up to .45-70). Each comes in Black, Desert Sand and Grey; Black is sold out in every size and Desert Sand and Grey are coming soon. Prices are MAP in US dollars. Sound numbers are only published with the test method, ammo and host.
+
+- Website: ${SITE.url}
+- Email: ${SITE.email}
+- Instagram: ${SITE.instagram.url}
+
+## Suppressors
+
+${PRODUCTS.filter(p => p.cat === 'suppressors').map(productLine).join('\n')}
+
+## Mounts
+
+${PRODUCTS.filter(p => p.cat === 'mounts').map(productLine).join('\n')}
+
+## Guides and company
+
+${infoPages.map(pageLine).join('\n')}
+
+## Optional
+
+${PRODUCTS.filter(p => p.cat === 'apparel').map(productLine).join('\n')}
+`);
+
 // Check: every internal link and asset points at something that exists
 const missing = new Set();
 for (const p of pages) {

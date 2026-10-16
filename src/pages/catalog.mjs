@@ -1,6 +1,6 @@
 import { page, esc, ICON, arrowLink, banner, crumbs, chip, productCard, productImg, secHead, swatchDots } from '../layout.mjs';
 import { CATEGORIES, PRODUCTS, inCat, url, TBD, money } from '../data/products.mjs';
-import { mailto } from '../data/site.mjs';
+import { SITE, mailto } from '../data/site.mjs';
 import { GALLERY, photo } from '../data/photos.mjs';
 
 const FILTERS = [
@@ -131,6 +131,15 @@ export function productPages() {
       <div class="carousel" data-carousel><div class="track">${related.map(productCard).join('')}</div></div>
     </div></section>`;
     const scripts = has3d ? `<script>window.PP_MODEL=${JSON.stringify(p.render)};</script>` : '';
-    return { path: url(p), html: page({ title: `${p.name} ${p.kicker}`, path: url(p), active: p.cat, description: `${p.name}: ${p.short}`, body, scripts }) };
+    // Product structured data on the cans, so search engines and AI assistants read name, specs and price straight from the page
+    const spec = k => (p.specs.find(s => s[0] === k) || [])[1];
+    const ld = isCan ? `<script type="application/ld+json">${JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'Product', name: p.name, description: [p.short, ...p.long].join(' '), sku: p.slug, category: 'Firearm suppressor',
+      url: SITE.url + url(p), image: views.filter(v => v[0] !== 'sizes').slice(0, 4).map(v => SITE.url + v[1]), color: p.colors.map(c => c.name).join(', '),
+      brand: { '@type': 'Brand', name: SITE.name }, manufacturer: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+      additionalProperty: ['Caliber', 'Material', 'Mount', 'Diameter', 'Length', 'In the box'].filter(spec).map(k => ({ '@type': 'PropertyValue', name: k, value: spec(k) })),
+      offers: { '@type': 'Offer', url: SITE.url + url(p), price: p.price, priceCurrency: 'USD', availability: 'https://schema.org/SoldOut', seller: { '@type': 'Organization', name: SITE.name } },
+    }).replace(/</g, '\\u003c')}</script>` : '';
+    return { path: url(p), html: page({ title: `${p.name} ${p.kicker}`, path: url(p), active: p.cat, description: `${p.name}: ${p.short}`, body, scripts, head: ld }) };
   });
 }
