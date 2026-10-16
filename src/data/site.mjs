@@ -4,7 +4,7 @@ export const SITE = {
   url: 'https://protonicprecision.com',
   email: 'will@protonicprecision.com',
   tagline: 'Stable under pressure.',
-  description: 'Protonic Precision builds suppressors from first principles: titanium, stainless and Inconel cans named for the elements they are made of. Firearms to follow.',
+  description: 'Protonic Precision builds suppressors from first principles: four cans named for the job they do, from .22 rimfire to .45-70. Firearms to follow.',
   legalAsOf: '15 Oct 2026',
 };
 
@@ -14,21 +14,21 @@ export const mailto = (subject, body = '') =>
 // Mega menu columns per top-level item. Product links are filled in from the catalog by the layout.
 export const NAV = [
   { slug: 'suppressors', label: 'Suppressors', cols: [
-    { h: 'By material', links: [['Titanium · Ti-22', '/suppressors/ti-22/'], ['Stainless · Fe-26', '/suppressors/fe-26/'], ['Inconel · Ni-28', '/suppressors/ni-28/']] },
-    { h: 'By caliber', links: [['.22 rimfire', '/suppressors/?caliber=.22%20LR'], ['5.56 NATO', '/suppressors/?caliber=5.56%20NATO'], ['.30 cal', '/suppressors/?caliber=.308%20Win']] },
+    { h: 'By job', links: [['Rimfire · Proton Plinker', '/suppressors/proton-plinker/'], ['9mm · Proton Sidearm', '/suppressors/proton-sidearm/'], ['Rifle · Proton Big Game', '/suppressors/proton-big-game/'], ['Big bore · Proton Crossover', '/suppressors/proton-crossover/']] },
+    { h: 'By caliber', links: [['.22 rimfire', '/suppressors/?caliber=.22%20LR'], ['9mm', '/suppressors/?caliber=9mm'], ['.308 Win', '/suppressors/?caliber=.308%20Win'], ['.45 ACP', '/suppressors/?caliber=.45%20ACP']] },
     { h: 'Know before you buy', links: [['How to buy a suppressor', '/buying-a-suppressor/'], ['Thread pitch chart', '/resources/thread-pitches/'], ['How we test sound', '/lab/testing/']] },
-  ], feature: 'ti-22' },
+  ], feature: 'proton-plinker' },
   { slug: 'firearms', label: 'Firearms', cols: [
     { h: 'Rifles', links: [['LINAC 16', '/firearms/linac-16/'], ['All firearms', '/firearms/']] },
     { h: 'Why later', links: [['Suppressor-first design', '/lab/engineering/']] },
   ], feature: 'linac-16' },
   { slug: 'mounts', label: 'Mounts', cols: [
-    { h: 'Gluon system', links: [['Gluon QD Mount', '/mounts/gluon-qd/'], ['Gluon Direct Thread', '/mounts/gluon-direct/']] },
-    { h: 'Reference', links: [['Thread pitch chart', '/resources/thread-pitches/']] },
-  ], feature: 'gluon-qd' },
+    { h: 'Rifles', links: [['Gluon DT', '/mounts/gluon-dt/']] },
+    { h: 'Pistols & carbines', links: [['Pion', '/mounts/pion/'], ['Pion Fixed', '/mounts/pion-fixed/']] },
+    ], feature: 'gluon-dt' },
   { slug: 'apparel', label: 'Apparel & Swag', cols: [
     { h: 'Swag', links: [['Challenge coin', '/apparel/challenge-coin/'], ['PVC patch', '/apparel/pvc-patch/'], ['Sticker pack', '/apparel/sticker-pack/']] },
-    { h: 'Apparel', links: [['Element Tee', '/apparel/element-tee/']] },
+    { h: 'Apparel', links: [['Lineup Tee', '/apparel/lineup-tee/']] },
   ], feature: 'challenge-coin' },
   { slug: 'lab', label: 'The Lab', cols: [
     { h: 'Engineering', links: [['First principles', '/lab/engineering/'], ['Materials', '/lab/materials/'], ['Testing', '/lab/testing/']] },
@@ -49,13 +49,13 @@ const SS_HUNT = 'https://www.silencershop.com/where-silencers-are-legal-for-hunt
 // [id, question, answer html, onHome]
 export const FAQ = [
   ['what', 'What is Protonic Precision?',
-    `<p>Two brothers building suppressors from first principles. Cans come first: titanium, stainless and Inconel, each named for its metal's proton count. A rifle line, LINAC, follows once the cans are proven.</p>`, true],
+    `<p>Two brothers building suppressors from first principles. Cans come first: four of them, from .22 rimfire to .45-70, each named for the job it does. A rifle line, LINAC, follows once the cans are proven.</p>`, true],
   ['when', 'When can I buy one?',
     `<p>Not yet. Every product here is in development. We aren't taking orders, preorders or deposits, and we won't until a can has passed testing and is ready to ship. <a href="/contact/#updates">Get on the launch list</a> and we'll tell you first.</p>`, true],
   ['name', 'Why "Protonic"?',
     `<p>The proton is named from the Greek <em>prōtos</em>, "first." Protons are held together by the strongest force in nature, and no one has ever seen one decay. That's the job description of a suppressor: contain violent energy in a small space, shot after shot, without failing. <a href="/about/">The full story</a>.</p>`, true],
-  ['names', 'What do Ti-22, Fe-26 and Ni-28 mean?',
-    `<p>Element symbol plus proton count. Titanium has 22 protons, iron 26, nickel 28. Each can is named for the metal it's mostly made of, so the name tells you what you're buying. Ti-22 is also the .22.</p>`, true],
+  ['names', 'Which can do I need?',
+    `<p>Each can is named for the job it does. <a href="/suppressors/proton-plinker/">Proton Plinker</a> is for .22 and .17 rimfire. <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> is for 9mm pistols and carbines. <a href="/suppressors/proton-big-game/">Proton Big Game</a> is the rifle can, from an AR-15 to a .300 Win Mag. <a href="/suppressors/proton-crossover/">Proton Crossover</a> takes the big ones: .45 ACP, 10mm and big-bore rifles like the .45-70.</p>`, true],
   ['paperwork', 'Do I still need a tax stamp or Form 4?',
     `<p>It depends on your state, and it changed recently. As of ${SITE.legalAsOf}:</p>
      <ul><li>The federal NFA tax on suppressors has been <strong>$0</strong> since 1 January 2026.</li>

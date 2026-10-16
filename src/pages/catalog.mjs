@@ -33,9 +33,9 @@ export function categoryPages() {
       return `<details open><summary>${label} ${ICON.down}</summary><div class="opts">${vals.map(v => `<label><input type="checkbox" name="${k}" value="${esc(v)}"> ${esc(v)} <span>${counts[v]}</span></label>`).join('')}</div></details>`;
     }).join('');
     const intro = {
-      suppressors: `Every Protonic can is named for its main metal and that metal's proton count, so the name tells you what you're buying. All three are in development. Specs marked "Target" are design goals; weight and sound are published after testing.`,
+      suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Big Game for rifles and Crossover for the big bores. All four are in development. Specs marked "Target" are design goals; weight and sound are published after testing.`,
       firearms: `The LINAC line is a rifle designed suppressor-first. It comes after the cans are proven. No preorders, no deposits, no dates until there's something real to show.`,
-      mounts: `The Gluon mount system holds Fe-26 and Ni-28 to the rifle: a quick-detach taper mount, or direct thread for the fewest parts.`,
+      mounts: `Gluon mounts hold Proton Big Game and Proton Crossover to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Crossover to a pistol or carbine. Every can uses the same 1-3/8x24 rear thread.`,
       apparel: `Coins, patches, stickers and shirts in small runs. These can ship straight to you when they launch.`,
     }[c.slug];
     const body = banner(c.name, c.tag, c.eyebrow) + crumbs([['Home', '/'], [c.name, `/${c.slug}/`]]) + `
@@ -45,7 +45,7 @@ export function categoryPages() {
         <aside class="filters" aria-label="Filter products"><h2>Filter</h2>${groups}<button class="clear" type="button" data-clear>Clear filters</button></aside>
         <div>
           <div class="toolbar"><p><b data-count>${items.length}</b> of ${items.length} products</p>
-            <label>Sort <select data-sort><option value="pos">Featured</option><option value="name">Name</option><option value="z">Proton count</option></select></label></div>
+            <label>Sort <select data-sort><option value="pos">Featured</option><option value="name">Name</option></select></label></div>
           <div class="grid" data-grid>${items.map(listingCard).join('')}</div>
           <p class="empty" data-empty hidden>Nothing matches those filters. <button class="clear" type="button" data-clear>Clear filters</button></p>
         </div>

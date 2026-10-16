@@ -52,7 +52,7 @@ export function labPages() {
   <section class="sec sec--deep" style="padding-top:28px"><div class="wrap"><div class="labs">
     ${[['/lab/engineering/', 'Engineering', 'First<br>principles', 'A suppressor is a chain of stages, each passing less energy to the next.', bafflesArt()],
        ['/lab/testing/', 'Testing', 'Measured,<br>then published', 'Sound numbers come with the method behind them, or not at all.', testingArt()],
-       ['/lab/materials/', 'Materials', 'Every atom<br>accounted for', 'Titanium, stainless, Inconel and cobalt alloy, each where it does the most good.', materialsArt()]]
+       ['/lab/materials/', 'Materials', 'Every atom<br>accounted for', 'Titanium, stainless, aluminum and cobalt alloy, each where it does the most good.', materialsArt()]]
       .map(([h, e, t, x, a]) => `<a class="lab" href="${h}"><div class="art">${a}</div><div class="body"><p class="eyebrow">${e}</p><h3>${t}</h3><span class="tick"></span><p>${x}</p><span class="btn btn--line">Read ${ICON.arrow}</span></div></a>`).join('')}
   </div></div></section>`;
 
@@ -63,9 +63,9 @@ export function labPages() {
     <p>When a cartridge fires, high-pressure gas follows the bullet out of the barrel. Without a suppressor it expands all at once, and that sudden expansion is most of the noise. A suppressor gives the gas room and a path. Each baffle turns and slows part of it and passes less on to the next chamber.</p>
     <p>We think of a can as that chain of stages, not as a tube with parts inside. The design question at every stage is the same: how much energy does it take, and what does it hand on?</p>
     <h2 id="blast">The blast chamber</h2>
-    <p>The first chamber sees the hottest, fastest gas on every shot and erodes first. That's why Ni-28 gets a dedicated cobalt-alloy blast baffle, Co-27, made from a material chosen for exactly that job.</p>
+    <p>The first chamber sees the hottest, fastest gas on every shot and erodes first. That's why Proton Big Game and Proton Crossover get a dedicated blast baffle in Stellite, a cobalt alloy chosen for exactly that job.</p>
     <h2 id="system">The system</h2>
-    <p>A can is only as good as what holds it on. The Gluon mount centers the can on the bore and locks it there. The LINAC rifle line, later, is designed with the can in place from the first drawing, rather than having one bolted on afterwards.</p>
+    <p>A can is only as good as what holds it on. Gluon mounts hold the cans on rifles and Pion pistons hold them on pistols, all on one 1-3/8x24 rear thread. The LINAC rifle line, later, is designed with the can in place from the first drawing, rather than having one bolted on afterwards.</p>
     <p><a class="btn btn--ink" href="/lab/materials/">Next: Materials ${ICON.arrow}</a></p>`);
 
   const test = article([['method', 'The method'], ['publish', 'What we publish'], ['never', 'What we never say']], `${art(testingArt())}
@@ -79,12 +79,12 @@ export function labPages() {
     <p>"Silent." "Whisper quiet." "Hollywood quiet." No suppressor is silent, and adjectives can't be checked. Until a production-representative can has been tested, its page says "Published after testing."</p>
     <p><a class="btn btn--ink" href="/lab/engineering/">Next: Engineering ${ICON.arrow}</a></p>`);
 
-  const mat = article([['ti', 'Titanium'], ['fe', 'Stainless'], ['ni', 'Inconel'], ['co', 'Cobalt alloy']], `${art(materialsArt())}
-    <p class="lede" style="font-size:20px;color:var(--ink)">Our model names are proton counts, so every name tells you the main metal. Here's why each one is where it is.</p>
-    <h2 id="ti">Titanium · 22</h2><p>Strong for its weight and immune to rust. It's the right metal where every ounce is felt, like rimfire, pistols and hunting rifles carried all day. It costs more to buy and to machine. <a href="/suppressors/ti-22/">Ti-22</a>.</p>
-    <h2 id="fe">Stainless steel · 26</h2><p>Mostly iron. Heavier than titanium, tougher under heat and abuse, and cheaper to make. It's the can that lives on a rifle. <a href="/suppressors/fe-26/">Fe-26</a>.</p>
-    <h2 id="ni">Inconel · 28</h2><p>A nickel superalloy that keeps its strength at temperatures where steel softens. It's for short barrels and fast strings, where the gas is hottest. <a href="/suppressors/ni-28/">Ni-28</a>.</p>
-    <h2 id="co">Cobalt alloy · 27</h2><p>Cobalt alloys resist the erosion a blast baffle sees on every shot. Ni-28's first baffle is one, and it's called Co-27.</p>
+  const mat = article([['ti', 'Titanium'], ['fe', 'Stainless'], ['al', 'Aluminum'], ['co', 'Cobalt alloy']], `${art(materialsArt())}
+    <p class="lede" style="font-size:20px;color:var(--ink)">Each can is named for its job, and the job decides the metal. Here's what each one does and where it goes.</p>
+    <h2 id="ti">Titanium</h2><p>Strong for its weight and immune to rust. It's the right metal where every ounce is felt, like a light rimfire rifle or pistol. It costs more to buy and to machine. <a href="/suppressors/proton-plinker/">Proton Plinker</a>.</p>
+    <h2 id="fe">17-4 stainless steel</h2><p>Mostly iron. Heavier than titanium, tougher under heat and abuse, and cheaper to make. It's the baffles in <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> and the whole of <a href="/suppressors/proton-big-game/">Proton Big Game</a> and <a href="/suppressors/proton-crossover/">Proton Crossover</a>.</p>
+    <h2 id="al">7075 aluminum</h2><p>Light, and plenty strong for a pistol can's tube, where the pressure is far lower than a rifle's. It keeps <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> from making a handgun nose-heavy.</p>
+    <h2 id="co">Stellite (cobalt alloy)</h2><p>The first baffle takes the hardest hit on every shot. Stellite resists that erosion, so it's the blast baffle in Proton Big Game and Proton Crossover. It's a silencer part, so it's replaced under warranty rather than sold on its own.</p>
     <p><a class="btn btn--ink" href="/lab/testing/">Next: Testing ${ICON.arrow}</a></p>`);
 
   const head = (t, tag, eb) => banner(t, tag, eb);
@@ -92,7 +92,7 @@ export function labPages() {
     P({ title: 'The Lab', path: '/lab/', active: 'lab', body: hub, description: 'How Protonic Precision designs, tests and chooses materials for its suppressors.' }),
     P({ title: 'Engineering', path: '/lab/engineering/', active: 'lab', description: 'How a suppressor works, and how we design ours from first principles.', body: head('Engineering', 'Design the <em>chain</em>, not the tube', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Engineering', '/lab/engineering/']]) + eng }),
     P({ title: 'Testing', path: '/lab/testing/', active: 'lab', description: 'How Protonic Precision will measure and publish suppressor sound levels: MIL-STD-1474E, with the method.', body: head('Testing', 'Numbers, <em>not</em> adjectives', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Testing', '/lab/testing/']]) + test }),
-    P({ title: 'Materials', path: '/lab/materials/', active: 'lab', description: 'Titanium, stainless steel, Inconel and cobalt alloy: what each does in a suppressor.', body: head('Materials', 'Every atom <em>accounted</em> for', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Materials', '/lab/materials/']]) + mat }),
+    P({ title: 'Materials', path: '/lab/materials/', active: 'lab', description: 'Titanium, stainless steel, aluminum and cobalt alloy: what each does in a suppressor.', body: head('Materials', 'Every atom <em>accounted</em> for', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Materials', '/lab/materials/']]) + mat }),
   ];
 }
 
@@ -146,13 +146,14 @@ export function buyingGuide() {
 
 export function threadChart() {
   const rows = [
-    ['1/2-28', 'Right', '.22 rimfire, 5.56/.223 AR-15s, most US 9mm pistol barrels', 'Ti-22; Gluon (planned)'],
-    ['5/8-24', 'Right', '.30 cal rifles: .308 Win, .300 BLK, 6.5 Creedmoor', 'Gluon (planned)'],
-    ['M13.5×1 LH', 'Left', 'Many European 9mm pistols', '—'],
-    ['M14×1 LH', 'Left', 'AK-pattern rifles in 7.62×39', '—'],
+    ['1/2-28', 'Right', '.22 rimfire, 5.56/.223 AR-15s, most US 9mm pistol barrels', 'Proton Plinker; Gluon DT, Pion, Pion Fixed (planned)'],
+    ['5/8-24', 'Right', '.30 cal rifles: .308 Win, .300 BLK, 6.5 Creedmoor', 'Gluon DT (planned)'],
+    ['M13.5×1 LH', 'Left', 'Many European 9mm pistols', 'Pion, Pion Fixed (planned)'],
+    ['M14×1 LH', 'Left', 'AK-pattern rifles in 7.62×39', 'Gluon DT (planned)'],
+    ['11/16-24', 'Right', 'Big-bore lever guns and .45-70 rifles', 'Gluon DT (planned)'],
     ['M24×1.5', 'Right', 'AK-74-pattern rifles in 5.45×39', '—'],
-    ['.578-28', 'Right', 'Many .45 ACP pistol barrels', '—'],
-    ['9/16-24 LH', 'Left', 'Many .40 S&W pistol barrels', '—'],
+    ['.578-28', 'Right', 'Many .45 ACP pistol barrels', 'Pion (planned)'],
+    ['9/16-24 LH', 'Left', 'Many .40 S&W pistol barrels', 'Pion (planned)'],
   ];
   const inner = `<p class="lede" style="font-size:20px;color:var(--ink)">The thread on your barrel decides which mount you need. These are the common ones in the US.</p>
     <div style="border:1px solid var(--paper-3);background:#f2f3f3;padding:18px 20px"><strong>Always confirm your barrel's thread</strong> with the barrel maker or a thread gauge before mounting anything. A can mounted on the wrong thread, or off-center, can be hit by the bullet.</div>

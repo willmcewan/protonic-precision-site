@@ -5,11 +5,12 @@ import { bafflesArt, testingArt, materialsArt, markArt } from '../art.mjs';
 import { POSTS } from './journal.mjs';
 
 const SLIDES = [
-  { p: 'ti-22', eyebrow: 'Suppressors · Titanium', title: 'Ti-22', big: 'Ti', text: 'The rimfire can. Titanium has 22 protons, and this is the .22. Light enough to forget it\'s on the gun.', cta: 'View Ti-22' },
-  { p: 'fe-26', eyebrow: 'Suppressors · Stainless', title: 'Fe-26', big: 'Fe', text: 'The one you leave on the rifle. Stainless steel for 5.56 through .30 cal, built to take abuse.', cta: 'View Fe-26' },
-  { p: 'ni-28', eyebrow: 'Suppressors · Inconel', title: 'Ni-28', big: 'Ni', text: 'For the hottest guns. An Inconel can with a cobalt-alloy blast baffle for short barrels and long strings.', cta: 'View Ni-28' },
+  { p: 'proton-plinker', eyebrow: 'Suppressors · .22 rimfire', title: 'Proton Plinker', big: '.22', text: 'The can for cans off a fencepost. Titanium, for every .22 and .17 rimfire, and light enough to forget it\'s on the gun.', cta: 'View Proton Plinker' },
+  { p: 'proton-sidearm', eyebrow: 'Suppressors · 9mm', title: 'Proton Sidearm', big: '9', text: 'For the handgun on your hip and the carbine in the safe. The piston and the fixed spacer come in the box.', cta: 'View Proton Sidearm' },
+  { p: 'proton-big-game', eyebrow: 'Suppressors · Rifle', title: 'Proton Big Game', big: '.30', text: 'Built for deer camp and elk country, and it fits your AR too. One can from 5.56 to .300 Win Mag.', cta: 'View Proton Big Game' },
+  { p: 'proton-crossover', eyebrow: 'Suppressors · Multi-caliber', title: 'Proton Crossover', big: '.46', text: '.45 ACP on Saturday, .45-70 on Sunday. One can that crosses over from pistols to big-bore rifles.', cta: 'View Proton Crossover' },
   { p: 'challenge-coin', eyebrow: 'Protonic Precision', title: 'Stable under pressure<span class="plus-red">.</span>', big: 'p⁺', text: 'Protons hold together under enormous force, and none has ever been seen to fail. That\'s the job of a suppressor.', cta: 'Read the story', href: '/about/' },
-  { p: 'gluon-qd', eyebrow: 'Mounts · Gluon system', title: 'Gluon QD', big: 'g', text: 'Gluons hold a proton together. This holds the can to the rifle: taper-seated, locked, off in seconds.', cta: 'View Gluon QD' },
+  { p: 'gluon-dt', eyebrow: 'Mounts · Gluon system', title: 'Gluon DT', big: 'g', text: 'Gluons hold a proton together. This holds the can to the rifle: barrel threads, mount, can.', cta: 'View Gluon DT' },
 ];
 
 export function home() {
@@ -34,11 +35,11 @@ export function home() {
   const cat = (cls, href, eyebrow, title, text, art, cta = 'See the line') =>
     `<a class="cat ${cls}" href="${href}"><div class="art">${art}</div><p class="eyebrow">${eyebrow}</p><h3>${title}</h3><p>${text}</p>${arrowLink(cta)}</a>`;
   const cats = `<section class="sec sec--paper" aria-labelledby="h-lineup"><div class="wrap">
-    ${secHead('Product lineup', 'Choose your element', { center: true, id: 'h-lineup' })}
+    ${secHead('Product lineup', 'Pick the job', { center: true, id: 'h-lineup' })}
     <div class="cats">
-      ${cat('', '/suppressors/', 'Titanium · Stainless · Inconel', 'Suppressors', 'Cans named for the metal they\'re made of: Ti-22, Fe-26 and Ni-28. Light where it can be, hard where it has to be.', `<img src="${productImg(bySlug['fe-26'], 'card')}" alt="" loading="lazy">`)}
+      ${cat('', '/suppressors/', 'Rimfire · Pistol · Rifle · Big bore', 'Suppressors', 'Four cans named for the job they do: Proton Plinker, Sidearm, Big Game and Crossover.', `<img src="${productImg(bySlug['proton-big-game'], 'card')}" alt="" loading="lazy">`)}
       ${cat('', '/firearms/', 'Rifles · Later', 'Firearms', 'LINAC: a rifle designed around the can from the first drawing. It comes after the cans are proven.', `<img class="inv" src="/assets/img/products/linac-16.svg" alt="" loading="lazy" style="filter:invert(.9)">`, 'See what\'s coming')}
-      ${cat('sm', '/mounts/', 'QD · Direct thread', 'Mounts', 'The Gluon system. Gluons hold a proton together; these hold the can on.', `<img src="${productImg(bySlug['gluon-qd'], 'card')}" alt="" loading="lazy">`)}
+      ${cat('sm', '/mounts/', 'Rifle mounts · Pistons', 'Mounts', 'Gluon mounts hold a can on a rifle. Pion pistons hold it on a pistol.', `<img src="${productImg(bySlug['gluon-dt'], 'card')}" alt="" loading="lazy">`)}
       ${cat('sm', '/lab/', 'Engineering · Testing · Materials', 'The Lab', 'How we design, what we build from, and how we\'ll prove it.', bafflesArt(), 'Go inside')}
       ${cat('sm', '/apparel/', 'Coins · Patches · Tees', 'Apparel & Swag', 'Challenge coins, patches and shirts in small runs.', `<img src="${productImg(bySlug['challenge-coin'], 'card')}" alt="" loading="lazy">`)}
     </div></div></section>`;
@@ -55,7 +56,7 @@ export function home() {
     <div class="labs">
       ${lab('/lab/engineering/', 'Engineering', 'First<br>principles', 'A suppressor is a chain: each baffle takes part of the blast and hands less to the next. We design the chain, not the tube.', bafflesArt(), 'How we design')}
       ${lab('/lab/testing/', 'Testing', 'Measured,<br>then published', 'Sound numbers go online with the method, the ammo, the rifle and the barrel length, or they don\'t go online.', testingArt(), 'How we test')}
-      ${lab('/lab/materials/', 'Materials', 'Every atom<br>accounted for', 'Titanium, stainless, Inconel and cobalt alloy, each where it does the most good. The name tells you which.', materialsArt(), 'What we build from')}
+      ${lab('/lab/materials/', 'Materials', 'Every atom<br>accounted for', 'Titanium, stainless, aluminum and cobalt alloy, each where it does the most good.', materialsArt(), 'What we build from')}
     </div></div></section>`;
 
   const journal = `<section class="sec sec--paper" aria-labelledby="h-journal"><div class="wrap">
@@ -73,13 +74,13 @@ export function home() {
       </div>
     </div>
     <div class="boxes">
-      <div><p class="eyebrow">What we make</p><p>Suppressors in titanium, stainless steel and Inconel, the Gluon mount system, and, later, rifles built suppressor-first. Each part of the system is designed to work with the rest.</p></div>
+      <div><p class="eyebrow">What we make</p><p>Four suppressors from .22 rimfire to .45-70, the Gluon and Pion mounts that hold them on, and, later, rifles built suppressor-first. Each part of the system is designed to work with the rest.</p></div>
       <div><p class="eyebrow">How we work</p><p>Physics is the story; specs sell the product. We publish measured numbers with the method behind them, and we don't publish anything we haven't measured.</p></div>
       <div><p class="eyebrow">Who we are</p><p>Two brothers. Like a proton, most of what holds us together is the bond, not the parts.</p></div>
     </div>
     <div class="stats">
       <div class="stat"><b>p<sup>+</sup></b><span>The mark · charge +1</span></div>
-      <div class="stat"><b>22</b><span>Protons in titanium</span></div>
+      <div class="stat"><b>4</b><span>Cans at launch</span></div>
       <div class="stat"><b>10<sup>34</sup>+</b><span>Years · proton lifetime</span></div>
       <div class="stat"><b>2</b><span>Brothers</span></div>
     </div>

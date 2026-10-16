@@ -35,19 +35,21 @@ export const POSTS = [
       <p>We won't publish a number before we've measured a production-representative can. Until then, every product page says "Published after testing," and it means it.</p>`,
   },
   {
-    slug: 'choosing-a-metal', date: '15 Oct 2026', tag: 'Materials', art: materialsArt,
-    title: 'Ti, Fe, Ni: choosing a can by its metal',
-    dek: 'Our model names are proton counts. That makes the first question easy: what is it made of, and why?',
+    slug: 'choosing-a-can', date: '15 Oct 2026', tag: 'Products', art: materialsArt,
+    title: 'Plinker, Sidearm, Big Game, Crossover',
+    dek: 'Four cans, each named for the job it does. Here\'s how to tell which one you need.',
     body: `
-      <p>Every can we make is named for its main metal: the chemical symbol, then the proton count. So the first thing the name tells you is the material, and the material decides most of what a can is good at.</p>
-      <h2>Titanium: Ti-22</h2>
-      <p>Titanium is strong for its weight and doesn't rust. It's ideal where weight matters most, like rimfire rifles, pistols and hunting rifles you carry all day. It costs more to buy and machine than steel.</p>
-      <h2>Stainless steel: Fe-26</h2>
-      <p>Steel is heavier than titanium but tough, cheaper to make and very forgiving of heat and abuse. It's the material for the can that lives on a rifle and gets shot a lot.</p>
-      <h2>Inconel: Ni-28</h2>
-      <p>Inconel is a family of nickel superalloys that keep their strength at temperatures where steel starts to soften. It's the answer for short barrels and fast strings of fire, where the gas is hottest.</p>
-      <h2>Cobalt alloy: Co-27</h2>
-      <p>The first baffle takes the hardest hit on every shot. Cobalt alloys resist that kind of erosion, so Ni-28's blast baffle gets one, and its own name.</p>`,
+      <p>Every can we make is named for the job it does, so the first thing the name tells you is what it's for. Between the four of them, they're designed to cover most of the guns in a typical safe.</p>
+      <h2>Proton Plinker</h2>
+      <p>For every .22 and .17 rimfire. Plinking is where most people start shooting, and a rimfire can is usually the first suppressor people buy. It's titanium, so a light rifle or pistol stays light, and it comes apart for cleaning, because rimfire is filthy.</p>
+      <h2>Proton Sidearm</h2>
+      <p>For 9mm pistols and carbines. A pistol needs a piston in the can's booster to keep cycling, and a carbine needs a fixed spacer instead. Both come in the box.</p>
+      <h2>Proton Big Game</h2>
+      <p>The rifle can. A .30 bore covers everything from a 5.56 AR-15 to a .300 Win Mag elk rifle. Stainless steel, with a Stellite blast baffle where the gas hits hardest.</p>
+      <h2>Proton Crossover</h2>
+      <p>A .46 bore for the big calibers: .45 ACP and 10mm pistols, and big-bore rifles like the .450 Bushmaster and .45-70. Run it long or short, and swap the front cap to tune it for the caliber.</p>
+      <h2>Why "Proton"?</h2>
+      <p>Every can carries the family name, the way the company carries the particle's. The second word is the job.</p>`,
   },
 ];
 

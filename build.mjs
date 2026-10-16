@@ -22,7 +22,7 @@ fs.cpSync(path.join(ROOT, 'src/static'), DIST, { recursive: true });
 // Drawn product images
 const imgDir = path.join(DIST, 'assets/img/products');
 fs.mkdirSync(imgDir, { recursive: true });
-const DRAWN = { 'linac-16': art.linac, 'pvc-patch': art.patch, 'element-tee': art.tee, 'sticker-pack': art.stickers };
+const DRAWN = { 'linac-16': art.linac, 'pvc-patch': art.patch, 'lineup-tee': art.tee, 'sticker-pack': art.stickers };
 for (const [slug, fn] of Object.entries(DRAWN)) fs.writeFileSync(path.join(imgDir, `${slug}.svg`), fn());
 
 // Data for the 3D viewer

@@ -159,14 +159,17 @@
         var big = 0.36 * Math.min(1, len / 4.4) * ppi, small = 0.085 * Math.min(1.2, len / 4.4) * ppi;
         g.textBaseline = 'alphabetic'; g.textAlign = 'left';
         g.font = '800 expanded ' + Math.round(big) + 'px ' + disp; try { g.fontStretch = 'expanded'; } catch (e) {}
-        var mw = g.measureText(cfg.model || 'Ti-22').width;
+        var word = cfg.big || cfg.model || 'Ti-22';
+        var mw = g.measureText(word).width;
         try { g.fontStretch = 'normal'; } catch (e) {}
         g.font = '500 ' + Math.round(small) + 'px ' + mono;
-        var lines = ['PROTONIC PRECISION  CITY, ST', 'MODEL ' + (cfg.model || 'Ti-22') + '   CAL ' + (cfg.cal || '.22 LR'), 'SN PT000001'];
+        var lines = ['PROTONIC PRECISION  CITY, ST', 'MODEL ' + (cfg.model || 'Ti-22').toUpperCase() + '   CAL ' + (cfg.cal || '.22 LR'), 'SN PT000001'];
         var lw = Math.max.apply(null, lines.map(function (t) { return g.measureText(t).width; }));
+        var room = 0.9 * H - 0.18 * ppi - lw;
+        if (mw > room && room > 0) { big = big * room / mw; mw = room; }
         var total = mw + 0.18 * ppi + lw, x0 = -total / 2;
         g.font = '800 expanded ' + Math.round(big) + 'px ' + disp; try { g.fontStretch = 'expanded'; } catch (e) {}
-        g.fillText(cfg.model || 'Ti-22', x0, big * 0.36);
+        g.fillText(word, x0, big * 0.36);
         try { g.fontStretch = 'normal'; } catch (e) {}
         g.fillRect(x0 + mw + 0.08 * ppi, -big * 0.7, Math.max(2, 0.012 * ppi), big * 1.15);
         g.font = '500 ' + Math.round(small) + 'px ' + mono;
@@ -192,6 +195,15 @@
         pts = [[0, -0.55], [0.24, -0.55], [0.24, -0.15], [0.3, -0.15], [0.3, -0.05], [0.42, -0.05], [0.45, -0.02], [0.45, 0.42], [0.42, 0.45], [0.3, 0.45], [0.3, 0.75], [0.27, 0.78], [0.12, 0.78], [0.12, 0], [0, 0]];
         mats = [M.dark, fin, fin, fin, fin, M.ti, fin, M.ti, fin, fin, M.ti, fin, M.dark, M.dark];
         for (var i = 0; i < 9; i++) { var t = new T.Mesh(new T.TorusGeometry(0.3, 0.012, 8, 96), fin); t.rotation.x = Math.PI / 2; t.position.y = 0.48 + i * 0.03; spin.add(t); }
+      } else if (cfg.kind === 'piston') {
+        pts = [[0, -0.75], [0.2, -0.75], [0.2, -0.2], [0.27, -0.2], [0.27, 0.35], [0.36, 0.35], [0.38, 0.38], [0.38, 0.62], [0.35, 0.65], [0.12, 0.65], [0.12, 0.3], [0, 0.3]];
+        mats = [M.dark, fin, fin, M.ti, fin, fin, M.ti, fin, M.dark, M.dark, M.dark];
+        for (var p = 0; p < 12; p++) { var tp = new T.Mesh(new T.TorusGeometry(0.2, 0.01, 8, 96), fin); tp.rotation.x = Math.PI / 2; tp.position.y = -0.7 + p * 0.04; spin.add(tp); }
+        for (var q = 0; q < 8; q++) { var sp = new T.Mesh(new T.BoxGeometry(0.05, 0.22, 0.05), M.dark), aq = q * Math.PI / 4; sp.position.set(Math.cos(aq) * 0.37, 0.5, Math.sin(aq) * 0.37); sp.rotation.y = -aq; spin.add(sp); }
+      } else if (cfg.kind === 'spacer') {
+        pts = [[0, -0.3], [0.2, -0.3], [0.2, 0], [0.36, 0], [0.38, 0.03], [0.38, 0.4], [0.35, 0.43], [0.12, 0.43], [0.12, 0.05], [0, 0.05]];
+        mats = [M.dark, fin, fin, fin, M.ti, fin, M.dark, M.dark, M.dark];
+        for (var u = 0; u < 6; u++) { var tu = new T.Mesh(new T.TorusGeometry(0.2, 0.01, 8, 96), fin); tu.rotation.x = Math.PI / 2; tu.position.y = -0.27 + u * 0.045; spin.add(tu); }
       } else {
         pts = [[0, -1.0], [0.22, -1.0], [0.22, -0.7], [0.36, -0.7], [0.39, -0.67], [0.39, -0.35], [0.36, -0.33], [0.36, -0.28], [0.39, -0.26], [0.39, 0.05],
           [0.44, 0.1], [0.44, 0.6], [0.36, 1.05], [0.33, 1.08], [0.14, 1.08], [0.14, 0.6], [0, 0.6]];

@@ -40,7 +40,7 @@ export const tee = () => {
     <path d="M150 0c20 26 80 26 100 0l120 44-36 96-54-20v300H120V120l-54 20-36-96z" fill="#15181c" stroke="#2a3037" stroke-width="3"/>
     <path d="M150 0c20 26 80 26 100 0" fill="none" stroke="#2a3037" stroke-width="6"/>
     ${back
-      ? tile(130, 120, 64, 'Ti', 22, 'Titanium', { stroke: '#c5c7c8', ink: '#c5c7c8', sub: '#a2a5a8' }) + tile(200, 120, 64, 'Fe', 26, 'Iron', { stroke: '#c5c7c8', ink: '#c5c7c8', sub: '#a2a5a8' }) + tile(165, 190, 64, 'Ni', 28, 'Nickel', { stroke: '#c5c7c8', ink: '#c5c7c8', sub: '#a2a5a8' }) + paths(L.mark, { m: '#c5c7c8', x: '#d3212d' }, 182, 285, .15)
+      ? `<g text-anchor="middle" fill="#c5c7c8" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="24" letter-spacing="1"><text x="200" y="140">PLINKER</text><text x="200" y="178">SIDEARM</text><text x="200" y="216">BIG GAME</text><text x="200" y="254">CROSSOVER</text></g>` + paths(L.mark, { m: '#c5c7c8', x: '#d3212d' }, 182, 285, .15)
       : paths(L.mark, { m: '#c5c7c8', x: '#d3212d' }, 230, 92, .2)}
     <text x="200" y="455" text-anchor="middle" ${MONO} font-size="16" fill="#4b4f54" letter-spacing="2">${back ? 'BACK' : 'FRONT'}</text></g>`;
   return svg('0 0 900 560', shirt(20, false) + shirt(460, true));
@@ -49,7 +49,7 @@ export const tee = () => {
 export const stickers = () => svg('0 0 900 600', `
   <g transform="rotate(-8 230 300)"><circle cx="230" cy="300" r="150" fill="#fff"/><circle cx="230" cy="300" r="138" fill="#111418"/>${paths(L.mark, COLORWAYS.dark, 160, 245, .7)}</g>
   <g transform="rotate(5 640 190)"><rect x="440" y="120" width="400" height="140" rx="26" fill="#fff"/><rect x="452" y="132" width="376" height="116" rx="18" fill="#111418"/>${paths(L.horizontal, COLORWAYS.dark, 478, 172, 324 / 1208)}</g>
-  <g transform="rotate(-4 640 430)"><rect x="560" y="340" width="190" height="190" rx="18" fill="#fff"/><rect x="572" y="352" width="166" height="166" rx="10" fill="#111418"/>${tile(584, 364, 142, 'Ti', 22, 'Titanium', { stroke: '#c5c7c8' })}</g>`);
+  <g transform="rotate(-4 640 430)"><rect x="560" y="340" width="190" height="190" rx="18" fill="#fff"/><rect x="572" y="352" width="166" height="166" rx="10" fill="#111418"/><g text-anchor="middle" fill="#c5c7c8" ${MONO} font-size="17" letter-spacing="2"><text x="655" y="425">STABLE</text><text x="655" y="450">UNDER</text><text x="655" y="475">PRESSURE<tspan fill="#d3212d">.</tspan></text></g></g>`);
 
 // ---------- lab / journal art (dark) ----------
 export const bafflesArt = () => {
@@ -64,7 +64,7 @@ export const bafflesArt = () => {
     <rect x="128" y="104" width="150" height="112" fill="none" stroke="#76797c" stroke-width="2" stroke-dasharray="6 5"/>
     ${cones}${arrows}
     <path d="M110 160h590" stroke="#2a3037" stroke-width="1" stroke-dasharray="14 6 2 6"/>
-    <g ${MONO} font-size="15" fill="#a2a5a8" letter-spacing="1.5"><text x="128" y="250">BLAST CHAMBER · Co-27</text><text x="420" y="250">BAFFLE STACK</text><text x="60" y="88">BORE</text><text x="530" y="80">EACH STAGE PASSES LESS ON</text></g>`);
+    <g ${MONO} font-size="15" fill="#a2a5a8" letter-spacing="1.5"><text x="128" y="250">BLAST BAFFLE · STELLITE</text><text x="420" y="250">BAFFLE STACK</text><text x="60" y="88">BORE</text><text x="530" y="80">EACH STAGE PASSES LESS ON</text></g>`);
 };
 
 export const testingArt = () => {
@@ -79,8 +79,8 @@ export const testingArt = () => {
 };
 
 export const materialsArt = () => svg('0 0 800 320', `<rect width="800" height="320" fill="#0c0e11"/>
-  ${tile(70, 70, 150, 'Ti', 22, 'Titanium')}${tile(240, 70, 150, 'Fe', 26, 'Iron')}${tile(410, 70, 150, 'Co', 27, 'Cobalt')}${tile(580, 70, 150, 'Ni', 28, 'Nickel')}
-  <text x="400" y="272" text-anchor="middle" ${MONO} font-size="15" fill="#a2a5a8" letter-spacing="1.5">THE NUMBER IS THE PROTON COUNT. THE PROTON COUNT IS THE METAL.</text>`);
+  ${tile(70, 70, 150, 'Al', 13, 'Aluminum')}${tile(240, 70, 150, 'Ti', 22, 'Titanium')}${tile(410, 70, 150, 'Fe', 26, 'Iron')}${tile(580, 70, 150, 'Co', 27, 'Cobalt')}
+  <text x="400" y="272" text-anchor="middle" ${MONO} font-size="15" fill="#a2a5a8" letter-spacing="1.5">WHAT THE CANS ARE MADE OF</text>`);
 
 export const markArt = () => svg('0 0 800 320', `<rect width="800" height="320" fill="#0c0e11"/>
   <g stroke="#1b2026">${Array.from({ length: 34 }, (_, i) => `<path d="M${i * 24} 0V320"/>`).join('')}${Array.from({ length: 14 }, (_, i) => `<path d="M0 ${i * 24}H800"/>`).join('')}</g>
