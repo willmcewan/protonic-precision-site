@@ -224,7 +224,7 @@
     f.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = $('input', f).value.trim();
-      location.href = 'mailto:will@protonicprecision.com?subject=' + encodeURIComponent('Add me to the Protonic launch list') + '&body=' + encodeURIComponent('Please add ' + email + ' to the launch list.');
+      location.href = 'mailto:will@protonicprecision.com?subject=' + encodeURIComponent('Add me to the Protonic restock list') + '&body=' + encodeURIComponent('Please add ' + email + ' to the restock list.');
     });
   });
   $$('[data-copy]').forEach(function (b) {

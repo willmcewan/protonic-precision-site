@@ -1,13 +1,12 @@
 // The catalog. Every page, card, menu, filter and search result is built from this file.
-// Nothing is for sale yet: status says where each product stands, and any number not yet measured says so.
 export const STATUS = { dev: 'In development', design: 'In design', soon: 'Coming soon', out: 'Sold out' };
-export const TBD = 'Published after testing';
+export const TBD = 'Coming soon';
 
 export const CATEGORIES = [
   { slug: 'suppressors', name: 'Suppressors', eyebrow: 'Rimfire · Pistol · Rifle · Big bore', tag: 'Suppressors named for the <em>job</em> they do',
     blurb: 'Four cans, each named for what it\'s for: Plinker, Sidearm, Safari and Adapt.' },
-  { slug: 'firearms', name: 'Firearms', eyebrow: 'Rifles · Later', tag: 'A rifle designed <em>around</em> the can',
-    blurb: 'Suppressors contain energy. Rifles aim it. The LINAC line comes after the cans are proven.' },
+  { slug: 'firearms', name: 'Firearms', eyebrow: 'Rifles · Coming soon', tag: 'A rifle designed <em>around</em> the can',
+    blurb: 'Suppressors contain energy. Rifles aim it. The LINAC line is coming soon.' },
   { slug: 'mounts', name: 'Mounts', eyebrow: 'Rifle mounts · Pistons', tag: 'What holds the can <em>to</em> the gun',
     blurb: 'Gluon mounts hold a can on a rifle. Pion pistons and spacers hold it on a pistol or carbine.' },
   { slug: 'apparel', name: 'Apparel & Swag', eyebrow: 'Coins · Patches · Tees', tag: 'Gear for people who <em>already</em> get it',
@@ -17,46 +16,43 @@ export const CATEGORIES = [
 // Every can comes in these three. `finish` is the 3D viewer's finish key; images are rendered per colorway.
 export const COLORWAYS = [
   { key: 'black', name: 'Black', finish: 'black', hex: '#1d1f22', status: STATUS.out },
-  { key: 'desert-sand', name: 'Desert Sand', finish: 'sand', hex: '#c8b089', status: STATUS.dev },
-  { key: 'grey', name: 'Grey', finish: 'tungsten', hex: '#868a8e', status: STATUS.dev },
+  { key: 'desert-sand', name: 'Desert Sand', finish: 'sand', hex: '#c8b089', status: STATUS.soon },
+  { key: 'grey', name: 'Grey', finish: 'tungsten', hex: '#868a8e', status: STATUS.soon },
 ];
 export const colorway = key => COLORWAYS.find(c => c.key === key);
-const COLOR_SPEC = ['Colorways', 'Black, Desert Sand, Grey', 'Black sold out · Desert Sand and Grey in development'];
+const COLOR_SPEC = ['Colorways', 'Black, Desert Sand, Grey', 'Black sold out in every size · Desert Sand and Grey coming soon'];
 
-const SOUND = ['Sound', TBD, 'MIL-STD-1474E method, published with ammo and host'];
 
 export const PRODUCTS = [
   {
-    slug: 'proton-plinker', cat: 'suppressors', color: 'black', name: 'Proton Plinker', status: STATUS.dev, featured: true,
+    slug: 'proton-plinker', cat: 'suppressors', color: 'black', name: 'Proton Plinker', status: STATUS.out, featured: true,
     kicker: '.22 rimfire suppressor', caliber: '.22 LR – .17 HMR', length: '5.3 in', material: 'Aluminum + stainless', mount: '1/2-28',
     short: 'A light, tough can for every .22 and .17 rimfire, priced to be the first suppressor you buy.',
     long: [
       'Plinking is the cans-off-a-fencepost shooting most people learn on. This is the can for it, and for most people it\'ll be the first suppressor they own.',
-      'Rimfire is the dirtiest thing you can put through a suppressor. Lead, wax and carbon pile up fast, so it\'s being designed to come apart for cleaning. An aluminum tube keeps the weight down, and 17-4 stainless baffles stand up to scraping clean, which is where cheap rimfire cans wear out.',
+      'Rimfire is the dirtiest thing you can put through a suppressor. Lead, wax and carbon pile up fast, so it comes apart for cleaning. An aluminum tube keeps the weight down, and 17-4 stainless baffles stand up to scraping clean, which is where cheap rimfire cans wear out.',
     ],
     specs: [
-      ['Caliber', '.22 LR, .22 WMR, .17 HMR, .17 Mach 2', 'Target rating'],
+      ['Caliber', '.22 LR, .22 WMR, .17 HMR, .17 Mach 2'],
       ['Material', '7075 aluminum tube, 17-4 stainless baffles'],
       ['Mount', '1/2-28 direct thread'],
-      ['Diameter', '1.00 in', 'Target'],
-      ['Length', '5.3 in', 'Target'],
-      ['Weight', TBD],
+      ['Diameter', '1.00 in'],
+      ['Length', '5.3 in'],
       COLOR_SPEC,
-      SOUND,
-      ['Service', 'Takes apart for cleaning', 'Design goal'],
+      ['Service', 'Takes apart for cleaning'],
       ['In the box', 'Can, thread protector, cleaning wrench, manual'],
     ],
     features: [
       ['Every rimfire', 'Ruger 10/22 and Mark IV, Buck Mark, M&P 15-22, Taurus TX22, Sig P322, CZ 457, and any other 1/2-28 rimfire.'],
       ['Made to be cleaned', 'Rimfire fouling never stops. The can is designed to come apart for cleaning.'],
-      ['Numbers, not adjectives', 'Weight and dB go on this page when production samples are tested.'],
+      ['Numbers, not adjectives', 'Sound numbers come with the test method, the ammo and the host, or not at all.'],
     ],
     filters: { caliber: ['.22 LR', '.22 WMR', '.17 HMR'], material: 'Aluminum + stainless', mount: ['1/2-28'] },
     chart: { headline: 'Every .22 and .17', limit: '.22 CAL', max: .2255, calibers: ['.17 Mach 2', '.17 HMR', '.22 LR', '.22 WMR'] },
     render: { type: 'can', r: 0.5, L: 5.3, model: 'Proton Plinker', big: 'PLINKER', cal: '.22 LR' },
   },
   {
-    slug: 'proton-sidearm', cat: 'suppressors', color: 'black', name: 'Proton Sidearm', status: STATUS.dev, featured: true,
+    slug: 'proton-sidearm', cat: 'suppressors', color: 'black', name: 'Proton Sidearm', status: STATUS.out, featured: true,
     kicker: '9mm pistol and carbine suppressor', caliber: '9mm', length: '7 in', material: 'Stainless + aluminum', mount: 'Pion',
     short: 'For the handgun on your hip and the carbine in the safe. The piston and the fixed spacer come in the box.',
     long: [
@@ -64,15 +60,13 @@ export const PRODUCTS = [
       'Most brands sell the piston and the spacer as extras. Both come in the box here, so one can covers every 9mm handgun and carbine you own.',
     ],
     specs: [
-      ['Caliber', '9mm, .380 ACP, 5.7x28, .22 LR', 'Target rating'],
+      ['Caliber', '9mm, .380 ACP, 5.7x28, .22 LR'],
       ['Material', '17-4 stainless baffles, 7075 aluminum tube'],
       ['Mount', 'Pion piston or Pion Fixed spacer', '1-3/8x24 rear thread'],
-      ['Diameter', '1.375 in', 'Target'],
-      ['Length', '7 in', 'Target'],
-      ['Weight', TBD],
+      ['Diameter', '1.375 in'],
+      ['Length', '7 in'],
       COLOR_SPEC,
-      SOUND,
-      ['Service', 'Takes apart for cleaning', 'Design goal'],
+      ['Service', 'Takes apart for cleaning'],
       ['In the box', 'Can, Pion booster with 1/2-28 piston, 1/2-28 fixed spacer, manual'],
     ],
     features: [
@@ -85,7 +79,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.6875, L: 7, model: 'Proton Sidearm', big: 'SIDEARM', cal: '9MM' },
   },
   {
-    slug: 'proton-safari', cat: 'suppressors', color: 'desert-sand', name: 'Proton Safari', status: STATUS.dev, featured: true,
+    slug: 'proton-safari', cat: 'suppressors', color: 'desert-sand', name: 'Proton Safari', status: STATUS.out, featured: true,
     kicker: 'Rifle suppressor, 5.56 to .300 Win Mag', caliber: '5.56 – .300 WM', length: '7 in', material: 'Stainless steel', mount: 'Gluon DT',
     short: 'Built for deer camp, elk country and the hunt of a lifetime, and it fits your AR too.',
     long: [
@@ -93,15 +87,13 @@ export const PRODUCTS = [
       'It\'s 17-4 stainless all the way through, including the blast baffle that takes the first and hardest hit of every shot. Tough, and cheap enough to keep the price down. It mounts with a Gluon direct-thread mount, and one comes in the box.',
     ],
     specs: [
-      ['Caliber', '5.56/.223 through .300 Win Mag', 'Target rating'],
+      ['Caliber', '5.56/.223 through .300 Win Mag'],
       ['Material', '17-4 stainless steel'],
       ['Blast baffle', '17-4 stainless steel', 'Replaced under warranty when worn'],
       ['Mount', 'Gluon DT', '1-3/8x24 rear thread'],
-      ['Diameter', '1.5 in', 'Target'],
-      ['Length', '7 in', 'Target'],
-      ['Weight', TBD],
+      ['Diameter', '1.5 in'],
+      ['Length', '7 in'],
       COLOR_SPEC,
-      SOUND,
       ['In the box', 'Can, one Gluon DT mount (5/8-24 or 1/2-28), mount wrench, manual'],
     ],
     features: [
@@ -114,7 +106,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.75, L: 7, model: 'Proton Safari', big: 'SAFARI', cal: '5.56-.300WM' },
   },
   {
-    slug: 'proton-adapt', cat: 'suppressors', color: 'grey', name: 'Proton Adapt', status: STATUS.dev, featured: true,
+    slug: 'proton-adapt', cat: 'suppressors', color: 'grey', name: 'Proton Adapt', status: STATUS.out, featured: true,
     kicker: 'Multi-caliber suppressor, pistol to big bore', caliber: '9mm – .45-70', length: '7.5 in', material: 'Stainless steel', mount: 'Gluon DT · Pion',
     short: '.45 ACP on Saturday, .45-70 on Sunday. One can that adapts from pistols to big-bore rifles.',
     long: [
@@ -122,15 +114,13 @@ export const PRODUCTS = [
       'It\'s modular. Run it long for the most suppression or short for a handier gun, and swap the front cap to tune it for the caliber. A 9mm cap comes in the box. Rifles mount with a Gluon; pistols with a Pion piston.',
     ],
     specs: [
-      ['Caliber', '9mm through .45-70', 'Target rating'],
+      ['Caliber', '9mm through .45-70'],
       ['Material', '17-4 stainless steel'],
       ['Blast baffle', '17-4 stainless steel', 'Replaced under warranty when worn'],
       ['Mount', 'Gluon DT or Pion piston', '1-3/8x24 rear thread'],
-      ['Diameter', '1.5 in', 'Target'],
-      ['Length', '7.5 in long, 5.8 in short', 'Target'],
-      ['Weight', TBD],
+      ['Diameter', '1.5 in'],
+      ['Length', '7.5 in long, 5.8 in short'],
       COLOR_SPEC,
-      SOUND,
       ['In the box', 'Can, Gluon DT 5/8-24 mount, .46 and 9mm front caps, manual'],
     ],
     features: [
@@ -143,7 +133,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.75, L: 7.5, model: 'Proton Adapt', big: 'ADAPT', cal: '.46' },
   },
   {
-    slug: 'gluon-dt', cat: 'mounts', name: 'Gluon DT', status: STATUS.dev, featured: true,
+    slug: 'gluon-dt', cat: 'mounts', name: 'Gluon DT', status: STATUS.out, featured: true,
     kicker: 'Direct-thread rifle mount', caliber: 'Rifles', length: '1.3 in', material: 'Stainless steel', mount: '1-3/8x24 rear',
     short: 'Threads onto the barrel, and Proton Safari or Proton Adapt threads onto it.',
     long: [
@@ -151,12 +141,11 @@ export const PRODUCTS = [
       'It\'s the simplest stack there is: barrel threads, mount, can. One comes in the box with Proton Safari and Proton Adapt. Buy more and the can moves between rifles.',
     ],
     specs: [
-      ['Barrel threads', '1/2-28, 5/8-24, M14x1 LH, 11/16-24', 'Planned at launch'],
+      ['Barrel threads', '1/2-28, 5/8-24, M14x1 LH, 11/16-24'],
       ['Can thread', '1-3/8x24 (HUB pattern)'],
       ['Fits', 'Proton Safari, Proton Adapt'],
       ['Material', 'Stainless steel'],
       ['Finish', 'Black nitride'],
-      ['Weight', TBD],
     ],
     features: [
       ['Fewest parts', 'Nothing between the barrel and the can but the mount.'],
@@ -167,7 +156,7 @@ export const PRODUCTS = [
     render: { type: 'mount', kind: 'direct', finish: 'nitride' },
   },
   {
-    slug: 'pion', cat: 'mounts', name: 'Pion', status: STATUS.dev, featured: true,
+    slug: 'pion', cat: 'mounts', name: 'Pion', status: STATUS.out, featured: true,
     kicker: 'Booster piston', caliber: 'Pistols', length: '', material: 'Stainless steel', mount: '1/2-28 · M13.5x1 LH · .578-28 · 9/16-24',
     short: 'The piston that lets a tilting-barrel pistol cycle with Proton Sidearm or Proton Adapt on it.',
     long: [
@@ -175,21 +164,20 @@ export const PRODUCTS = [
       'One comes in the box with Proton Sidearm in 1/2-28. Buy the one that matches your barrel\'s thread.',
     ],
     specs: [
-      ['Barrel threads', '1/2-28, M13.5x1 LH, .578-28, 9/16-24', 'Planned at launch'],
+      ['Barrel threads', '1/2-28, M13.5x1 LH, .578-28, 9/16-24'],
       ['Fits', 'Proton Sidearm, Proton Adapt'],
       ['Material', 'Stainless steel'],
-      ['Weight', TBD],
     ],
     features: [
       ['Pistols cycle', 'The booster lets a tilting-barrel pistol run with a can on.'],
-      ['Every common 9mm, .40 and .45 thread', 'Four threads at launch.'],
+      ['Every common 9mm, .40 and .45 thread', 'Four threads.'],
       ['Ships with Proton Sidearm', 'You only buy one if your barrel isn\'t 1/2-28.'],
     ],
     filters: { caliber: [], material: 'Stainless steel', mount: ['1/2-28', 'M13.5x1 LH', '.578-28', '9/16-24'] },
     render: { type: 'mount', kind: 'piston', finish: 'nitride' },
   },
   {
-    slug: 'pion-fixed', cat: 'mounts', name: 'Pion Fixed', status: STATUS.dev,
+    slug: 'pion-fixed', cat: 'mounts', name: 'Pion Fixed', status: STATUS.out,
     kicker: 'Fixed spacer for carbines', caliber: 'Carbines', length: '', material: 'Stainless steel', mount: '1/2-28 · M13.5x1 LH',
     short: 'Locks the booster for carbines and fixed-barrel guns, where a piston isn\'t needed.',
     long: [
@@ -197,10 +185,9 @@ export const PRODUCTS = [
       'One comes in the box with Proton Sidearm in 1/2-28.',
     ],
     specs: [
-      ['Barrel threads', '1/2-28, M13.5x1 LH', 'Planned at launch'],
+      ['Barrel threads', '1/2-28, M13.5x1 LH'],
       ['Fits', 'Proton Sidearm, Proton Adapt'],
       ['Material', 'Stainless steel'],
-      ['Weight', TBD],
     ],
     features: [
       ['Carbines', 'Ruger PC Carbine, CZ Scorpion, Sig MPX, AR9.'],
@@ -211,24 +198,24 @@ export const PRODUCTS = [
     render: { type: 'mount', kind: 'spacer', finish: 'nitride' },
   },
   {
-    slug: 'linac-16', cat: 'firearms', name: 'LINAC 16', el: null, z: null, status: STATUS.design,
-    kicker: 'Suppressor-first rifle', caliber: 'TBD', length: '16 in barrel', material: 'TBD', mount: 'Gluon',
-    short: 'A rifle designed around the can from the first drawing. Comes after the suppressors.',
+    slug: 'linac-16', cat: 'firearms', name: 'LINAC 16', el: null, z: null, status: STATUS.soon,
+    kicker: 'Suppressor-first rifle', caliber: 'To be announced', length: '16 in barrel', material: 'To be announced', mount: 'Gluon',
+    short: 'A rifle designed around the can from the first drawing. Coming soon.',
     long: [
       'A rifle barrel is a short linear accelerator, so the rifle line is called LINAC, and the number is the barrel length.',
       'Most rifles get a suppressor bolted on later, and run dirty and over-gassed because of it. LINAC starts from the other end: gas, weight and balance are designed for the can from day one.',
-      'It\'s in design. We\'ll show it when there\'s something real to show.',
+      'Coming soon. Get on the list and we\'ll tell you first.',
     ],
     specs: [
       ['Barrel', '16 in'],
-      ['Caliber', 'In design'],
+      ['Caliber', 'To be announced'],
       ['Gas system', 'Designed for suppressed use'],
       ['Mount', 'Gluon'],
     ],
     features: [
       ['Can first', 'Gas and balance are set for suppressed fire from the start.'],
       ['One system', 'Rifle, mount and can designed together.'],
-      ['When it\'s ready', 'No preorders, no deposits, no vaporware dates.'],
+      ['First to know', 'Join the list and we\'ll email you when it drops.'],
     ],
     filters: { caliber: [], material: '', mount: [] },
     image: 'linac',
@@ -238,7 +225,7 @@ export const PRODUCTS = [
     kicker: 'Machined coin', caliber: '', length: '1.75 in', material: 'Metal, red enamel', mount: '',
     short: 'Raised p⁺ with a red plus, with PROTONIC PRECISION around the rim.',
     long: ['The first thing we\'ll make in quantity, and the thing we hand to the people who help us get here.'],
-    specs: [['Diameter', '1.75 in', 'Target'], ['Finish', 'Bright metal, black field, red plus'], ['Edge', 'Plain']],
+    specs: [['Diameter', '1.75 in'], ['Finish', 'Bright metal, black field, red plus'], ['Edge', 'Plain']],
     features: [['Raised mark', 'The p⁺ stands proud of a black field.'], ['Red plus', 'The only red on it.'], ['Small run', 'First batch goes to the people who helped.']],
     filters: { caliber: [], material: '', mount: [] },
     render: { type: 'coin' },

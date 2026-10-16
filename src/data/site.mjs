@@ -21,7 +21,7 @@ export const NAV = [
   ], feature: 'proton-plinker' },
   { slug: 'firearms', label: 'Firearms', cols: [
     { h: 'Rifles', links: [['LINAC 16', '/firearms/linac-16/'], ['All firearms', '/firearms/']] },
-    { h: 'Why later', links: [['Suppressor-first design', '/lab/engineering/']] },
+    { h: 'Why suppressor-first', links: [['Suppressor-first design', '/lab/engineering/']] },
   ], feature: 'linac-16' },
   { slug: 'mounts', label: 'Mounts', cols: [
     { h: 'Rifles', links: [['Gluon DT', '/mounts/gluon-dt/']] },
@@ -50,9 +50,9 @@ const SS_HUNT = 'https://www.silencershop.com/where-silencers-are-legal-for-hunt
 // [id, question, answer html, onHome]
 export const FAQ = [
   ['what', 'What is Protonic Precision?',
-    `<p>Two brothers building suppressors from first principles. Cans come first: four of them, from .22 rimfire to .45-70, each named for the job it does. A rifle line, LINAC, follows once the cans are proven.</p>`, true],
-  ['when', 'When can I buy one?',
-    `<p>Not yet. Every product here is in development. We aren't taking orders, preorders or deposits, and we won't until a can has passed testing and is ready to ship. <a href="/contact/#updates">Get on the launch list</a> and we'll tell you first.</p>`, true],
+    `<p>Two brothers making suppressors from first principles. Four cans, from .22 rimfire to .45-70, each named for the job it does. A rifle line, LINAC, is coming soon.</p>`, true],
+  ['when', 'Where can I buy one?',
+    `<p>Through any licensed suppressor dealer (FFL/SOT) in your state. Black is sold out in every size right now, and Desert Sand and Grey are coming soon. <a href="/contact/#updates">Get a restock alert</a> and we'll tell you the moment they're back.</p>`, true],
   ['name', 'Why "Protonic"?',
     `<p>The proton is named from the Greek <em>prōtos</em>, "first." Protons are held together by the strongest force in nature, and no one has ever seen one decay. That's the job description of a suppressor: contain violent energy in a small space, shot after shot, without failing. <a href="/about/">The full story</a>.</p>`, true],
   ['names', 'Which can do I need?',
@@ -70,12 +70,12 @@ export const FAQ = [
     `<p>In most states, yes. Civilians can't own them in California, Delaware, Hawaii, Illinois, Massachusetts, New Jersey, New York, Rhode Island or Washington, D.C. Hunting with one is also restricted in Connecticut. Laws change, so check a current source such as <a href="${SS_LEGAL}" rel="noopener">this state-by-state list</a>, and <a href="${SS_HUNT}" rel="noopener">this one for hunting</a>, before you buy.</p>`, true],
   ['age', 'How old do I have to be?',
     `<p>21 to buy a suppressor from a dealer under federal law. State law can add rules about possession. This site is for adults 21 and over.</p>`, false],
-  ['quiet', 'How quiet will they be?',
-    `<p>We won't say until we've measured. Every can's page will list its sound level in dB, with the test method (MIL-STD-1474E), the ammunition, the host rifle and the barrel length. No suppressor is silent, and we'll never call one that. <a href="/lab/testing/">How we test</a>.</p>`, false],
+  ['quiet', 'How quiet are they?',
+    `<p>We don't publish a dB number without the method behind it: the test method (MIL-STD-1474E), the ammunition, the host rifle and the barrel length. No suppressor is silent, and we'll never call one that. <a href="/lab/testing/">How we test</a>.</p>`, false],
   ['warranty', 'What\'s the warranty?',
-    `<p>We'll publish the full warranty terms before the first can ships, and they'll be on this page. We won't sell anything without them.</p>`, false],
+    `<p>Email us at <a href="mailto:will@protonicprecision.com">will@protonicprecision.com</a> for warranty terms and service.</p>`, false],
   ['dealers', 'I\'m a dealer. Can I carry Protonic?',
-    `<p>We're building a dealer list now. If you hold an FFL with SOT status, <a href="/dealers/#program">tell us about your shop</a>.</p>`, false],
+    `<p>We're always adding dealers. If you hold an FFL with SOT status, <a href="/dealers/#program">tell us about your shop</a>.</p>`, false],
   ['parts', 'Can I buy replacement baffles or parts?',
-    `<p>Mounts and accessories, yes, once they launch. Internal suppressor parts like baffles are regulated as suppressors themselves, so service on the inside of a can goes through us or a licensed dealer.</p>`, false],
+    `<p>Mounts and accessories, yes. Internal suppressor parts like baffles are regulated as suppressors themselves, so service on the inside of a can goes through us or a licensed dealer.</p>`, false],
 ];

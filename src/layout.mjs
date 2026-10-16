@@ -1,4 +1,4 @@
-// Page frame shared by every page: head, pre-launch bar, header with mega menu and search, footer, age gate.
+// Page frame shared by every page: head, stock bar, header with mega menu and search, footer, age gate.
 import { lockups } from '../tools/brand/marks.mjs';
 import { SITE, NAV, FOOTER, mailto } from './data/site.mjs';
 import { bySlug, url as purl } from './data/products.mjs';
@@ -53,7 +53,7 @@ function header(active) {
       <li><a href="/${item.slug}/">All ${esc(item.label.toLowerCase())}</a></li>${item.cols.flatMap(c => c.links).map(([t, h]) => `<li><a href="${h}">${esc(t)}</a></li>`).join('')}</ul></details>`).join('');
   return `
 <a class="skip" href="#main">Skip to content</a>
-<div class="notice"><div class="wrap"><span><b>+</b> Pre-launch. Every product here is in development.</span><a href="/contact/#updates">Get launch updates</a></div></div>
+<div class="notice"><div class="wrap"><span><b>+</b> Black is sold out in every size. Desert Sand and Grey coming soon.</span><a href="/contact/#updates">Get restock alerts</a></div></div>
 <header class="hdr" id="top">
   <div class="wrap hdr-top">
     <button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-controls="drawer" aria-expanded="false" data-open-drawer>${ICON.menu}</button>
@@ -66,7 +66,7 @@ function header(active) {
     </form>
     <div class="hdr-act">
       <a class="icon-btn hide-sm" href="/dealers/" aria-label="Find a dealer">${ICON.pin}<span class="tip">Find a dealer</span></a>
-      <a class="icon-btn" href="/contact/#updates" aria-label="Get launch updates">${ICON.mail}<span class="tip">Launch updates</span></a>
+      <a class="icon-btn" href="/contact/#updates" aria-label="Get restock alerts">${ICON.mail}<span class="tip">Restock alerts</span></a>
     </div>
   </div>
   <nav class="nav" aria-label="Main"><div class="wrap">${nav}</div></nav>
@@ -88,9 +88,9 @@ function footer() {
   <div class="wrap ftr-grid">
     <div class="join">
       <div class="ftr-mark">${logo('horizontal')}</div>
-      <h4>Launch updates</h4>
-      <p>One email when a can is ready, and one when dealers have stock. Nothing else.</p>
-      <form data-join><label class="vh" for="join-email">Email address</label><input id="join-email" type="email" name="email" placeholder="Email" required><button type="submit" aria-label="Join the launch list">${ICON.arrow}</button></form>
+      <h4>Restock alerts</h4>
+      <p>One email when Black is back, and one when new colors drop. Nothing else.</p>
+      <form data-join><label class="vh" for="join-email">Email address</label><input id="join-email" type="email" name="email" placeholder="Email" required><button type="submit" aria-label="Join the restock list">${ICON.arrow}</button></form>
       <small>Opens your email app with the request filled in.</small>
       <a class="ftr-social" href="${SITE.instagram.url}" rel="me noopener">${ICON.instagram}<span>Follow the build on Instagram <b>${esc(SITE.instagram.handle)}</b></span></a>
     </div>

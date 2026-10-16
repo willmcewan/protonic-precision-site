@@ -26,8 +26,8 @@ export function about() {
     ${secHead('What we believe', 'How we work')}
     <div class="feat">
       <div><h3 class="h-s">Physics is the story</h3><p>Protons explain our name. They are never a product claim. Nothing we make uses "proton technology."</p></div>
-      <div><h3 class="h-s">Specs sell the product</h3><p>dB with the test method, weight, length, material and thread. If we haven't measured it, we say so.</p></div>
-      <div><h3 class="h-s">Cans first, rifles next</h3><p>We prove the suppressors before we build a rifle around them. No preorders, no deposits, no vaporware dates.</p></div>
+      <div><h3 class="h-s">Specs sell the product</h3><p>dB with the test method, length, material and thread. If we haven't measured it, we don't print it.</p></div>
+      <div><h3 class="h-s">Cans first, rifles next</h3><p>The suppressors come first. The LINAC rifle is built around them, and it's coming soon.</p></div>
     </div>
     <div class="stats" style="margin-top:clamp(36px,5vw,60px)">
       <div class="stat"><b>p<sup>+</sup></b><span>The mark · charge +1</span></div>
@@ -44,7 +44,7 @@ export function about() {
       <div><a class="btn btn--ink" href="/journal/why-protonic/">Why we named it Protonic ${ICON.arrow}</a></div>
     </div>
   </div></section>`;
-  return P({ title: 'About', path: '/about/', active: 'lab', body, description: 'Protonic Precision is two brothers building suppressors from first principles. The story behind the name and the mark.' });
+  return P({ title: 'About', path: '/about/', active: 'lab', body, description: 'Protonic Precision is two brothers making suppressors from first principles. The story behind the name and the mark.' });
 }
 
 export function labPages() {
@@ -65,18 +65,18 @@ export function labPages() {
     <h2 id="blast">The blast chamber</h2>
     <p>The first chamber sees the hottest, fastest gas on every shot and erodes first. That's why the blast baffle in Proton Safari and Proton Adapt is 17-4 stainless, and why a worn one is replaced under warranty.</p>
     <h2 id="system">The system</h2>
-    <p>A can is only as good as what holds it on. Gluon mounts hold the cans on rifles and Pion pistons hold them on pistols, all on one 1-3/8x24 rear thread. The LINAC rifle line, later, is designed with the can in place from the first drawing, rather than having one bolted on afterwards.</p>
+    <p>A can is only as good as what holds it on. Gluon mounts hold the cans on rifles and Pion pistons hold them on pistols, all on one 1-3/8x24 rear thread. The LINAC rifle line, coming soon, is designed with the can in place from the first drawing, rather than having one bolted on afterwards.</p>
     <p><a class="btn btn--ink" href="/lab/materials/">Next: Materials ${ICON.arrow}</a></p>`);
 
   const test = article([['method', 'The method'], ['publish', 'What we publish'], ['never', 'What we never say']], `${art(testingArt())}
-    <p class="lede" style="font-size:20px;color:var(--ink)">A sound number only means something when you know how it was measured. We'll publish the number and the method together, or neither.</p>
+    <p class="lede" style="font-size:20px;color:var(--ink)">A sound number only means something when you know how it was measured. We publish the number and the method together, or neither.</p>
     <h2 id="method">The method</h2>
-    <p>We'll measure to MIL-STD-1474E, the U.S. military standard most of the suppressor industry uses for impulse noise. Meters go 1 m to the left of the muzzle and at the shooter's ear, because those are the two numbers that matter to you and to the people around you.</p>
+    <p>We measure to MIL-STD-1474E, the U.S. military standard most of the suppressor industry uses for impulse noise. Meters go 1 m to the left of the muzzle and at the shooter's ear, because those are the two numbers that matter to you and to the people around you.</p>
     <h2 id="publish">What we publish</h2>
     <ul><li>Peak dB at the muzzle and at the ear</li><li>Ammunition, host firearm and barrel length</li><li>Temperature and conditions</li><li>The can's measured weight, with mount</li></ul>
     <p>For reference, OSHA's limit for impulse noise is 140 dB peak. You'll be able to see exactly where each of our cans lands against it.</p>
     <h2 id="never">What we never say</h2>
-    <p>"Silent." "Whisper quiet." "Hollywood quiet." No suppressor is silent, and adjectives can't be checked. Until a production-representative can has been tested, its page says "Published after testing."</p>
+    <p>"Silent." "Whisper quiet." "Hollywood quiet." No suppressor is silent, and adjectives can't be checked.</p>
     <p><a class="btn btn--ink" href="/lab/engineering/">Next: Engineering ${ICON.arrow}</a></p>`);
 
   const mat = article([['rule', 'The rule'], ['fe', 'Stainless'], ['al', 'Aluminum'], ['not', 'What we leave out']], `${art(materialsArt())}
@@ -91,7 +91,7 @@ export function labPages() {
   return [
     P({ title: 'The Lab', path: '/lab/', active: 'lab', body: hub, description: 'How Protonic Precision designs, tests and chooses materials for its suppressors.' }),
     P({ title: 'Engineering', path: '/lab/engineering/', active: 'lab', description: 'How a suppressor works, and how we design ours from first principles.', body: head('Engineering', 'Design the <em>chain</em>, not the tube', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Engineering', '/lab/engineering/']]) + eng }),
-    P({ title: 'Testing', path: '/lab/testing/', active: 'lab', description: 'How Protonic Precision will measure and publish suppressor sound levels: MIL-STD-1474E, with the method.', body: head('Testing', 'Numbers, <em>not</em> adjectives', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Testing', '/lab/testing/']]) + test }),
+    P({ title: 'Testing', path: '/lab/testing/', active: 'lab', description: 'How Protonic Precision measures and publishes suppressor sound levels: MIL-STD-1474E, with the method.', body: head('Testing', 'Numbers, <em>not</em> adjectives', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Testing', '/lab/testing/']]) + test }),
     P({ title: 'Materials', path: '/lab/materials/', active: 'lab', description: '17-4 stainless steel and 7075 aluminum: what each does in a suppressor, and why we use the cheapest metal that does the job.', body: head('Materials', 'Every atom <em>accounted</em> for', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Materials', '/lab/materials/']]) + mat }),
   ];
 }
@@ -146,14 +146,14 @@ export function buyingGuide() {
 
 export function threadChart() {
   const rows = [
-    ['1/2-28', 'Right', '.22 rimfire, 5.56/.223 AR-15s, most US 9mm pistol barrels', 'Proton Plinker; Gluon DT, Pion, Pion Fixed (planned)'],
-    ['5/8-24', 'Right', '.30 cal rifles: .308 Win, .300 BLK, 6.5 Creedmoor', 'Gluon DT (planned)'],
-    ['M13.5×1 LH', 'Left', 'Many European 9mm pistols', 'Pion, Pion Fixed (planned)'],
-    ['M14×1 LH', 'Left', 'AK-pattern rifles in 7.62×39', 'Gluon DT (planned)'],
-    ['11/16-24', 'Right', 'Big-bore lever guns and .45-70 rifles', 'Gluon DT (planned)'],
+    ['1/2-28', 'Right', '.22 rimfire, 5.56/.223 AR-15s, most US 9mm pistol barrels', 'Proton Plinker; Gluon DT, Pion, Pion Fixed'],
+    ['5/8-24', 'Right', '.30 cal rifles: .308 Win, .300 BLK, 6.5 Creedmoor', 'Gluon DT'],
+    ['M13.5×1 LH', 'Left', 'Many European 9mm pistols', 'Pion, Pion Fixed'],
+    ['M14×1 LH', 'Left', 'AK-pattern rifles in 7.62×39', 'Gluon DT'],
+    ['11/16-24', 'Right', 'Big-bore lever guns and .45-70 rifles', 'Gluon DT'],
     ['M24×1.5', 'Right', 'AK-74-pattern rifles in 5.45×39', '—'],
-    ['.578-28', 'Right', 'Many .45 ACP pistol barrels', 'Pion (planned)'],
-    ['9/16-24 LH', 'Left', 'Many .40 S&W pistol barrels', 'Pion (planned)'],
+    ['.578-28', 'Right', 'Many .45 ACP pistol barrels', 'Pion'],
+    ['9/16-24 LH', 'Left', 'Many .40 S&W pistol barrels', 'Pion'],
   ];
   const inner = `<p class="lede" style="font-size:20px;color:var(--ink)">The thread on your barrel decides which mount you need. These are the common ones in the US.</p>
     <div style="border:1px solid var(--paper-3);background:#f2f3f3;padding:18px 20px"><strong>Always confirm your barrel's thread</strong> with the barrel maker or a thread gauge before mounting anything. A can mounted on the wrong thread, or off-center, can be hit by the bullet.</div>
@@ -171,7 +171,7 @@ export function dealers() {
     <div class="about">
       <div>${secHead('Your dealer', 'Use the shop you already know')}</div>
       <div class="prose" style="color:var(--ink-2)"><p>We can ship to any local dealer. Pick a licensed suppressor dealer (FFL/SOT) in your state, give us the shop's name, and we'll send your can there for you to pick up. It doesn't have to be a shop that stocks Protonic.</p>
-        <p>Our cans are still in development, so nothing ships yet. Stocking dealers will be listed on this page before the first can ships.</p>
+        <p>Black is sold out in every size right now, and Desert Sand and Grey are coming soon. <a href="/contact/#updates">Get a restock alert</a> and we'll tell you when your can is back.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn--ink" href="/contact/#updates">Tell me when dealers have stock ${ICON.arrow}</a></div></div>
     </div>
   </div></section>
@@ -179,7 +179,7 @@ export function dealers() {
     ${secHead('For FFL/SOT dealers', 'Dealer program')}
     <div class="cards2">
       <div class="box"><p class="eyebrow">Who it's for</p><p>Shops with an FFL and SOT status that sell suppressors. Range shops and hunting outfitters welcome.</p></div>
-      <div class="box"><p class="eyebrow">What you get</p><p>Early access to demo cans when they're ready, dealer pricing, and a listing on this page.</p></div>
+      <div class="box"><p class="eyebrow">What you get</p><p>Demo cans, dealer pricing, and a listing on this page.</p></div>
       <div class="box"><p class="eyebrow">How to join</p><p>Email us your shop name, state, FFL/SOT status and the cans you sell most of.</p><a class="btn btn--ti" href="${mailto('Dealer program: [shop name]', 'Shop name:\nCity / state:\nFFL / SOT:\nCans you sell most of:\n')}">Email the dealer team ${ICON.arrow}</a></div>
     </div>
   </div></section>`;
@@ -191,17 +191,17 @@ export function contact() {
   const body = banner('Contact', 'Real people. <em>Two</em> of them.', 'Get in touch') + crumbs([['Home', '/'], ['Contact', '/contact/']]) + `
   <section class="sec sec--paper" style="padding-top:24px"><div class="wrap">
     <div class="cards2">
-      ${box('updates', 'Launch updates', 'One email when a can is ready, and one when dealers have stock. Nothing else, and we never share your address.', 'Add me to the Protonic launch list', 'Join the list')}
+      ${box('updates', 'Restock alerts', 'One email when Black is back in stock, and one when new colors drop. Nothing else, and we never share your address.', 'Add me to the Protonic restock list', 'Join the list')}
       ${box('', 'General', 'Questions about the cans, the company or anything on this site.', 'Question for Protonic Precision', 'Email us')}
       ${box('', 'Dealers', 'FFL/SOT shops that want to carry Protonic.', 'Dealer program: [shop name]', 'Dealer inquiry')}
       ${box('', 'Press & partners', 'Writers, ranges, and creators who want to test cans when they exist.', 'Press / partnership: Protonic Precision', 'Get in touch')}
     </div>
     <div class="cards2" style="margin-top:14px">
       <div class="box"><p class="eyebrow">Email</p><p class="addr" data-copy-src>${esc(SITE.email)}</p><button class="copy" type="button" data-copy="${esc(SITE.email)}">Copy address</button></div>
-      <div class="box"><p class="eyebrow">Instagram</p><p>Prototypes, testing and the paperwork, as it happens.</p><a class="btn btn--ink" href="${SITE.instagram.url}" rel="me noopener">${esc(SITE.instagram.handle)} ${ICON.arrow}</a></div>
+      <div class="box"><p class="eyebrow">Instagram</p><p>New colors, range days and the paperwork, as it happens.</p><a class="btn btn--ink" href="${SITE.instagram.url}" rel="me noopener">${esc(SITE.instagram.handle)} ${ICON.arrow}</a></div>
     </div>
   </div></section>`;
-  return P({ title: 'Contact', path: '/contact/', active: '', body, description: 'Contact Protonic Precision: launch updates, dealer inquiries, press and general questions.' });
+  return P({ title: 'Contact', path: '/contact/', active: '', body, description: 'Contact Protonic Precision: restock alerts, dealer inquiries, press and general questions.' });
 }
 
 export function legal() {
@@ -213,14 +213,14 @@ export function legal() {
     <h2 id="third">Third parties</h2>
     <ul><li><strong>Hosting:</strong> our host keeps standard server logs (such as IP address and pages requested) to run and secure the site.</li><li><strong>Fonts:</strong> fonts load from Google Fonts, which receives your IP address when it serves them.</li><li><strong>3D views:</strong> product pages load the three.js library from cdnjs (Cloudflare) when you open a 360° view.</li></ul>
     <h2 id="email">Email</h2>
-    <p>If you email us, we use your address to reply and, if you asked, to send launch updates. We don't sell or share it. Ask us to delete it any time.</p>
+    <p>If you email us, we use your address to reply and, if you asked, to send restock alerts. We don't sell or share it. Ask us to delete it any time.</p>
     <h2 id="contact">Contact</h2><p><a href="${mailto('Privacy request')}">${esc(SITE.email)}</a></p>`);
   const terms = article([['info', 'Information only'], ['products', 'Products'], ['law', 'Legal information'], ['marks', 'Trademarks']], `
     <p class="meta">Last updated ${SITE.legalAsOf}</p>
     <h2 id="info">Information only</h2>
-    <p>This site describes products Protonic Precision is developing. Nothing here is an offer to sell. We don't take orders, preorders or deposits.</p>
+    <p>Nothing on this site is an offer to sell. We don't take orders online. Suppressors are sold through licensed dealers.</p>
     <h2 id="products">Products</h2>
-    <p>Products are in development. Designs, specifications marked "Target," names and timing can change. Measured specifications will be published after testing.</p>
+    <p>Designs, specifications, names and colors can change without notice.</p>
     <h2 id="law">Legal information</h2>
     <p>Our buying guide and FAQ are general information, not legal advice. Firearm and suppressor laws vary by state and change. You're responsible for following the laws that apply to you. You must be 21 or older to use this site.</p>
     <h2 id="marks">Trademarks</h2>

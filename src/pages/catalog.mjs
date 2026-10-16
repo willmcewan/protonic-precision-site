@@ -33,10 +33,10 @@ export function categoryPages() {
       return `<details open><summary>${label} ${ICON.down}</summary><div class="opts">${vals.map(v => `<label><input type="checkbox" name="${k}" value="${esc(v)}"> ${esc(v)} <span>${counts[v]}</span></label>`).join('')}</div></details>`;
     }).join('');
     const intro = {
-      suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Safari for rifles and Adapt for the big bores. All four are in development. Specs marked "Target" are design goals; weight and sound are published after testing.`,
-      firearms: `The LINAC line is a rifle designed suppressor-first. It comes after the cans are proven. No preorders, no deposits, no dates until there's something real to show.`,
+      suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Safari for rifles and Adapt for the big bores. Black is sold out in every size; Desert Sand and Grey are coming soon.`,
+      firearms: `The LINAC line is a rifle designed suppressor-first. Coming soon.`,
       mounts: `Gluon mounts hold Proton Safari and Proton Adapt to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Adapt to a pistol or carbine. Every can uses the same 1-3/8x24 rear thread.`,
-      apparel: `Coins, patches, stickers and shirts in small runs. These can ship straight to you when they launch.`,
+      apparel: `Coins, patches, stickers and shirts in small runs. These ship straight to you.`,
     }[c.slug];
     const body = banner(c.name, c.tag, c.eyebrow) + crumbs([['Home', '/'], [c.name, `/${c.slug}/`]]) + `
     <section class="sec sec--paper" style="padding-top:16px"><div class="wrap">
@@ -109,7 +109,7 @@ export function productPages() {
           <a class="btn btn--ink btn--block" href="${notify}" data-notify><span data-notify-label>${notifyLabel(cur)}</span> ${ICON.arrow}</a>
           ${isCan || p.cat === 'firearms' ? `<a class="btn btn--line btn--block" href="/dealers/">Find a dealer</a>` : ''}
         </div>
-        <p class="note">${p.colors ? 'Black is sold out. Desert Sand and Grey are in development' : p.status}. We aren't taking orders or deposits.${hasTarget ? ' Numbers marked "Target" are design goals; anything unmeasured says so.' : ''}</p>
+        <p class="note">${p.colors ? 'Black is sold out in every size. Desert Sand and Grey are coming soon' : p.status}.${isCan ? ' Ships to any licensed dealer in your state.' : ''}</p>
       </div>
     </div></section>
     <section class="sec sec--paper" style="padding-top:0"><div class="wrap">
@@ -119,7 +119,7 @@ export function productPages() {
         <div class="feat" style="grid-template-columns:minmax(0,1fr)">${p.features.map(([h, t]) => `<div><h3 class="h-s">${esc(h)}</h3><p>${esc(t)}</p></div>`).join('')}</div>
       </div>
       <div class="detail" id="specs" style="margin-top:clamp(48px,6vw,80px)">
-        <div><p class="eyebrow">Specifications</p><h2 class="h-m" style="margin:8px 0 18px">${esc(p.name)} specs</h2><p class="lede">${isCan ? 'Weight and sound are measured on production-representative cans and published with the test method. Until then, they say so.' : 'Specs firm up as the design does. Anything not final is marked.'}</p></div>
+        <div><p class="eyebrow">Specifications</p><h2 class="h-m" style="margin:8px 0 18px">${esc(p.name)} specs</h2><p class="lede">${isCan ? 'Sound numbers are published with the test method, the ammo and the host, or not at all.' : 'Specs can change without notice.'}</p></div>
         <table class="spec-table"><tbody>${specRows}</tbody></table>
       </div>
     </div></section>

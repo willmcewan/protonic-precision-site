@@ -12,7 +12,7 @@ export const POSTS = [
       <p>The proton was named by Ernest Rutherford in 1920, from the Greek <em>prōtos</em>, "first." It sits in the nucleus of every atom, and the number of protons decides what the atom is. 22 makes titanium. 26 makes iron. 28 makes nickel.</p>
       <h2>Held together</h2>
       <p>Protons in a nucleus all carry positive charge, so they push each other apart hard. The strong force, the strongest of the four forces in nature, holds them together anyway. Experiments put the proton's lifetime above 10<sup>34</sup> years, and nobody has ever seen one decay.</p>
-      <p>A suppressor's job is the same shape: contain a violent release of energy in a small space, shot after shot, without failing. That's what we're building, so that's what we named it.</p>
+      <p>A suppressor's job is the same shape: contain a violent release of energy in a small space, shot after shot, without failing. That's what we build, so that's what we named it.</p>
       <h2>The rule we gave ourselves</h2>
       <p>The physics is our story. It is never a product claim. Nothing we make uses "proton technology," and we'll never say it does. Cans are sold on measured numbers: decibels with the test method, weight, length, material and thread.</p>
       <blockquote>Physics explains the name. Specs sell the product.</blockquote>`,
@@ -32,7 +32,7 @@ export const POSTS = [
       </ul>
       <p>Change any one of those and the number changes, sometimes by a lot. That's why we'll print all of them together, every time.</p>
       <h2>What we won't</h2>
-      <p>We won't publish a number before we've measured a production-representative can. Until then, every product page says "Published after testing," and it means it.</p>`,
+      <p>We don't publish a number we haven't measured, and we don't publish one without the method behind it.</p>`,
   },
   {
     slug: 'choosing-a-can', date: '15 Oct 2026', tag: 'Products', art: materialsArt,

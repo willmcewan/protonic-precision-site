@@ -38,15 +38,15 @@ export function home() {
     ${secHead('Product lineup', 'Pick the job', { center: true, id: 'h-lineup' })}
     <div class="cats">
       ${cat('', '/suppressors/', 'Rimfire · Pistol · Rifle · Big bore', 'Suppressors', 'Four cans named for the job they do: Proton Plinker, Sidearm, Safari and Adapt.', `<img src="${productImg(bySlug['proton-safari'], 'card')}" alt="" loading="lazy">`)}
-      ${cat('', '/firearms/', 'Rifles · Later', 'Firearms', 'LINAC: a rifle designed around the can from the first drawing. It comes after the cans are proven.', `<img class="inv" src="/assets/img/products/linac-16.svg" alt="" loading="lazy" style="filter:invert(.9)">`, 'See what\'s coming')}
+      ${cat('', '/firearms/', 'Rifles · Coming soon', 'Firearms', 'LINAC: a rifle designed around the can from the first drawing. Coming soon.', `<img class="inv" src="/assets/img/products/linac-16.svg" alt="" loading="lazy" style="filter:invert(.9)">`, 'See what\'s coming')}
       ${cat('sm', '/mounts/', 'Rifle mounts · Pistons', 'Mounts', 'Gluon mounts hold a can on a rifle. Pion pistons hold it on a pistol.', `<img src="${productImg(bySlug['gluon-dt'], 'card')}" alt="" loading="lazy">`)}
-      ${cat('sm', '/lab/', 'Engineering · Testing · Materials', 'The Lab', 'How we design, what we build from, and how we\'ll prove it.', bafflesArt(), 'Go inside')}
+      ${cat('sm', '/lab/', 'Engineering · Testing · Materials', 'The Lab', 'How we design, what we build from, and how we prove it.', bafflesArt(), 'Go inside')}
       ${cat('sm', '/apparel/', 'Coins · Patches · Tees', 'Apparel & Swag', 'Challenge coins, patches and shirts in small runs.', `<img src="${productImg(bySlug['challenge-coin'], 'card')}" alt="" loading="lazy">`)}
     </div></div></section>`;
 
   const order = [...PRODUCTS].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
   const latest = `<section class="sec sec--paper rule-top" aria-labelledby="h-latest"><div class="wrap">
-    ${secHead('New & in development', 'Latest products', { id: 'h-latest', extra: `<div class="car-btns"><button class="round" type="button" data-car-prev aria-label="Previous products">${ICON.left}</button><button class="round" type="button" data-car-next aria-label="Next products">${ICON.right}</button></div>` })}
+    ${secHead('New & notable', 'Latest products', { id: 'h-latest', extra: `<div class="car-btns"><button class="round" type="button" data-car-prev aria-label="Previous products">${ICON.left}</button><button class="round" type="button" data-car-next aria-label="Next products">${ICON.right}</button></div>` })}
     <div class="carousel" data-carousel><div class="track">${order.map(productCard).join('')}</div></div>
   </div></section>`;
 
@@ -68,19 +68,19 @@ export function home() {
     <div class="about">
       <div>${secHead('About Protonic Precision', 'Stable under pressure<span class="plus-red">.</span>', { id: 'h-about' })}</div>
       <div class="prose">
-        <p>Protonic Precision is two brothers building suppressors from first principles. The name comes from the proton, from the Greek <em>prōtos</em>, "first." Protons push apart with enormous force, the strongest force in nature holds them together anyway, and no one has ever seen one fail.</p>
+        <p>Protonic Precision is two brothers making suppressors from first principles. The name comes from the proton, from the Greek <em>prōtos</em>, "first." Protons push apart with enormous force, the strongest force in nature holds them together anyway, and no one has ever seen one fail.</p>
         <p>That's the whole job of a suppressor: hold violent energy in a small space, shot after shot, without breaking. Cans come first. A rifle line designed around them comes next.</p>
         <div><a class="btn btn--line" href="/about/">Our story ${ICON.arrow}</a></div>
       </div>
     </div>
     <div class="boxes">
-      <div><p class="eyebrow">What we make</p><p>Four suppressors from .22 rimfire to .45-70, the Gluon and Pion mounts that hold them on, and, later, rifles built suppressor-first. Each part of the system is designed to work with the rest.</p></div>
+      <div><p class="eyebrow">What we make</p><p>Four suppressors from .22 rimfire to .45-70, the Gluon and Pion mounts that hold them on, and, coming soon, rifles built suppressor-first. Each part of the system is designed to work with the rest.</p></div>
       <div><p class="eyebrow">How we work</p><p>Physics is the story; specs sell the product. We publish measured numbers with the method behind them, and we don't publish anything we haven't measured.</p></div>
       <div><p class="eyebrow">Who we are</p><p>Two brothers. Like a proton, most of what holds us together is the bond, not the parts.</p></div>
     </div>
     <div class="stats">
       <div class="stat"><b>p<sup>+</sup></b><span>The mark · charge +1</span></div>
-      <div class="stat"><b>4</b><span>Cans at launch</span></div>
+      <div class="stat"><b>4</b><span>Cans in the line</span></div>
       <div class="stat"><b>10<sup>34</sup>+</b><span>Years · proton lifetime</span></div>
       <div class="stat"><b>2</b><span>Brothers</span></div>
     </div>
@@ -88,16 +88,16 @@ export function home() {
 
   const faqs = FAQ.filter(f => f[3]).map(([id, q, a], i) => `<details class="qa" id="${id}"><summary><span class="n">${String(i + 1).padStart(2, '0')}</span>${esc(q)}<span class="pm" aria-hidden="true"></span></summary><div class="a">${a}</div></details>`).join('');
   const faq = `<section class="sec sec--paper" aria-labelledby="h-faq"><div class="wrap faq">
-    <div class="faq-side">${secHead('Got questions', 'Frequently asked', { id: 'h-faq' })}<p class="lede">Buying, owning and running a suppressor, and what we're building.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn--ink" href="/faq/">All questions ${ICON.arrow}</a><a class="btn btn--line" href="/contact/">Contact us</a></div></div>
+    <div class="faq-side">${secHead('Got questions', 'Frequently asked', { id: 'h-faq' })}<p class="lede">Buying, owning and running a suppressor, and what we make.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn--ink" href="/faq/">All questions ${ICON.arrow}</a><a class="btn btn--line" href="/contact/">Contact us</a></div></div>
     <div>${faqs}</div>
   </div></section>`;
 
   const cta = `<section class="sec sec--dark rule-top"><div class="wrap cta">
     ${logo('mark').replace('<svg', '<svg style="width:72px;--m:#edeeee;--x:#d3212d"')}
     <p class="eyebrow" style="margin-top:18px">Find a dealer</p>
-    <h2 class="h-l">Not on shelves yet</h2>
-    <p class="lede">Protonic suppressors will be sold through licensed dealers in your state. The dealer list goes live before the first can ships.</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><a class="btn btn--ti" href="/contact/#updates">Get launch updates ${ICON.arrow}</a><a class="btn btn--line" href="/dealers/#program">Dealer program</a></div>
+    <h2 class="h-l">Black is sold out</h2>
+    <p class="lede">Every size is sold out in Black, and Desert Sand and Grey are coming soon. Get a restock alert, and we'll ship your can to any licensed dealer in your state.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><a class="btn btn--ti" href="/contact/#updates">Get restock alerts ${ICON.arrow}</a><a class="btn btn--line" href="/dealers/#program">Dealer program</a></div>
   </div></section>`;
 
   // Ties the site to its Instagram for search engines.
