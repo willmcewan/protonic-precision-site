@@ -7,8 +7,8 @@ import { POSTS } from './journal.mjs';
 const SLIDES = [
   { p: 'proton-plinker', eyebrow: 'Suppressors · .22 rimfire', title: 'Proton Plinker', big: '.22', text: 'The can for cans off a fencepost. For every .22 and .17 rimfire, and priced to be your first suppressor.', cta: 'View Proton Plinker' },
   { p: 'proton-sidearm', eyebrow: 'Suppressors · 9mm', title: 'Proton Sidearm', big: '9', text: 'For the handgun on your hip and the carbine in the safe. The piston and the fixed spacer come in the box.', cta: 'View Proton Sidearm' },
-  { p: 'proton-safari', eyebrow: 'Suppressors · Rifle', title: 'Proton Safari', big: '.30', text: 'Built for deer camp and elk country, and it fits your AR too. One can from 5.56 to .300 Win Mag.', cta: 'View Proton Safari' },
-  { p: 'proton-adapt', eyebrow: 'Suppressors · Multi-caliber', title: 'Proton Adapt', big: '.46', text: '.45 ACP on Saturday, .45-70 on Sunday. One can that adapts from pistols to big-bore rifles.', cta: 'View Proton Adapt' },
+  { p: 'proton-adapt', eyebrow: 'Suppressors · Rifle', title: 'Proton Adapt', big: '.30', text: 'One can that adapts to every rifle you own, from your AR to your elk rifle. 5.56 to .300 Win Mag.', cta: 'View Proton Adapt' },
+  { p: 'proton-safari', eyebrow: 'Suppressors · Multi-caliber', title: 'Proton Safari', big: '.46', text: 'The big-bore can. .45 ACP on Saturday, .45-70 on Sunday, and everything in between.', cta: 'View Proton Safari' },
   { p: 'challenge-coin', eyebrow: 'Protonic Precision', title: 'Stable under pressure<span class="plus-red">.</span>', big: 'p⁺', text: 'Protons hold together under enormous force, and none has ever been seen to fail. That\'s the job of a suppressor.', cta: 'Read the story', href: '/about/' },
   { p: 'gluon-dt', eyebrow: 'Mounts · Gluon system', title: 'Gluon DT', big: 'g', text: 'Gluons hold a proton together. This holds the can to the rifle: barrel threads, mount, can.', cta: 'View Gluon DT' },
 ];
@@ -37,7 +37,7 @@ export function home() {
   const cats = `<section class="sec sec--paper" aria-labelledby="h-lineup"><div class="wrap">
     ${secHead('Product lineup', 'Pick the job', { center: true, id: 'h-lineup' })}
     <div class="cats">
-      ${cat('', '/suppressors/', 'Rimfire · Pistol · Rifle · Big bore', 'Suppressors', 'Four cans named for the job they do: Proton Plinker, Sidearm, Safari and Adapt.', `<img src="${productImg(bySlug['proton-safari'], 'card')}" alt="" loading="lazy">`)}
+      ${cat('', '/suppressors/', 'Rimfire · Pistol · Rifle · Big bore', 'Suppressors', 'Four cans named for the job they do: Proton Plinker, Sidearm, Adapt and Safari.', `<img src="${productImg(bySlug['proton-adapt'], 'card')}" alt="" loading="lazy">`)}
       ${cat('', '/firearms/', 'Rifles · Coming soon', 'Firearms', 'LINAC: a rifle designed around the can from the first drawing. Coming soon.', `<img class="inv" src="/assets/img/products/linac-16.svg" alt="" loading="lazy" style="filter:invert(.9)">`, 'See what\'s coming')}
       ${cat('sm', '/mounts/', 'Rifle mounts · Pistons', 'Mounts', 'Gluon mounts hold a can on a rifle. Pion pistons hold it on a pistol.', `<img src="${productImg(bySlug['gluon-dt'], 'card')}" alt="" loading="lazy">`)}
       ${cat('sm', '/lab/', 'Engineering · Testing · Materials', 'The Lab', 'How we design, what we build from, and how we prove it.', bafflesArt(), 'Go inside')}

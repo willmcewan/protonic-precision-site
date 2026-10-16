@@ -33,9 +33,9 @@ export function categoryPages() {
       return `<details open><summary>${label} ${ICON.down}</summary><div class="opts">${vals.map(v => `<label><input type="checkbox" name="${k}" value="${esc(v)}"> ${esc(v)} <span>${counts[v]}</span></label>`).join('')}</div></details>`;
     }).join('');
     const intro = {
-      suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Safari for rifles and Adapt for the big bores. Black is sold out in every size; Desert Sand and Grey are coming soon.`,
+      suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Adapt for rifles and Safari for the big bores. Black is sold out in every size; Desert Sand and Grey are coming soon.`,
       firearms: `The LINAC line is a rifle designed suppressor-first. Coming soon.`,
-      mounts: `Gluon mounts hold Proton Safari and Proton Adapt to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Adapt to a pistol or carbine. Every can uses the same 1-3/8x24 rear thread.`,
+      mounts: `Gluon mounts hold Proton Adapt and Proton Safari to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Safari to a pistol or carbine. Every can uses the same 1-3/8x24 rear thread.`,
       apparel: `Coins, patches, stickers and shirts in small runs. These ship straight to you.`,
     }[c.slug];
     const body = banner(c.name, c.tag, c.eyebrow) + crumbs([['Home', '/'], [c.name, `/${c.slug}/`]]) + `

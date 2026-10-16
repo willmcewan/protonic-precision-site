@@ -4,7 +4,7 @@ export const TBD = 'Coming soon';
 
 export const CATEGORIES = [
   { slug: 'suppressors', name: 'Suppressors', eyebrow: 'Rimfire · Pistol · Rifle · Big bore', tag: 'Suppressors named for the <em>job</em> they do',
-    blurb: 'Four cans, each named for what it\'s for: Plinker, Sidearm, Safari and Adapt.' },
+    blurb: 'Four cans, each named for what it\'s for: Plinker, Sidearm, Adapt and Safari.' },
   { slug: 'firearms', name: 'Firearms', eyebrow: 'Rifles · Coming soon', tag: 'A rifle designed <em>around</em> the can',
     blurb: 'Suppressors contain energy. Rifles aim it. The LINAC line is coming soon.' },
   { slug: 'mounts', name: 'Mounts', eyebrow: 'Rifle mounts · Pistons', tag: 'What holds the can <em>to</em> the gun',
@@ -79,11 +79,11 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.6875, L: 7, model: 'Proton Sidearm', big: 'SIDEARM', cal: '9MM' },
   },
   {
-    slug: 'proton-safari', priceNote: 'Gluon DT mount included', price: 449, cat: 'suppressors', color: 'desert-sand', name: 'Proton Safari', status: STATUS.out, featured: true,
+    slug: 'proton-adapt', priceNote: 'Gluon DT mount included', price: 449, cat: 'suppressors', color: 'desert-sand', name: 'Proton Adapt', status: STATUS.out, featured: true,
     kicker: 'Rifle suppressor, 5.56 to .300 Win Mag', caliber: '5.56 – .300 WM', length: '7 in', material: 'Stainless steel', mount: 'Gluon DT',
-    short: 'Built for deer camp, elk country and the hunt of a lifetime, and it fits your AR too.',
+    short: 'One can that adapts to every rifle you own, from your AR to your elk rifle.',
     long: [
-      'Proton Safari is the one rifle can. A .30 bore covers everything from an AR-15 to a .300 Win Mag elk rifle, on semi-autos and bolt guns alike.',
+      'Proton Adapt is the one rifle can. A .30 bore covers everything from an AR-15 to a .300 Win Mag elk rifle, on semi-autos and bolt guns alike.',
       'It\'s 17-4 stainless all the way through, including the blast baffle that takes the first and hardest hit of every shot. Tough, and cheap enough to keep the price down. It mounts with a Gluon direct-thread mount, and one comes in the box.',
     ],
     specs: [
@@ -103,14 +103,14 @@ export const PRODUCTS = [
     ],
     filters: { caliber: ['5.56 NATO', '.300 BLK', '6.5 Creedmoor', '.308 Win', '.300 Win Mag'], material: 'Stainless steel', mount: ['Gluon DT'] },
     chart: { headline: 'Up to .30 caliber', limit: '.30 CAL', max: .308, calibers: ['5.56 / .223', '.243 Win', '6.5 CM', '.270 Win', '7mm PRC', '.300 BLK', '.308 Win', '.30-06', '.300 Win Mag'] },
-    render: { type: 'can', r: 0.75, L: 7, model: 'Proton Safari', big: 'SAFARI', cal: '5.56-.300WM' },
+    render: { type: 'can', r: 0.75, L: 7, model: 'Proton Adapt', big: 'ADAPT', cal: '5.56-.300WM' },
   },
   {
-    slug: 'proton-adapt', priceNote: 'Gluon DT mount and 9mm cap included', price: 479, cat: 'suppressors', color: 'grey', name: 'Proton Adapt', status: STATUS.out, featured: true,
+    slug: 'proton-safari', priceNote: 'Gluon DT mount and 9mm cap included', price: 479, cat: 'suppressors', color: 'grey', name: 'Proton Safari', status: STATUS.out, featured: true,
     kicker: 'Multi-caliber suppressor, pistol to big bore', caliber: '9mm – .45-70', length: '7.5 in', material: 'Stainless steel', mount: 'Gluon DT · Pion',
-    short: '.45 ACP on Saturday, .45-70 on Sunday. One can that adapts from pistols to big-bore rifles.',
+    short: 'The big-bore can. .45 ACP on Saturday, .45-70 on Sunday, and everything in between.',
     long: [
-      'Proton Adapt is a .46 bore, so it takes the big pistol calibers and the big-bore rifle ones: .45 ACP, 10mm, .450 Bushmaster, .45-70 and .308.',
+      'Proton Safari is a .46 bore, so it takes the big pistol calibers and the big-bore rifle ones: .45 ACP, 10mm, .450 Bushmaster, .45-70 and .308.',
       'It\'s modular. Run it long for the most suppression or short for a handier gun, and swap the front cap to tune it for the caliber. A 9mm cap comes in the box. Rifles mount with a Gluon; pistols with a Pion piston.',
     ],
     specs: [
@@ -130,20 +130,20 @@ export const PRODUCTS = [
     ],
     filters: { caliber: ['9mm', '10mm', '.45 ACP', '.300 BLK', '.308 Win', '.450 Bushmaster', '.45-70'], material: 'Stainless steel', mount: ['Gluon DT', 'Pion'] },
     chart: { headline: 'Pistols to big bores', limit: '.46 CAL', max: .458, calibers: ['5.56 / .223', '.300 BLK', '.308 Win', '9mm', '.350 Legend', '.40 S&W', '10mm', '.45 ACP', '.450 BM', '.458 SOCOM', '.45-70'] },
-    render: { type: 'can', r: 0.75, L: 7.5, model: 'Proton Adapt', big: 'ADAPT', cal: '.46' },
+    render: { type: 'can', r: 0.75, L: 7.5, model: 'Proton Safari', big: 'SAFARI', cal: '.46' },
   },
   {
     slug: 'gluon-dt', price: 49, cat: 'mounts', name: 'Gluon DT', status: STATUS.out, featured: true,
     kicker: 'Direct-thread rifle mount', caliber: 'Rifles', length: '1.3 in', material: 'Stainless steel', mount: '1-3/8x24 rear',
-    short: 'Threads onto the barrel, and Proton Safari or Proton Adapt threads onto it.',
+    short: 'Threads onto the barrel, and Proton Adapt or Proton Safari threads onto it.',
     long: [
       'Gluons hold a proton\'s parts together. The Gluon mount holds the can to the rifle.',
-      'It\'s the simplest stack there is: barrel threads, mount, can. One comes in the box with Proton Safari and Proton Adapt. Buy more and the can moves between rifles.',
+      'It\'s the simplest stack there is: barrel threads, mount, can. One comes in the box with Proton Adapt and Proton Safari. Buy more and the can moves between rifles.',
     ],
     specs: [
       ['Barrel threads', '1/2-28, 5/8-24, M14x1 LH, 11/16-24'],
       ['Can thread', '1-3/8x24 (HUB pattern)'],
-      ['Fits', 'Proton Safari, Proton Adapt'],
+      ['Fits', 'Proton Adapt, Proton Safari'],
       ['Material', 'Stainless steel'],
       ['Finish', 'Black nitride'],
     ],
@@ -158,14 +158,14 @@ export const PRODUCTS = [
   {
     slug: 'pion', price: 45, cat: 'mounts', name: 'Pion', status: STATUS.out, featured: true,
     kicker: 'Booster piston', caliber: 'Pistols', length: '', material: 'Stainless steel', mount: '1/2-28 · M13.5x1 LH · .578-28 · 9/16-24',
-    short: 'The piston that lets a tilting-barrel pistol cycle with Proton Sidearm or Proton Adapt on it.',
+    short: 'The piston that lets a tilting-barrel pistol cycle with Proton Sidearm or Proton Safari on it.',
     long: [
       'Most pistol barrels tilt to unlock, and a can\'s weight on the muzzle stops them doing it. The booster in the can briefly takes that weight off, and the Pion is the piston that threads it to your barrel.',
       'One comes in the box with Proton Sidearm in 1/2-28. Buy the one that matches your barrel\'s thread.',
     ],
     specs: [
       ['Barrel threads', '1/2-28, M13.5x1 LH, .578-28, 9/16-24'],
-      ['Fits', 'Proton Sidearm, Proton Adapt'],
+      ['Fits', 'Proton Sidearm, Proton Safari'],
       ['Material', 'Stainless steel'],
     ],
     features: [
@@ -186,7 +186,7 @@ export const PRODUCTS = [
     ],
     specs: [
       ['Barrel threads', '1/2-28, M13.5x1 LH'],
-      ['Fits', 'Proton Sidearm, Proton Adapt'],
+      ['Fits', 'Proton Sidearm, Proton Safari'],
       ['Material', 'Stainless steel'],
     ],
     features: [
@@ -244,9 +244,9 @@ export const PRODUCTS = [
     slug: 'lineup-tee', price: 30, cat: 'apparel', name: 'Lineup Tee', el: null, z: null, status: STATUS.soon,
     kicker: 'Heavyweight cotton', caliber: '', length: '', material: 'Cotton', mount: '',
     short: 'The four cans down the back, the p⁺ mark on the chest.',
-    long: ['Plinker, Sidearm, Safari and Adapt down the back. Black shirt, titanium-grey print, one red plus.'],
+    long: ['Plinker, Sidearm, Adapt and Safari down the back. Black shirt, titanium-grey print, one red plus.'],
     specs: [['Color', 'Black'], ['Print', 'Titanium grey, red plus'], ['Fit', 'Regular']],
-    features: [['Back print', 'Plinker · Sidearm · Safari · Adapt.'], ['Chest mark', 'Small p⁺ left chest.'], ['Small run', 'Made in small batches.']],
+    features: [['Back print', 'Plinker · Sidearm · Adapt · Safari.'], ['Chest mark', 'Small p⁺ left chest.'], ['Small run', 'Made in small batches.']],
     filters: { caliber: [], material: '', mount: [] },
     image: 'tee',
   },

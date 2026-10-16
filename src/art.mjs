@@ -42,7 +42,7 @@ export const tee = () => {
   const fontFace = `<style>@font-face{font-family:PPx;src:url(data:font/woff2;base64,${ARCHIVO_800X}) format('woff2')}@font-face{font-family:PPm;src:url(data:font/woff2;base64,${PLEX_MONO_500}) format('woff2')}</style>`;
   const body = 'M200 16L88 46C64 56 30 112 6 176L78 206C86 188 94 172 104 158C102 260 104 380 106 480Q260 488 414 480C416 380 418 260 416 158C426 172 434 188 442 206L514 176C490 112 456 56 432 46L320 16';
   const neck = back => back ? 'C296 34 224 34 200 16Z' : 'C300 66 220 66 200 16Z';
-  const rows = [['.22', 'PLINKER'], ['9MM', 'SIDEARM'], ['.30', 'SAFARI'], ['.46', 'ADAPT']];
+  const rows = [['.22', 'PLINKER'], ['9MM', 'SIDEARM'], ['.30', 'ADAPT'], ['.46', 'SAFARI']];
   const backPrint = paths(L.horizontal, ink, 165, 103, 190 / 1208) +
     `<path d="M160 150H360M160 296H360" stroke="#5a5e63" stroke-width="1.5"/><path d="M160 192H360M160 226H360M160 260H360" stroke="#33383e" stroke-width="1"/>` +
     rows.map(([cal, name], i) => `<text x="160" y="${180 + i * 34}" font-family="PPm" font-size="12" letter-spacing="1" fill="#8d9094">${cal}</text><text x="206" y="${181 + i * 34}" font-family="PPx" font-size="17.5" fill="#dadcdd">${name}</text>`).join('') +

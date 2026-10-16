@@ -39,7 +39,7 @@ for (const p of pages) {
 }
 
 // Old product URLs (renamed 16 Oct 2026) forward to the new pages
-const REDIRECTS = { '/suppressors/proton-big-game/': '/suppressors/proton-safari/', '/suppressors/proton-crossover/': '/suppressors/proton-adapt/' };
+const REDIRECTS = { '/suppressors/proton-big-game/': '/suppressors/proton-adapt/', '/suppressors/proton-crossover/': '/suppressors/proton-safari/' };
 for (const [from, to] of Object.entries(REDIRECTS)) {
   fs.mkdirSync(path.join(DIST, from), { recursive: true });
   fs.writeFileSync(path.join(DIST, from, 'index.html'), `<!doctype html><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="${SITE.url}${to}"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${to}"><p>This page moved to <a href="${to}">${SITE.url}${to}</a>.</p>`);

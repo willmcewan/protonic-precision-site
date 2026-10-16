@@ -36,7 +36,7 @@ export const POSTS = [
   },
   {
     slug: 'choosing-a-can', date: '15 Oct 2026', tag: 'Products', art: materialsArt,
-    title: 'Plinker, Sidearm, Safari, Adapt',
+    title: 'Plinker, Sidearm, Adapt, Safari',
     dek: 'Four cans, each named for the job it does. Here\'s how to tell which one you need.',
     body: `
       <p>Every can we make is named for the job it does, so the first thing the name tells you is what it's for. Between the four of them, they're designed to cover most of the guns in a typical safe.</p>
@@ -44,9 +44,9 @@ export const POSTS = [
       <p>For every .22 and .17 rimfire. Plinking is where most people start shooting, and a rimfire can is usually the first suppressor people buy. It has an aluminum tube to keep it light and stainless baffles that stand up to cleaning, and it comes apart, because rimfire is filthy.</p>
       <h2>Proton Sidearm</h2>
       <p>For 9mm pistols and carbines. A pistol needs a piston in the can's booster to keep cycling, and a carbine needs a fixed spacer instead. Both come in the box.</p>
-      <h2>Proton Safari</h2>
-      <p>The rifle can. A .30 bore covers everything from a 5.56 AR-15 to a .300 Win Mag elk rifle. 17-4 stainless all the way through, including the blast baffle where the gas hits hardest.</p>
       <h2>Proton Adapt</h2>
+      <p>The rifle can. A .30 bore covers everything from a 5.56 AR-15 to a .300 Win Mag elk rifle. 17-4 stainless all the way through, including the blast baffle where the gas hits hardest.</p>
+      <h2>Proton Safari</h2>
       <p>A .46 bore for the big calibers: .45 ACP and 10mm pistols, and big-bore rifles like the .450 Bushmaster and .45-70. Run it long or short, and swap the front cap to tune it for the caliber.</p>
       <h2>Why "Proton"?</h2>
       <p>Every can carries the family name, the way the company carries the particle's. The second word is the job.</p>`,
