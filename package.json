@@ -1,0 +1,12 @@
+{
+  "name": "protonic-precision-site",
+  "private": true,
+  "type": "module",
+  "description": "protonicprecision.com: static site generated from src/ by build.mjs. No dependencies.",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node tools/serve.mjs",
+    "render-images": "node tools/render-images.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
