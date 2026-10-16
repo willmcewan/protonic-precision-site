@@ -52,7 +52,7 @@ export function labPages() {
   <section class="sec sec--deep" style="padding-top:28px"><div class="wrap"><div class="labs">
     ${[['/lab/engineering/', 'Engineering', 'First<br>principles', 'A suppressor is a chain of stages, each passing less energy to the next.', bafflesArt()],
        ['/lab/testing/', 'Testing', 'Measured,<br>then published', 'Sound numbers come with the method behind them, or not at all.', testingArt()],
-       ['/lab/materials/', 'Materials', 'Every atom<br>accounted for', 'Titanium, stainless, aluminum and cobalt alloy, each where it does the most good.', materialsArt()]]
+       ['/lab/materials/', 'Materials', 'Every atom<br>accounted for', 'Stainless where the gas hits hard, aluminum where it doesn\'t. The cheapest metal that does each job.', materialsArt()]]
       .map(([h, e, t, x, a]) => `<a class="lab" href="${h}"><div class="art">${a}</div><div class="body"><p class="eyebrow">${e}</p><h3>${t}</h3><span class="tick"></span><p>${x}</p><span class="btn btn--line">Read ${ICON.arrow}</span></div></a>`).join('')}
   </div></div></section>`;
 
@@ -63,7 +63,7 @@ export function labPages() {
     <p>When a cartridge fires, high-pressure gas follows the bullet out of the barrel. Without a suppressor it expands all at once, and that sudden expansion is most of the noise. A suppressor gives the gas room and a path. Each baffle turns and slows part of it and passes less on to the next chamber.</p>
     <p>We think of a can as that chain of stages, not as a tube with parts inside. The design question at every stage is the same: how much energy does it take, and what does it hand on?</p>
     <h2 id="blast">The blast chamber</h2>
-    <p>The first chamber sees the hottest, fastest gas on every shot and erodes first. That's why Proton Big Game and Proton Crossover get a dedicated blast baffle in Stellite, a cobalt alloy chosen for exactly that job.</p>
+    <p>The first chamber sees the hottest, fastest gas on every shot and erodes first. That's why the blast baffle in Proton Safari and Proton Adapt is 17-4 stainless, and why a worn one is replaced under warranty.</p>
     <h2 id="system">The system</h2>
     <p>A can is only as good as what holds it on. Gluon mounts hold the cans on rifles and Pion pistons hold them on pistols, all on one 1-3/8x24 rear thread. The LINAC rifle line, later, is designed with the can in place from the first drawing, rather than having one bolted on afterwards.</p>
     <p><a class="btn btn--ink" href="/lab/materials/">Next: Materials ${ICON.arrow}</a></p>`);
@@ -79,12 +79,12 @@ export function labPages() {
     <p>"Silent." "Whisper quiet." "Hollywood quiet." No suppressor is silent, and adjectives can't be checked. Until a production-representative can has been tested, its page says "Published after testing."</p>
     <p><a class="btn btn--ink" href="/lab/engineering/">Next: Engineering ${ICON.arrow}</a></p>`);
 
-  const mat = article([['ti', 'Titanium'], ['fe', 'Stainless'], ['al', 'Aluminum'], ['co', 'Cobalt alloy']], `${art(materialsArt())}
-    <p class="lede" style="font-size:20px;color:var(--ink)">Each can is named for its job, and the job decides the metal. Here's what each one does and where it goes.</p>
-    <h2 id="ti">Titanium</h2><p>Strong for its weight and immune to rust. It's the right metal where every ounce is felt, like a light rimfire rifle or pistol. It costs more to buy and to machine. <a href="/suppressors/proton-plinker/">Proton Plinker</a>.</p>
-    <h2 id="fe">17-4 stainless steel</h2><p>Mostly iron. Heavier than titanium, tougher under heat and abuse, and cheaper to make. It's the baffles in <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> and the whole of <a href="/suppressors/proton-big-game/">Proton Big Game</a> and <a href="/suppressors/proton-crossover/">Proton Crossover</a>.</p>
-    <h2 id="al">7075 aluminum</h2><p>Light, and plenty strong for a pistol can's tube, where the pressure is far lower than a rifle's. It keeps <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> from making a handgun nose-heavy.</p>
-    <h2 id="co">Stellite (cobalt alloy)</h2><p>The first baffle takes the hardest hit on every shot. Stellite resists that erosion, so it's the blast baffle in Proton Big Game and Proton Crossover. It's a silencer part, so it's replaced under warranty rather than sold on its own.</p>
+  const mat = article([['rule', 'The rule'], ['fe', 'Stainless'], ['al', 'Aluminum'], ['not', 'What we leave out']], `${art(materialsArt())}
+    <p class="lede" style="font-size:20px;color:var(--ink)">Each can is named for its job, and the job decides the metal. Our rule is simple: the cheapest metal that does the job well.</p>
+    <h2 id="rule">The rule</h2><p>Rimfire and pistol gas is mild, so those cans can be light. Rifle gas is hot, fast and abrasive, so those cans have to be tough. Paying for more metal than the job needs only puts the price up.</p>
+    <h2 id="fe">17-4 stainless steel</h2><p>Mostly iron, with 17% chromium and 4% nickel, which is where the name comes from. Tough under heat and abuse, and cheap to make. It's the baffles in <a href="/suppressors/proton-plinker/">Proton Plinker</a> and <a href="/suppressors/proton-sidearm/">Proton Sidearm</a>, and the whole of <a href="/suppressors/proton-safari/">Proton Safari</a> and <a href="/suppressors/proton-adapt/">Proton Adapt</a>, blast baffle included. A worn blast baffle is replaced under warranty.</p>
+    <h2 id="al">7075 aluminum</h2><p>Light, and plenty strong for a tube where the pressure is far lower than a rifle's. It keeps <a href="/suppressors/proton-plinker/">Proton Plinker</a> light on a rimfire, and keeps <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> from making a handgun nose-heavy.</p>
+    <h2 id="not">What we leave out</h2><p>Titanium, Inconel and Stellite all have their place, and all of them cost more. None of our four cans needs them to do its job, so none of them uses them.</p>
     <p><a class="btn btn--ink" href="/lab/testing/">Next: Testing ${ICON.arrow}</a></p>`);
 
   const head = (t, tag, eb) => banner(t, tag, eb);
@@ -92,7 +92,7 @@ export function labPages() {
     P({ title: 'The Lab', path: '/lab/', active: 'lab', body: hub, description: 'How Protonic Precision designs, tests and chooses materials for its suppressors.' }),
     P({ title: 'Engineering', path: '/lab/engineering/', active: 'lab', description: 'How a suppressor works, and how we design ours from first principles.', body: head('Engineering', 'Design the <em>chain</em>, not the tube', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Engineering', '/lab/engineering/']]) + eng }),
     P({ title: 'Testing', path: '/lab/testing/', active: 'lab', description: 'How Protonic Precision will measure and publish suppressor sound levels: MIL-STD-1474E, with the method.', body: head('Testing', 'Numbers, <em>not</em> adjectives', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Testing', '/lab/testing/']]) + test }),
-    P({ title: 'Materials', path: '/lab/materials/', active: 'lab', description: 'Titanium, stainless steel, aluminum and cobalt alloy: what each does in a suppressor.', body: head('Materials', 'Every atom <em>accounted</em> for', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Materials', '/lab/materials/']]) + mat }),
+    P({ title: 'Materials', path: '/lab/materials/', active: 'lab', description: '17-4 stainless steel and 7075 aluminum: what each does in a suppressor, and why we use the cheapest metal that does the job.', body: head('Materials', 'Every atom <em>accounted</em> for', 'The Lab') + crumbs([['Home', '/'], ['The Lab', '/lab/'], ['Materials', '/lab/materials/']]) + mat }),
   ];
 }
 

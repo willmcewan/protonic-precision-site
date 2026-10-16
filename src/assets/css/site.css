@@ -339,7 +339,7 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(3px); }
 .stage .hint { position: absolute; left: 12px; bottom: 10px; font: 500 10.5px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
 .stage .el { position: absolute; right: 16px; top: 12px; text-align: right; color: var(--ink); font: 840 34px/1 var(--f-disp); font-stretch: 125%; }
 .stage .el small { display: block; font: 500 11px var(--f-mono); letter-spacing: .08em; color: var(--ink-2); margin-top: 4px; }
-.thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.thumbs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10px; }
 .thumbs button { aspect-ratio: 4 / 3; min-width: 0; min-height: 0; overflow: hidden; border: 1px solid var(--paper-3); background: #eceded; padding: 6px; cursor: pointer; display: grid; place-items: center; font: 600 11px var(--f-mono); letter-spacing: .1em; color: var(--ink-2); text-transform: uppercase; }
 .thumbs button img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
 .thumbs button[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }

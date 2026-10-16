@@ -5,10 +5,10 @@ import { bafflesArt, testingArt, materialsArt, markArt } from '../art.mjs';
 import { POSTS } from './journal.mjs';
 
 const SLIDES = [
-  { p: 'proton-plinker', eyebrow: 'Suppressors · .22 rimfire', title: 'Proton Plinker', big: '.22', text: 'The can for cans off a fencepost. Titanium, for every .22 and .17 rimfire, and light enough to forget it\'s on the gun.', cta: 'View Proton Plinker' },
+  { p: 'proton-plinker', eyebrow: 'Suppressors · .22 rimfire', title: 'Proton Plinker', big: '.22', text: 'The can for cans off a fencepost. For every .22 and .17 rimfire, and priced to be your first suppressor.', cta: 'View Proton Plinker' },
   { p: 'proton-sidearm', eyebrow: 'Suppressors · 9mm', title: 'Proton Sidearm', big: '9', text: 'For the handgun on your hip and the carbine in the safe. The piston and the fixed spacer come in the box.', cta: 'View Proton Sidearm' },
-  { p: 'proton-big-game', eyebrow: 'Suppressors · Rifle', title: 'Proton Big Game', big: '.30', text: 'Built for deer camp and elk country, and it fits your AR too. One can from 5.56 to .300 Win Mag.', cta: 'View Proton Big Game' },
-  { p: 'proton-crossover', eyebrow: 'Suppressors · Multi-caliber', title: 'Proton Crossover', big: '.46', text: '.45 ACP on Saturday, .45-70 on Sunday. One can that crosses over from pistols to big-bore rifles.', cta: 'View Proton Crossover' },
+  { p: 'proton-safari', eyebrow: 'Suppressors · Rifle', title: 'Proton Safari', big: '.30', text: 'Built for deer camp and elk country, and it fits your AR too. One can from 5.56 to .300 Win Mag.', cta: 'View Proton Safari' },
+  { p: 'proton-adapt', eyebrow: 'Suppressors · Multi-caliber', title: 'Proton Adapt', big: '.46', text: '.45 ACP on Saturday, .45-70 on Sunday. One can that adapts from pistols to big-bore rifles.', cta: 'View Proton Adapt' },
   { p: 'challenge-coin', eyebrow: 'Protonic Precision', title: 'Stable under pressure<span class="plus-red">.</span>', big: 'p⁺', text: 'Protons hold together under enormous force, and none has ever been seen to fail. That\'s the job of a suppressor.', cta: 'Read the story', href: '/about/' },
   { p: 'gluon-dt', eyebrow: 'Mounts · Gluon system', title: 'Gluon DT', big: 'g', text: 'Gluons hold a proton together. This holds the can to the rifle: barrel threads, mount, can.', cta: 'View Gluon DT' },
 ];
@@ -37,7 +37,7 @@ export function home() {
   const cats = `<section class="sec sec--paper" aria-labelledby="h-lineup"><div class="wrap">
     ${secHead('Product lineup', 'Pick the job', { center: true, id: 'h-lineup' })}
     <div class="cats">
-      ${cat('', '/suppressors/', 'Rimfire · Pistol · Rifle · Big bore', 'Suppressors', 'Four cans named for the job they do: Proton Plinker, Sidearm, Big Game and Crossover.', `<img src="${productImg(bySlug['proton-big-game'], 'card')}" alt="" loading="lazy">`)}
+      ${cat('', '/suppressors/', 'Rimfire · Pistol · Rifle · Big bore', 'Suppressors', 'Four cans named for the job they do: Proton Plinker, Sidearm, Safari and Adapt.', `<img src="${productImg(bySlug['proton-safari'], 'card')}" alt="" loading="lazy">`)}
       ${cat('', '/firearms/', 'Rifles · Later', 'Firearms', 'LINAC: a rifle designed around the can from the first drawing. It comes after the cans are proven.', `<img class="inv" src="/assets/img/products/linac-16.svg" alt="" loading="lazy" style="filter:invert(.9)">`, 'See what\'s coming')}
       ${cat('sm', '/mounts/', 'Rifle mounts · Pistons', 'Mounts', 'Gluon mounts hold a can on a rifle. Pion pistons hold it on a pistol.', `<img src="${productImg(bySlug['gluon-dt'], 'card')}" alt="" loading="lazy">`)}
       ${cat('sm', '/lab/', 'Engineering · Testing · Materials', 'The Lab', 'How we design, what we build from, and how we\'ll prove it.', bafflesArt(), 'Go inside')}
@@ -56,7 +56,7 @@ export function home() {
     <div class="labs">
       ${lab('/lab/engineering/', 'Engineering', 'First<br>principles', 'A suppressor is a chain: each baffle takes part of the blast and hands less to the next. We design the chain, not the tube.', bafflesArt(), 'How we design')}
       ${lab('/lab/testing/', 'Testing', 'Measured,<br>then published', 'Sound numbers go online with the method, the ammo, the rifle and the barrel length, or they don\'t go online.', testingArt(), 'How we test')}
-      ${lab('/lab/materials/', 'Materials', 'Every atom<br>accounted for', 'Titanium, stainless, aluminum and cobalt alloy, each where it does the most good.', materialsArt(), 'What we build from')}
+      ${lab('/lab/materials/', 'Materials', 'Every atom<br>accounted for', 'Stainless where the gas hits hard, aluminum where it doesn\'t. The cheapest metal that does each job.', materialsArt(), 'What we build from')}
     </div></div></section>`;
 
   const journal = `<section class="sec sec--paper" aria-labelledby="h-journal"><div class="wrap">

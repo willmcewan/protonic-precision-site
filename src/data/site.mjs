@@ -15,7 +15,7 @@ export const mailto = (subject, body = '') =>
 // Mega menu columns per top-level item. Product links are filled in from the catalog by the layout.
 export const NAV = [
   { slug: 'suppressors', label: 'Suppressors', cols: [
-    { h: 'By job', links: [['Rimfire · Proton Plinker', '/suppressors/proton-plinker/'], ['9mm · Proton Sidearm', '/suppressors/proton-sidearm/'], ['Rifle · Proton Big Game', '/suppressors/proton-big-game/'], ['Big bore · Proton Crossover', '/suppressors/proton-crossover/']] },
+    { h: 'By job', links: [['Rimfire · Proton Plinker', '/suppressors/proton-plinker/'], ['9mm · Proton Sidearm', '/suppressors/proton-sidearm/'], ['Rifle · Proton Safari', '/suppressors/proton-safari/'], ['Big bore · Proton Adapt', '/suppressors/proton-adapt/']] },
     { h: 'By caliber', links: [['.22 rimfire', '/suppressors/?caliber=.22%20LR'], ['9mm', '/suppressors/?caliber=9mm'], ['.308 Win', '/suppressors/?caliber=.308%20Win'], ['.45 ACP', '/suppressors/?caliber=.45%20ACP']] },
     { h: 'Know before you buy', links: [['How to buy a suppressor', '/buying-a-suppressor/'], ['Thread pitch chart', '/resources/thread-pitches/'], ['How we test sound', '/lab/testing/']] },
   ], feature: 'proton-plinker' },
@@ -56,7 +56,7 @@ export const FAQ = [
   ['name', 'Why "Protonic"?',
     `<p>The proton is named from the Greek <em>prōtos</em>, "first." Protons are held together by the strongest force in nature, and no one has ever seen one decay. That's the job description of a suppressor: contain violent energy in a small space, shot after shot, without failing. <a href="/about/">The full story</a>.</p>`, true],
   ['names', 'Which can do I need?',
-    `<p>Each can is named for the job it does. <a href="/suppressors/proton-plinker/">Proton Plinker</a> is for .22 and .17 rimfire. <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> is for 9mm pistols and carbines. <a href="/suppressors/proton-big-game/">Proton Big Game</a> is the rifle can, from an AR-15 to a .300 Win Mag. <a href="/suppressors/proton-crossover/">Proton Crossover</a> takes the big ones: .45 ACP, 10mm and big-bore rifles like the .45-70.</p>`, true],
+    `<p>Each can is named for the job it does. <a href="/suppressors/proton-plinker/">Proton Plinker</a> is for .22 and .17 rimfire. <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> is for 9mm pistols and carbines. <a href="/suppressors/proton-safari/">Proton Safari</a> is the rifle can, from an AR-15 to a .300 Win Mag. <a href="/suppressors/proton-adapt/">Proton Adapt</a> takes the big ones: .45 ACP, 10mm and big-bore rifles like the .45-70.</p>`, true],
   ['paperwork', 'Do I still need a tax stamp or Form 4?',
     `<p>It depends on your state, and it changed recently. As of ${SITE.legalAsOf}:</p>
      <ul><li>The federal NFA tax on suppressors has been <strong>$0</strong> since 1 January 2026.</li>

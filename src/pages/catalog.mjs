@@ -33,9 +33,9 @@ export function categoryPages() {
       return `<details open><summary>${label} ${ICON.down}</summary><div class="opts">${vals.map(v => `<label><input type="checkbox" name="${k}" value="${esc(v)}"> ${esc(v)} <span>${counts[v]}</span></label>`).join('')}</div></details>`;
     }).join('');
     const intro = {
-      suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Big Game for rifles and Crossover for the big bores. All four are in development. Specs marked "Target" are design goals; weight and sound are published after testing.`,
+      suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Safari for rifles and Adapt for the big bores. All four are in development. Specs marked "Target" are design goals; weight and sound are published after testing.`,
       firearms: `The LINAC line is a rifle designed suppressor-first. It comes after the cans are proven. No preorders, no deposits, no dates until there's something real to show.`,
-      mounts: `Gluon mounts hold Proton Big Game and Proton Crossover to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Crossover to a pistol or carbine. Every can uses the same 1-3/8x24 rear thread.`,
+      mounts: `Gluon mounts hold Proton Safari and Proton Adapt to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Adapt to a pistol or carbine. Every can uses the same 1-3/8x24 rear thread.`,
       apparel: `Coins, patches, stickers and shirts in small runs. These can ship straight to you when they launch.`,
     }[c.slug];
     const body = banner(c.name, c.tag, c.eyebrow) + crumbs([['Home', '/'], [c.name, `/${c.slug}/`]]) + `
@@ -71,7 +71,7 @@ export function productPages() {
   return PRODUCTS.map(p => {
     const isCan = p.cat === 'suppressors', has3d = !!p.render;
     const cat = { suppressors: 'Suppressors', firearms: 'Firearms', mounts: 'Mounts', apparel: 'Apparel & Swag' }[p.cat];
-    const viewsFor = color => p.image ? [['card', productImg(p), 'Main']] : [['wide', productImg(p, 'wide', color), 'Side A'], ...(isCan ? [['side', productImg(p, 'side', color), 'Side B']] : []), ['card', productImg(p, 'card', color), 'Angle']];
+    const viewsFor = color => p.image ? [['card', productImg(p), 'Main']] : [['wide', productImg(p, 'wide', color), 'Side A'], ...(p.chart ? [['sizes', `/assets/img/products/${p.slug}-sizes.webp`, 'Caliber chart']] : []), ...(isCan ? [['side', productImg(p, 'side', color), 'Side B']] : []), ['card', productImg(p, 'card', color), 'Angle']];
     const views = viewsFor(p.color);
     const thumbs = views.map(([k, src, label], i) => `<button type="button" aria-pressed="${i === 0}" data-view="${src}" aria-label="View: ${label}"><img src="${src}" alt="" loading="lazy"></button>`).join('') +
       (has3d ? `<button type="button" aria-pressed="false" data-3d aria-label="Rotate in 3D">360° view</button>` : '');
