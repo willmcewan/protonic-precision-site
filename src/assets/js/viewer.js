@@ -146,7 +146,17 @@
         [r - 0.015, tA - 0.045], [r - 0.015, tA - 0.015], [r, tA], [r, tB], [r - 0.015, tB + 0.015], [r - 0.015, tB + 0.045], [r, tB + 0.06],
         [r, y1 - ch], [r - ch, y1], [bore + 0.02, y1], [bore, y1 - 0.02], [bore, y1 - 1.1], [0, y1 - 1.1]];
       var mats = [M.dark, M.dark, cera, M.ti, cera, M.dark, M.dark, M.dark, null, M.dark, M.dark, M.dark, cera, M.ti, cera, M.ti, M.dark, M.dark];
-      lathe(spin, pts, mats, 192);
+      var capG = null;
+      if (cfg.explode) {
+        // Tube keeps the rear and the engraved body; the front cap comes off on its own.
+        lathe(spin, pts.slice(0, 10), mats.slice(0, 9), 192);
+        capG = new T.Group(); spin.add(capG);
+        lathe(capG, [[r, tB], [r - 0.015, tB + 0.015], [r - 0.015, tB + 0.045], [r, tB + 0.06], [r, y1 - ch], [r - ch, y1], [bore + 0.02, y1], [bore, y1 - 0.02], [bore, tB + 0.02], [r, tB]],
+          [M.dark, M.dark, M.dark, cera, M.ti, cera, M.ti, M.dark, M.ti], 192);
+        lathe(spin, [[r, tB], [r - 0.05, tB]], [M.ti], 192);
+        var inner = new T.Mesh(new T.CylinderGeometry(r - 0.05, r - 0.05, tB - tA, 96, 1, true), new T.MeshStandardMaterial({ color: lin(0x0a0b0c), roughness: 0.8, side: T.BackSide }));
+        inner.position.y = (tA + tB) / 2; spin.add(inner);
+      } else lathe(spin, pts, mats, 192);
       var len = tB - tA, W = 2048, H = Math.round(W * len / (2 * Math.PI * r)), ppi = H / len, circ = W / (2 * Math.PI * r);
       var tube = engraved(W, H, cfg.finish, function (g, fill) {
         g.fillStyle = fill;
@@ -179,9 +189,33 @@
       });
       var cyl = new T.Mesh(new T.CylinderGeometry(r, r, len, 256, 1, true), tube);
       cyl.position.y = (tA + tB) / 2; spin.add(cyl);
+      if (cfg.explode) {
+        // Illustrative cone baffles, rear (blast) to front, packed inside the tube.
+        var n = cfg.baffles || 6, h = (tB - tA - 0.12) / n, rIn = r - 0.07, steel = finishMat('stainless'), parts = [];
+        steel.side = T.DoubleSide;
+        for (var b = 0; b < n; b++) {
+          var bg = new T.Group(), yc = tA + 0.06 + (b + 0.5) * h;
+          // A double cone with a flat band, like a stamped cone baffle.
+          lathe(bg, [[bore + 0.03, h * 0.5], [rIn * 0.86, h * 0.12], [rIn, h * 0.1], [rIn, -h * 0.1], [rIn * 0.86, -h * 0.12], [bore + 0.16, -h * 0.46], [bore + 0.16, -h * 0.5], [bore + 0.03, h * 0.5]],
+            [steel, steel, steel, steel, steel, steel, steel], 128);
+          bg.position.y = yc; spin.add(bg); parts.push({ g: bg, y: yc });
+        }
+        var P = h * 1.8, G = h * 0.9, span0 = y1 - y0;
+        // Exploded, the stack keeps its order: tube, blast baffle ... front baffle, cap.
+        parts.forEach(function (q, j) { q.d = tB + G + j * P - q.y; });
+        var dCap = G + (n - 1) * P + h * 0.5 + G;
+        var ease = function (x) { x = Math.max(0, Math.min(1, x)); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+        root.userData.span = span0 + dCap;
+        root.userData.explode = function (p) {
+          var ec = ease(p / 0.55);
+          capG.position.y = dCap * ec;
+          parts.forEach(function (q, j) { var k = n - 1 - j; q.g.position.y = q.y + q.d * ease((p - 0.1 - k * 0.07) / 0.5); });
+          spin.position.y = -dCap * ease(p) / 2;
+        };
+      }
       [0, Math.PI].forEach(function (a) {
         var h = new T.Mesh(new T.CircleGeometry(r * 0.07, 32), M.dark);
-        h.rotation.x = -Math.PI / 2; h.position.set(Math.cos(a) * r * 0.62, y1 + 0.001, Math.sin(a) * r * 0.62); spin.add(h);
+        h.rotation.x = -Math.PI / 2; h.position.set(Math.cos(a) * r * 0.62, y1 + 0.001, Math.sin(a) * r * 0.62); (capG || spin).add(h);
       });
       var lay = new T.Group(); lay.rotation.z = -Math.PI / 2; lay.add(spin); root.add(lay);
       root.userData.spin = spin;
@@ -229,9 +263,9 @@
       kind = cfg.type;
       model = kind === 'coin' ? buildCoin() : kind === 'mount' ? buildMount(cfg) : buildCan(cfg);
       scene.add(model);
-      var sw = kind === 'coin' ? 3.2 : kind === 'mount' ? 2.3 : (cfg.L || 5.4) + 0.5;
+      var sw = kind === 'coin' ? 3.2 : kind === 'mount' ? 2.3 : (model.userData.span || cfg.L || 5.4) + 0.5;
       var sh = kind === 'coin' ? 3.3 : kind === 'mount' ? 1.3 : 2 * (cfg.r || 0.5) + 0.7, tn = Math.tan(12 * Math.PI / 180);
-      var dist = Math.max((sw / 2) / (tn * 1.6), (sh / 2) / tn) * (cfg.fill || 1.12);
+      var dist = Math.max((sw / 2) / (tn * (cfg.aspect || 1.6)), (sh / 2) / tn) * (cfg.fill || 1.12);
       pose = Object.assign({ tilt: kind === 'coin' ? -0.12 : 0.16, yawRoot: kind === 'coin' ? 0 : -0.38, roll: 0.06,
         dist: dist, yaw0: kind === 'coin' ? -0.5 : -Math.PI / 2, y: 0 }, cfg.pose || {});
       yaw = pose.yaw0; pitch = 0;
@@ -247,7 +281,7 @@
     function resize(w, h) {
       renderer.setSize(w, h, false); camera.aspect = w / h;
       // keep the whole object in frame on tall viewports
-      camera.zoom = Math.min(1, camera.aspect / 1.6); camera.updateProjectionMatrix(); render();
+      camera.zoom = opts.fixedZoom ? 1 : Math.min(1, camera.aspect / 1.6); camera.updateProjectionMatrix(); render();
     }
     var running = false, auto = opts.autoRotate !== false;
     function loop() { if (!running) return; if (!dragging) { yaw += auto ? 0.0042 + vel : vel; vel *= 0.94; } render(); requestAnimationFrame(loop); }
@@ -264,6 +298,7 @@
       ['pointerup', 'pointercancel'].forEach(function (t) { canvas.addEventListener(t, function () { dragging = false; }); });
     }
     return { setModel: setModel, resize: resize, start: start, stop: stop, render: render,
-      setYaw: function (y) { yaw = y; render(); }, setPitch: function (p) { pitch = p; render(); } };
+      setYaw: function (y) { yaw = y; render(); }, setPitch: function (p) { pitch = p; render(); },
+      setExplode: function (p) { if (model && model.userData.explode) { model.userData.explode(p); render(); } } };
   };
 })();

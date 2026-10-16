@@ -5,32 +5,23 @@ import { bafflesArt, testingArt, materialsArt, markArt } from '../art.mjs';
 import { POSTS } from './journal.mjs';
 import { FIELD, photo } from '../data/photos.mjs';
 
-const SLIDES = [
-  { p: 'proton-plinker', eyebrow: 'Suppressors · .22 rimfire', title: 'Proton Plinker', big: '.22', text: 'The can for cans off a fencepost. For every .22 and .17 rimfire, and priced to be your first suppressor.', cta: 'View Proton Plinker' },
-  { p: 'proton-sidearm', eyebrow: 'Suppressors · 9mm', title: 'Proton Sidearm', big: '9', text: 'For the handgun on your hip and the carbine in the safe. The piston and the fixed spacer come in the box.', cta: 'View Proton Sidearm' },
-  { p: 'proton-adapt', eyebrow: 'Suppressors · Rifle', title: 'Proton Adapt', big: '.30', text: 'One can that adapts to every rifle you own, from your AR to your elk rifle. 5.56 to .300 Win Mag.', cta: 'View Proton Adapt' },
-  { p: 'proton-safari', eyebrow: 'Suppressors · Multi-caliber', title: 'Proton Safari', big: '.46', text: 'The big-bore can. .45 ACP on Saturday, .45-70 on Sunday, and everything in between.', cta: 'View Proton Safari' },
-  { p: 'challenge-coin', eyebrow: 'Protonic Precision', title: 'Stable under pressure<span class="plus-red">.</span>', big: 'p⁺', text: 'Protons hold together under enormous force, and none has ever been seen to fail. That\'s the job of a suppressor.', cta: 'Read the story', href: '/about/' },
-  { p: 'gluon-dt', eyebrow: 'Mounts · Gluon system', title: 'Gluon DT', big: 'g', text: 'Gluons hold a proton together. This holds the can to the rifle: barrel threads, mount, can.', cta: 'View Gluon DT' },
-];
+// The hero can: Proton Adapt in black, exploded by assets/js/hero.js.
+const HERO = { ...bySlug['proton-adapt'].render, finish: 'black', explode: true, yaw0: -Math.PI / 2 };
 
 export function home() {
-  const slides = SLIDES.map((s, i) => {
-    const p = bySlug[s.p];
-    return `<article class="slide${i === 0 ? ' on' : ''}" aria-roledescription="slide" aria-label="${i + 1} of ${SLIDES.length}"${i ? ' aria-hidden="true"' : ''}>
-      <div class="slide-bg"></div><span class="slide-big" aria-hidden="true">${s.big}</span>
-      <div class="slide-art"><img src="${productImg(p, 'hero')}" alt="" ${i ? 'loading="lazy"' : 'fetchpriority="high"'} width="1600" height="1000"></div>
-      <div class="wrap" style="height:100%"><div class="slide-copy"><p class="eyebrow">${esc(s.eyebrow)}</p><h2 class="h-xl" style="margin-top:14px">${s.title}</h2><span class="tick"></span>
-        <p class="lede">${esc(s.text)}</p>${s.href ? '' : `<p class="price price--slide">${money(p.price)}</p>`}<div><a class="btn btn--ti" href="${s.href || url(p)}"${i ? ' tabindex="-1"' : ''}>${esc(s.cta)} ${ICON.arrow}</a></div></div></div>
-    </article>`;
-  }).join('');
-
-  const hero = `<section class="hero" aria-roledescription="carousel" aria-label="Featured" data-slider>
-    <div class="slides">${slides}</div>
-    <div class="hero-ctrl"><div class="wrap">
-      <div class="bars" role="tablist" aria-label="Slides">${SLIDES.map((s, i) => `<button type="button" role="tab" aria-label="Slide ${i + 1}: ${esc(s.title.replace(/<[^>]+>/g, ''))}" aria-selected="${i === 0}"${i === 0 ? ' class="on"' : ''}><span></span></button>`).join('')}</div>
-      <div class="pager"><button type="button" data-prev aria-label="Previous slide">${ICON.left}</button><output aria-live="polite"><b>01</b>/ ${String(SLIDES.length).padStart(2, '0')}</output><button type="button" data-next aria-label="Next slide">${ICON.right}</button></div>
+  const hero = `<section class="hx" data-explode='${JSON.stringify(HERO)}' aria-labelledby="h-hero">
+    <div class="slide-bg"></div>
+    <div class="wrap hx-wrap"><div class="hx-copy">
+      <div><p class="eyebrow">Suppressors · .22 rimfire to .45-70</p>
+      <h1 class="h-xl" id="h-hero" style="margin-top:14px">Built from first principles<span class="plus-red">.</span></h1></div>
+      <div><p class="lede">Four cans named for the job they do, and every part designed to work with the rest.</p>
+      <div class="hx-btns"><a class="btn btn--ti" href="/suppressors/">Shop suppressors ${ICON.arrow}</a><a class="btn btn--line" href="/lab/engineering/">How a can works</a></div></div>
     </div></div>
+    <div class="hx-stage">
+      <img class="hx-poster" src="${productImg(bySlug['proton-adapt'], 'wide', 'black')}" alt="" fetchpriority="high" width="1600" height="1200">
+      <canvas class="hx-canvas" aria-hidden="true"></canvas>
+    </div>
+    <p class="hx-cap"><a href="${url(bySlug['proton-adapt'])}">Proton Adapt</a> · Exploded view · Internals illustrative</p>
   </section>`;
 
   const cat = (cls, href, eyebrow, title, text, art, cta = 'See the line') =>
@@ -108,5 +99,5 @@ export function home() {
 
   // Ties the site to its Instagram for search engines.
   const org = { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url, logo: SITE.url + '/apple-touch-icon.png', email: SITE.email, sameAs: [SITE.instagram.url] };
-  return { path: '/', html: page({ path: '/', head: `<script type="application/ld+json">${JSON.stringify(org)}</script>`, body: hero + cats + latest + field + labs + journal + about + faq + cta }) };
+  return { path: '/', html: page({ path: '/', head: `<script type="application/ld+json">${JSON.stringify(org)}</script>`, body: hero + cats + latest + field + labs + journal + about + faq + cta, scripts: '<script src="/assets/js/hero.js" defer></script>' }) };
 }
