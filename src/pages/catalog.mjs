@@ -1,6 +1,7 @@
 import { page, esc, ICON, arrowLink, banner, crumbs, chip, productCard, productImg, secHead, swatchDots } from '../layout.mjs';
 import { CATEGORIES, PRODUCTS, inCat, url, TBD, money } from '../data/products.mjs';
 import { mailto } from '../data/site.mjs';
+import { GALLERY, photo } from '../data/photos.mjs';
 
 const FILTERS = [
   ['status', 'Status', p => [p.status]],
@@ -41,6 +42,7 @@ export function categoryPages() {
     const body = banner(c.name, c.tag, c.eyebrow) + crumbs([['Home', '/'], [c.name, `/${c.slug}/`]]) + `
     <section class="sec sec--paper" style="padding-top:16px"><div class="wrap">
       <p class="lede" style="margin-bottom:28px">${intro}</p>
+      ${c.slug === 'suppressors' ? `<figure class="photo-band"><img src="${photo('lineup')}" alt="Proton Plinker, Sidearm, Adapt and Safari standing in a row" width="1800" height="1005" loading="lazy"></figure>` : ''}
       <div class="listing" data-listing>
         <aside class="filters" aria-label="Filter products"><h2>Filter</h2>${groups}<button class="clear" type="button" data-clear>Clear filters</button></aside>
         <div>
@@ -71,7 +73,7 @@ export function productPages() {
   return PRODUCTS.map(p => {
     const isCan = p.cat === 'suppressors', has3d = !!p.render;
     const cat = { suppressors: 'Suppressors', firearms: 'Firearms', mounts: 'Mounts', apparel: 'Apparel & Swag' }[p.cat];
-    const viewsFor = color => p.image ? [['card', productImg(p), 'Main']] : [['wide', productImg(p, 'wide', color), 'Side A'], ...(p.chart ? [['sizes', `/assets/img/products/${p.slug}-sizes.webp`, 'Caliber chart']] : []), ...(isCan ? [['side', productImg(p, 'side', color), 'Side B']] : []), ['card', productImg(p, 'card', color), 'Angle']];
+    const viewsFor = color => p.image ? [['card', productImg(p), 'Main']] : [['wide', productImg(p, 'wide', color), 'Side A'], ...(p.chart ? [['sizes', `/assets/img/products/${p.slug}-sizes.webp`, 'Caliber chart']] : []), ...(isCan ? [['side', productImg(p, 'side', color), 'Side B']] : []), ['card', productImg(p, 'card', color), 'Angle'], ...(GALLERY[p.slug] || []).map(([f, l]) => ['photo', photo(f), l])];
     const views = viewsFor(p.color);
     const thumbs = views.map(([k, src, label], i) => `<button type="button" aria-pressed="${i === 0}" data-view="${src}" aria-label="View: ${label}"><img src="${src}" alt="" loading="lazy"></button>`).join('') +
       (has3d ? `<button type="button" aria-pressed="false" data-3d aria-label="Rotate in 3D">360° view</button>` : '');

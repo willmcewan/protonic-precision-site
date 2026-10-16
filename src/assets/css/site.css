@@ -503,3 +503,31 @@ a:hover > .link-arrow svg, .link-arrow:hover svg { transform: translateX(3px); }
 .price--lg { font-size: clamp(28px, 3vw, 36px); margin: 4px 0 2px; display: grid; gap: 6px; }
 .price--lg small { font: 500 11px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
 .price--slide { color: var(--flash); font-size: 28px; margin: -14px 0 26px; }
+
+/* ---------- photography ---------- */
+.stage img[src*="/photos/"] { width: 100%; height: 100%; object-fit: cover; }
+.thumbs { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.thumbs button:has(img[src*="/photos/"]) { padding: 0; }
+.thumbs button img[src*="/photos/"] { object-fit: cover; }
+.photo-band, .photo-tall, .photo-inline, .atom { margin: 0; }
+.photo-band { margin-top: clamp(28px, 4vw, 48px); }
+.photo-band img, .photo-tall img, .photo-inline img, .atom img { display: block; width: 100%; height: auto; background: var(--black); }
+.photo-tall { margin-top: 28px; max-width: 460px; }
+.photo-inline { max-width: 440px; margin: 28px 0; }
+figcaption { font: 500 11px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-top: 10px; }
+.atoms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: clamp(28px, 4vw, 48px); }
+.field { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: clamp(200px, 22vw, 300px); gap: 14px; }
+.shot { position: relative; overflow: hidden; display: block; text-decoration: none; border: 1px solid var(--black-4); background: var(--black); }
+.shot--big { grid-column: span 2; grid-row: span 2; }
+.shot--wide { grid-column: span 2; }
+.shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.shot:hover img { transform: scale(1.03); }
+.shot .cap { position: absolute; inset: auto 0 0 0; padding: 40px 18px 16px; background: linear-gradient(transparent, rgba(8, 9, 11, .88)); color: var(--ti); font-size: 14px; display: grid; gap: 4px; }
+.shot .cap b { font: 600 11px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: #fff; }
+@media (max-width: 860px) {
+  .field { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; }
+  .shot, .shot--big { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; }
+  .photo-tall { max-width: none; }
+}
+@media (max-width: 560px) { .atoms { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .shot img { transition: none; } }

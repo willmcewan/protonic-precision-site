@@ -3,6 +3,7 @@ import { PRODUCTS, bySlug, url, money } from '../data/products.mjs';
 import { FAQ, SITE, mailto } from '../data/site.mjs';
 import { bafflesArt, testingArt, materialsArt, markArt } from '../art.mjs';
 import { POSTS } from './journal.mjs';
+import { FIELD, photo } from '../data/photos.mjs';
 
 const SLIDES = [
   { p: 'proton-plinker', eyebrow: 'Suppressors · .22 rimfire', title: 'Proton Plinker', big: '.22', text: 'The can for cans off a fencepost. For every .22 and .17 rimfire, and priced to be your first suppressor.', cta: 'View Proton Plinker' },
@@ -49,6 +50,11 @@ export function home() {
     ${secHead('New & notable', 'Latest products', { id: 'h-latest', extra: `<div class="car-btns"><button class="round" type="button" data-car-prev aria-label="Previous products">${ICON.left}</button><button class="round" type="button" data-car-next aria-label="Next products">${ICON.right}</button></div>` })}
     <div class="carousel" data-carousel><div class="track">${order.map(productCard).join('')}</div></div>
   </div></section>`;
+
+  const field = `<section class="sec sec--deep" aria-labelledby="h-field"><div class="wrap">
+    ${secHead('Out there', 'In the field', { id: 'h-field', extra: `<a class="link-arrow" href="/suppressors/">All suppressors ${ICON.arrow}</a>` })}
+    <div class="field">${FIELD.map(([f, slug, eyebrow, line], i) => `<a class="shot${[' shot--big', ' shot--wide'][i] || ''}" href="${url(bySlug[slug])}"><img src="${photo(f)}" alt="${esc(eyebrow)}" loading="lazy"><span class="cap"><b>${esc(eyebrow)}</b>${esc(line)}</span></a>`).join('')}</div>
+  </div></div></section>`;
 
   const lab = (href, eyebrow, title, text, art, cta) => `<a class="lab" href="${href}"><div class="art">${art}</div><div class="body"><p class="eyebrow">${eyebrow}</p><h3>${title}</h3><span class="tick"></span><p>${text}</p><span class="btn btn--line">${cta}</span></div></a>`;
   const labs = `<section class="sec sec--deep" aria-labelledby="h-lab"><div class="wrap">
@@ -102,5 +108,5 @@ export function home() {
 
   // Ties the site to its Instagram for search engines.
   const org = { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url, logo: SITE.url + '/apple-touch-icon.png', email: SITE.email, sameAs: [SITE.instagram.url] };
-  return { path: '/', html: page({ path: '/', head: `<script type="application/ld+json">${JSON.stringify(org)}</script>`, body: hero + cats + latest + labs + journal + about + faq + cta }) };
+  return { path: '/', html: page({ path: '/', head: `<script type="application/ld+json">${JSON.stringify(org)}</script>`, body: hero + cats + latest + field + labs + journal + about + faq + cta }) };
 }
