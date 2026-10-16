@@ -166,11 +166,12 @@ export function threadChart() {
 }
 
 export function dealers() {
-  const body = banner('Find a dealer', 'Sold through <em>licensed</em> dealers in your state', 'Where to buy') + crumbs([['Home', '/'], ['Find a dealer', '/dealers/']]) + `
+  const body = banner('Find a dealer', 'Ships to <em>any</em> local dealer', 'Where to buy') + crumbs([['Home', '/'], ['Find a dealer', '/dealers/']]) + `
   <section class="sec sec--paper" style="padding-top:24px"><div class="wrap">
     <div class="about">
-      <div>${secHead('Dealer locator', 'No dealers yet')}</div>
-      <div class="prose" style="color:var(--ink-2)"><p>Our cans are still in development, so no shop stocks them yet. The dealer list will go live on this page before the first can ships. Suppressors can only ship to a licensed dealer in your state, so that's where you'll pick yours up.</p>
+      <div>${secHead('Your dealer', 'Use the shop you already know')}</div>
+      <div class="prose" style="color:var(--ink-2)"><p>We can ship to any local dealer. Pick a licensed suppressor dealer (FFL/SOT) in your state, give us the shop's name, and we'll send your can there for you to pick up. It doesn't have to be a shop that stocks Protonic.</p>
+        <p>Our cans are still in development, so nothing ships yet. Stocking dealers will be listed on this page before the first can ships.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn--ink" href="/contact/#updates">Tell me when dealers have stock ${ICON.arrow}</a></div></div>
     </div>
   </div></section>
@@ -182,7 +183,7 @@ export function dealers() {
       <div class="box"><p class="eyebrow">How to join</p><p>Email us your shop name, state, FFL/SOT status and the cans you sell most of.</p><a class="btn btn--ti" href="${mailto('Dealer program: [shop name]', 'Shop name:\nCity / state:\nFFL / SOT:\nCans you sell most of:\n')}">Email the dealer team ${ICON.arrow}</a></div>
     </div>
   </div></section>`;
-  return P({ title: 'Find a dealer', path: '/dealers/', active: '', body, description: 'Protonic Precision suppressors will be sold through licensed FFL/SOT dealers. Dealer program details.' });
+  return P({ title: 'Find a dealer', path: '/dealers/', active: '', body, description: 'Protonic Precision can ship to any licensed FFL/SOT dealer in your state. Dealer program details.' });
 }
 
 export function contact() {
