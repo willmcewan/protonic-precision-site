@@ -195,7 +195,10 @@ export function contact() {
       ${box('', 'Dealers', 'FFL/SOT shops that want to carry Protonic.', 'Dealer program: [shop name]', 'Dealer inquiry')}
       ${box('', 'Press & partners', 'Writers, ranges, and creators who want to test cans when they exist.', 'Press / partnership: Protonic Precision', 'Get in touch')}
     </div>
-    <div class="box" style="margin-top:14px"><p class="eyebrow">Email</p><p class="addr" data-copy-src>${esc(SITE.email)}</p><button class="copy" type="button" data-copy="${esc(SITE.email)}">Copy address</button></div>
+    <div class="cards2" style="margin-top:14px">
+      <div class="box"><p class="eyebrow">Email</p><p class="addr" data-copy-src>${esc(SITE.email)}</p><button class="copy" type="button" data-copy="${esc(SITE.email)}">Copy address</button></div>
+      <div class="box"><p class="eyebrow">Instagram</p><p>Prototypes, testing and the paperwork, as it happens.</p><a class="btn btn--ink" href="${SITE.instagram.url}" rel="me noopener">${esc(SITE.instagram.handle)} ${ICON.arrow}</a></div>
+    </div>
   </div></section>`;
   return P({ title: 'Contact', path: '/contact/', active: '', body, description: 'Contact Protonic Precision: launch updates, dealer inquiries, press and general questions.' });
 }

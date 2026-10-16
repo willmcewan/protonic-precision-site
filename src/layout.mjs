@@ -9,6 +9,7 @@ export const ICON = {
   arrow: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
   left: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 2.5 5 8l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
   right: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 2.5 11 8l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  instagram: '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="1.5" width="13" height="13" rx="3.6" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="11.9" cy="4.1" r=".9" fill="currentColor"/></svg>',
   down: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 5.5 8 11l5.5-5.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
   search: '<svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m13 13 5 5" stroke="currentColor" stroke-width="1.7"/></svg>',
   pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
@@ -90,6 +91,7 @@ function footer() {
       <p>One email when a can is ready, and one when dealers have stock. Nothing else.</p>
       <form data-join><label class="vh" for="join-email">Email address</label><input id="join-email" type="email" name="email" placeholder="Email" required><button type="submit" aria-label="Join the launch list">${ICON.arrow}</button></form>
       <small>Opens your email app with the request filled in.</small>
+      <a class="ftr-social" href="${SITE.instagram.url}" rel="me noopener">${ICON.instagram}<span>Follow the build on Instagram <b>${esc(SITE.instagram.handle)}</b></span></a>
     </div>
     ${cols}
   </div>

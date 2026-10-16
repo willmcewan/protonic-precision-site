@@ -100,5 +100,7 @@ export function home() {
     <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><a class="btn btn--ti" href="/contact/#updates">Get launch updates ${ICON.arrow}</a><a class="btn btn--line" href="/dealers/#program">Dealer program</a></div>
   </div></section>`;
 
-  return { path: '/', html: page({ path: '/', body: hero + cats + latest + labs + journal + about + faq + cta }) };
+  // Ties the site to its Instagram for search engines.
+  const org = { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url, logo: SITE.url + '/apple-touch-icon.png', email: SITE.email, sameAs: [SITE.instagram.url] };
+  return { path: '/', html: page({ path: '/', head: `<script type="application/ld+json">${JSON.stringify(org)}</script>`, body: hero + cats + latest + labs + journal + about + faq + cta }) };
 }

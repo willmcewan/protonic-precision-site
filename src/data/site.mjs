@@ -3,6 +3,7 @@ export const SITE = {
   name: 'Protonic Precision',
   url: 'https://protonicprecision.com',
   email: 'will@protonicprecision.com',
+  instagram: { handle: '@protonicprecision', url: 'https://www.instagram.com/protonicprecision/' },
   tagline: 'Stable under pressure.',
   description: 'Protonic Precision builds suppressors from first principles: four cans named for the job they do, from .22 rimfire to .45-70. Firearms to follow.',
   legalAsOf: '15 Oct 2026',
