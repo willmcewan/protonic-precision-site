@@ -50,7 +50,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.5, L: 5.3, model: 'Proton Plinker', big: 'PLINKER', cal: '.22 LR' },
   },
   {
-    slug: 'proton-sidearm', priceNote: 'Piston and fixed spacer included', price: 349, cat: 'suppressors', color: 'black', name: 'Proton Sidearm', status: STATUS.out, featured: true,
+    slug: 'proton-sidearm', priceNote: 'Piston and fixed spacer included', price: 399, cat: 'suppressors', color: 'black', name: 'Proton Sidearm', status: STATUS.out, featured: true,
     kicker: '9mm pistol and carbine suppressor', caliber: '9mm', length: '7 in', material: 'Stainless + aluminum', mount: 'Pion',
     short: 'For the handgun on your hip and the carbine in the safe. The piston and the fixed spacer come in the box.',
     long: [
@@ -77,7 +77,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.6875, L: 7, model: 'Proton Sidearm', big: 'SIDEARM', cal: '9MM' },
   },
   {
-    slug: 'proton-adapt', priceNote: 'Gluon DT mount included', price: 449, cat: 'suppressors', color: 'desert-sand', name: 'Proton Adapt', status: STATUS.out, featured: true,
+    slug: 'proton-adapt', priceNote: 'Gluon DT mount included', price: 499, cat: 'suppressors', color: 'desert-sand', name: 'Proton Adapt', status: STATUS.out, featured: true,
     kicker: 'Rifle suppressor, 5.56 to .300 Win Mag', caliber: '5.56 – .300 WM', length: '7 in', material: 'Stainless steel', mount: 'Gluon DT',
     short: 'One can that adapts to every rifle you own, from your AR to your elk rifle.',
     long: [
@@ -104,7 +104,7 @@ export const PRODUCTS = [
     render: { type: 'can', r: 0.75, L: 7, model: 'Proton Adapt', big: 'ADAPT', cal: '5.56-.300WM' },
   },
   {
-    slug: 'proton-safari', priceNote: 'Gluon DT mount and 9mm cap included', price: 479, cat: 'suppressors', color: 'grey', name: 'Proton Safari', status: STATUS.out, featured: true,
+    slug: 'proton-safari', priceNote: 'Gluon DT mount and 9mm cap included', price: 529, cat: 'suppressors', color: 'grey', name: 'Proton Safari', status: STATUS.out, featured: true,
     kicker: 'Multi-caliber suppressor, pistol to big bore', caliber: '9mm – .45-70', length: '7.5 in', material: 'Stainless steel', mount: 'Gluon DT · Pion',
     short: 'The big-bore can. .45 ACP on Saturday, .45-70 on Sunday, and everything in between.',
     long: [
