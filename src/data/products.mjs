@@ -31,7 +31,7 @@ export const PRODUCTS = [
       'Rimfire is the dirtiest thing you can put through a suppressor. Lead, wax and carbon pile up fast, so it comes apart for cleaning. An aluminum tube keeps the weight down, and 17-4 stainless baffles stand up to scraping clean, which is where cheap rimfire cans wear out.',
     ],
     specs: [
-      ['Caliber', '.22 LR, .22 WMR, .17 HMR, .17 Mach 2'],
+      ['Caliber', '.22 LR, .22 WMR, .17 HMR, .17 Mach 2', '.22 WMR from a 10 in barrel or longer'],
       ['Material', '7075 aluminum tube, 17-4 stainless baffles'],
       ['Mount', '1/2-28 direct thread'],
       ['Diameter', '1.00 in'],
@@ -58,7 +58,7 @@ export const PRODUCTS = [
       'Most brands sell the piston and the spacer as extras. Both come in the box here, so one can covers every 9mm handgun and carbine you own.',
     ],
     specs: [
-      ['Caliber', '9mm, .380 ACP, 5.7x28, .22 LR'],
+      ['Caliber', '9mm, .380 ACP, .22 LR'],
       ['Material', '17-4 stainless baffles, 7075 aluminum tube'],
       ['Mount', 'Pion piston or Pion Fixed spacer', '1-3/8x24 rear thread'],
       ['Diameter', '1.375 in'],
@@ -72,8 +72,8 @@ export const PRODUCTS = [
       ['Carbines', 'With the fixed spacer: Ruger PC Carbine, CZ Scorpion, Sig MPX, AR9.'],
       ['Nothing extra to buy', 'The piston and the spacer ship with the can.'],
     ],
-    filters: { caliber: ['9mm', '.380 ACP', '5.7x28'], material: 'Stainless + aluminum', mount: ['Pion'] },
-    chart: { headline: '9mm and smaller', limit: '9MM', max: .356, calibers: ['.22 LR', '5.7x28', '.380 ACP', '9mm'] },
+    filters: { caliber: ['9mm', '.380 ACP'], material: 'Stainless + aluminum', mount: ['Pion'] },
+    chart: { headline: '9mm and smaller', limit: '9MM', max: .356, calibers: ['.22 LR', '.380 ACP', '9mm'] },
     render: { type: 'can', r: 0.6875, L: 7, model: 'Proton Sidearm', big: 'SIDEARM', cal: '9MM' },
   },
   {

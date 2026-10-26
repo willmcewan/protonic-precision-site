@@ -8,7 +8,6 @@ export const CARTRIDGES = {
   '.17 HMR': { rim: .286, rimH: .050, base: .2405, sh: .238, shL: .84, neck: .1995, nL: .93, len: 1.058, bullet: .172, oal: 1.349, nose: 'spitzer', rimmed: true },
   '.22 LR': { rim: .278, rimH: .043, base: .2255, mouth: .2255, len: .613, bullet: .2255, oal: 1.0, nose: 'round', rimmed: true },
   '.22 WMR': { rim: .294, rimH: .050, base: .2425, mouth: .2420, len: 1.052, bullet: .224, oal: 1.35, nose: 'round', rimmed: true },
-  '5.7x28': { rim: .311, rimH: .040, groove: .268, base: .311, sh: .309, shL: .86, neck: .2515, nL: .96, len: 1.138, bullet: .224, oal: 1.594, nose: 'spitzer' },
   '.380 ACP': { rim: .374, rimH: .045, groove: .320, base: .373, mouth: .373, len: .680, bullet: .355, oal: .984, nose: 'round' },
   '9mm': { rim: .394, rimH: .050, groove: .346, base: .391, mouth: .380, len: .754, bullet: .355, oal: 1.169, nose: 'round' },
   '.40 S&W': { rim: .424, rimH: .055, groove: .350, base: .424, mouth: .423, len: .850, bullet: .400, oal: 1.135, nose: 'flat' },
