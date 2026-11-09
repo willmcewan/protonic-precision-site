@@ -134,111 +134,168 @@
       });
     }
 
+    // A round part with two wrench flats (or a double-D), extruded along the can's axis from y.
+    function flatted(R, af, len, hole, mat, y) {
+      var bv = Math.min(0.012, len * 0.1), Rr = R - bv, a0 = Math.acos((af / 2 - bv) / Rr), sh = new T.Shape();
+      sh.moveTo(Rr * Math.cos(a0), Rr * Math.sin(a0));
+      sh.absarc(0, 0, Rr, a0, Math.PI - a0, false);
+      sh.lineTo(Rr * Math.cos(Math.PI + a0), Rr * Math.sin(Math.PI + a0));
+      sh.absarc(0, 0, Rr, Math.PI + a0, 2 * Math.PI - a0, false);
+      sh.closePath();
+      if (hole) { var h = new T.Path(); h.absarc(0, 0, hole + bv, 0, Math.PI * 2, true); sh.holes.push(h); }
+      var m = new T.Mesh(new T.ExtrudeGeometry(sh, { depth: len - 2 * bv, bevelEnabled: true, bevelThickness: bv, bevelSize: bv, bevelSegments: 2, curveSegments: 96 }), mat);
+      m.rotation.x = -Math.PI / 2; m.position.y = y + bv;
+      return m;
+    }
+
     // ---------- suppressor ----------
-    // cfg: { r: radius in, L: overall length in, finish, model, cal }
+    // Outside dimensions come from the engineering drawings (inches):
+    //   r tube radius, L overall length · rear {r, len, flats}: rear cap radius, length, wrench flats across
+    //   front {len}: front cap length · seams [z]: extra joints along the body, measured from the rear
+    //   bore: exit bore radius · socket {r, depth, web}: the rear thread opening · spanner {d, bc} or null: front cap holes
+    //   welded: weld lines instead of joints · mark: the caliber limit engraved on the tube
+    //   stack {z0, lens}: where the baffles sit, for the exploded view. Baffle shapes are illustrative.
     function buildCan(cfg) {
       var root = new T.Group(), spin = new T.Group();
       var r = cfg.r || 0.5, L = cfg.L || 5.4, y0 = -L / 2, y1 = L / 2;
-      var capR = Math.min(0.5, L * 0.08), tA = y0 + capR + 0.06, tB = y1 - capR - 0.06;
-      var bore = cfg.bore || (r > 0.6 ? 0.17 : 0.13), thr = cfg.thread || (r > 0.6 ? 0.32 : 0.255), ch = r * 0.1;
+      var rear = cfg.rear || {}, front = cfg.front || {}, sock = cfg.socket || {};
+      var capLen = Math.min(0.5, L * 0.08), rr = rear.r || r, yA = y0 + (rear.len || capLen), yB = y1 - (front.len || capLen);
+      var bore = cfg.bore || (r > 0.6 ? 0.17 : 0.13), sr = sock.r || (r > 0.6 ? 0.32 : 0.255), sd = sock.depth || 0.4;
+      var g = cfg.welded ? 0.005 : 0.015, stepped = rr > r + 0.001;
+      var chR = Math.min(rr * 0.1, (rr - sr) * 0.4), chF = r * 0.1;
       var cera = finishMat(cfg.finish);
-      var pts = [[0, y0 + 0.4], [thr, y0 + 0.4], [thr, y0], [r - ch, y0], [r, y0 + ch], [r, tA - 0.06],
-        [r - 0.015, tA - 0.045], [r - 0.015, tA - 0.015], [r, tA], [r, tB], [r - 0.015, tB + 0.015], [r - 0.015, tB + 0.045], [r, tB + 0.06],
-        [r, y1 - ch], [r - ch, y1], [bore + 0.02, y1], [bore, y1 - 0.02], [bore, y1 - 1.1], [0, y1 - 1.1]];
-      var mats = [M.dark, M.dark, cera, M.ti, cera, M.dark, M.dark, M.dark, null, M.dark, M.dark, M.dark, cera, M.ti, cera, M.ti, M.dark, M.dark];
-      var capG = null;
-      if (cfg.explode) {
-        // Tube keeps the rear and the engraved body; the front cap comes off on its own.
-        lathe(spin, pts.slice(0, 10), mats.slice(0, 9), 192);
-        capG = new T.Group(); spin.add(capG);
-        lathe(capG, [[r, tB], [r - 0.015, tB + 0.015], [r - 0.015, tB + 0.045], [r, tB + 0.06], [r, y1 - ch], [r - ch, y1], [bore + 0.02, y1], [bore, y1 - 0.02], [bore, tB + 0.02], [r, tB]],
-          [M.dark, M.dark, M.dark, cera, M.ti, cera, M.ti, M.dark, M.ti], 192);
-        lathe(spin, [[r, tB], [r - 0.05, tB]], [M.ti], 192);
-        var inner = new T.Mesh(new T.CylinderGeometry(r - 0.05, r - 0.05, tB - tA, 96, 1, true), new T.MeshStandardMaterial({ color: lin(0x0a0b0c), roughness: 0.8, side: T.BackSide }));
-        inner.position.y = (tA + tB) / 2; spin.add(inner);
-      } else lathe(spin, pts, mats, 192);
-      var len = tB - tA, W = 2048, H = Math.round(W * len / (2 * Math.PI * r)), ppi = H / len, circ = W / (2 * Math.PI * r);
-      var tube = engraved(W, H, cfg.finish, function (g, fill) {
-        g.fillStyle = fill;
+      var tA = stepped ? yA : yA + 2 * g, tB = yB - 2 * g;
+      function groove(y) { return [[r, y - 2 * g], [r - g, y - g], [r - g, y + g], [r, y + 2 * g]]; }
+
+      // Rear: the thread opening, then the rear cap out to the tube.
+      var pts = sock.web ? [[0, y0 + sd + 0.3], [sock.web, y0 + sd + 0.3], [sock.web, y0 + sd], [sr, y0 + sd], [sr, y0]] : [[0, y0 + sd], [sr, y0 + sd], [sr, y0]];
+      var mats = sock.web ? [M.dark, M.dark, M.dark, M.dark] : [M.dark, M.dark];
+      if (rear.flats) {
+        spin.add(flatted(rr, rear.flats, yA - 2 * g - y0, sr, cera, y0));
+        pts.pop(); pts.push([sr, yA - 2 * g]);
+        lathe(spin, pts, mats, 96);
+        pts = [[r, yA - 2 * g]]; mats = [];
+      } else {
+        pts.push([rr - chR, y0], [rr, y0 + chR]); mats.push(cera, M.ti);
+        if (stepped) { var cs = Math.min(0.02, (rr - r) * 0.5); pts.push([rr, yA - cs], [rr - cs, yA], [r, yA]); mats.push(cera, M.ti, cera); }
+        else { pts.push([r, yA - 2 * g]); mats.push(cera); }
+      }
+      if (!stepped) { pts = pts.concat(groove(yA).slice(1)); mats.push(M.dark, M.dark, M.dark); }
+      lathe(spin, pts, mats, 192);
+
+      // Body: the engraved tube first, then any further sections.
+      var cuts = (cfg.seams || []).map(function (z) { return y0 + z; }), tEnd = cuts.length ? cuts[0] - 2 * g : tB;
+      cuts.forEach(function (y, i) {
+        var end = i + 1 < cuts.length ? cuts[i + 1] - 2 * g : tB;
+        lathe(spin, groove(y).concat([[r, end]]), [M.dark, M.dark, M.dark, cera], 192);
+      });
+
+      // Front cap.
+      var capG = cfg.explode ? new T.Group() : spin, inside = cfg.explode ? yB + 0.02 : y1 - 1.1;
+      if (cfg.explode) spin.add(capG);
+      lathe(capG, groove(yB).concat([[r, y1 - chF], [r - chF, y1], [bore + 0.02, y1], [bore, y1 - 0.02], [bore, inside]], cfg.explode ? [[r, yB - 2 * g]] : [[0, inside]]),
+        [M.dark, M.dark, M.dark, cera, M.ti, cera, M.ti, M.dark, cfg.explode ? M.ti : M.dark], 192);
+      if (cfg.spanner !== null) {
+        var sp = cfg.spanner || { d: r * 0.14, bc: r * 1.24 };
+        [0, Math.PI].forEach(function (a) {
+          var h = new T.Mesh(new T.CircleGeometry(sp.d / 2, 32), M.dark);
+          h.rotation.x = -Math.PI / 2; h.position.set(Math.cos(a) * sp.bc / 2, y1 + 0.001, Math.sin(a) * sp.bc / 2); capG.add(h);
+        });
+      }
+
+      var len = tEnd - tA, W = 2048, H = Math.round(W * len / (2 * Math.PI * r)), ppi = H / len;
+      var tube = engraved(W, H, cfg.finish, function (g2, fill) {
+        g2.fillStyle = fill;
         var lockLen = Math.min(2.7, len * 0.6), s = lockLen * ppi / 1208;
-        g.save(); g.translate(0.25 * W, H * 0.5); g.rotate(-Math.PI / 2); g.scale(s, s); g.translate(-604, -50);
-        g.fill(P_PATH, 'evenodd'); g.fill(PLUS_PATH, 'evenodd'); g.translate(260, 0); g.fill(WORD_PATH, 'evenodd');
-        g.translate(0, 150 - 100 * D.lockup.subScale); g.scale(D.lockup.subScale, D.lockup.subScale); g.fill(SUB_PATH, 'evenodd');
-        g.restore();
-        g.save(); g.translate(0.75 * W, H * 0.5); g.rotate(-Math.PI / 2);
+        g2.save(); g2.translate(0.25 * W, H * 0.5); g2.rotate(-Math.PI / 2); g2.scale(s, s); g2.translate(-604, -50);
+        g2.fill(P_PATH, 'evenodd'); g2.fill(PLUS_PATH, 'evenodd'); g2.translate(260, 0); g2.fill(WORD_PATH, 'evenodd');
+        g2.translate(0, 150 - 100 * D.lockup.subScale); g2.scale(D.lockup.subScale, D.lockup.subScale); g2.fill(SUB_PATH, 'evenodd');
+        g2.restore();
+        g2.save(); g2.translate(0.75 * W, H * 0.5); g2.rotate(-Math.PI / 2);
         var mono = '"IBM Plex Mono", ui-monospace, Menlo, monospace', disp = '"Archivo", Arial, sans-serif';
         var big = 0.36 * Math.min(1, len / 4.4) * ppi, small = 0.085 * Math.min(1.2, len / 4.4) * ppi;
-        g.textBaseline = 'alphabetic'; g.textAlign = 'left';
-        g.font = '800 expanded ' + Math.round(big) + 'px ' + disp; try { g.fontStretch = 'expanded'; } catch (e) {}
+        g2.textBaseline = 'alphabetic'; g2.textAlign = 'left';
+        g2.font = '800 expanded ' + Math.round(big) + 'px ' + disp; try { g2.fontStretch = 'expanded'; } catch (e) {}
         var word = cfg.big || cfg.model || 'Ti-22';
-        var mw = g.measureText(word).width;
-        try { g.fontStretch = 'normal'; } catch (e) {}
-        g.font = '500 ' + Math.round(small) + 'px ' + mono;
-        var lines = ['PROTONIC PRECISION  CITY, ST', 'MODEL ' + (cfg.model || 'Ti-22').toUpperCase() + '   CAL ' + (cfg.cal || '.22 LR'), 'SN PT000001'];
-        var lw = Math.max.apply(null, lines.map(function (t) { return g.measureText(t).width; }));
+        var mw = g2.measureText(word).width;
+        try { g2.fontStretch = 'normal'; } catch (e) {}
+        g2.font = '500 ' + Math.round(small) + 'px ' + mono;
+        var model = 'MODEL ' + (cfg.model || 'Ti-22').toUpperCase();
+        var lines = cfg.mark ? ['PROTONIC PRECISION  CITY, ST', model, cfg.mark, 'SN PT000001'] : ['PROTONIC PRECISION  CITY, ST', model + '   CAL ' + (cfg.cal || '.22 LR'), 'SN PT000001'];
+        var lw = Math.max.apply(null, lines.map(function (t) { return g2.measureText(t).width; }));
         var room = 0.9 * H - 0.18 * ppi - lw;
         if (mw > room && room > 0) { big = big * room / mw; mw = room; }
-        var total = mw + 0.18 * ppi + lw, x0 = -total / 2;
-        g.font = '800 expanded ' + Math.round(big) + 'px ' + disp; try { g.fontStretch = 'expanded'; } catch (e) {}
-        g.fillText(word, x0, big * 0.36);
-        try { g.fontStretch = 'normal'; } catch (e) {}
-        g.fillRect(x0 + mw + 0.08 * ppi, -big * 0.7, Math.max(2, 0.012 * ppi), big * 1.15);
-        g.font = '500 ' + Math.round(small) + 'px ' + mono;
-        lines.forEach(function (t, i) { g.fillText(t, x0 + mw + 0.18 * ppi, -big * 0.52 + small * 0.9 + i * small * 1.5); });
-        g.restore();
+        var total = mw + 0.18 * ppi + lw, x0 = -total / 2, lh = small * 1.5, top = -lines.length * lh / 2 + small * 0.85;
+        g2.font = '800 expanded ' + Math.round(big) + 'px ' + disp; try { g2.fontStretch = 'expanded'; } catch (e) {}
+        g2.fillText(word, x0, big * 0.36);
+        try { g2.fontStretch = 'normal'; } catch (e) {}
+        var bar = Math.max(big * 1.15, lines.length * lh);
+        g2.fillRect(x0 + mw + 0.08 * ppi, -bar / 2, Math.max(2, 0.012 * ppi), bar);
+        g2.font = '500 ' + Math.round(small) + 'px ' + mono;
+        lines.forEach(function (t, i) { g2.fillText(t, x0 + mw + 0.18 * ppi, top + i * lh); });
+        g2.restore();
       });
       var cyl = new T.Mesh(new T.CylinderGeometry(r, r, len, 256, 1, true), tube);
-      cyl.position.y = (tA + tB) / 2; spin.add(cyl);
+      cyl.position.y = (tA + tEnd) / 2; spin.add(cyl);
+
       if (cfg.explode) {
-        // Illustrative cone baffles, rear (blast) to front, packed inside the tube.
-        var n = cfg.baffles || 6, h = (tB - tA - 0.12) / n, rIn = r - 0.07, steel = finishMat('stainless'), parts = [];
+        // The open tube, and inside it the stack: a long blast baffle first, then the rest. Illustrative shapes.
+        var inner = new T.Mesh(new T.CylinderGeometry(r - 0.05, r - 0.05, tB - tA, 96, 1, true), new T.MeshStandardMaterial({ color: lin(0x0a0b0c), roughness: 0.8, side: T.BackSide }));
+        inner.position.y = (tA + tB) / 2; spin.add(inner);
+        lathe(spin, [[r, tB], [r - 0.05, tB]], [M.ti], 192);
+        var lens = cfg.stack ? cfg.stack.lens.slice() : [], yc = cfg.stack ? y0 + cfg.stack.z0 : tA + 0.06;
+        if (!lens.length) { var nb = cfg.baffles || 6; for (var q0 = 0; q0 < nb; q0++) lens.push((tB - tA - 0.12) / nb); }
+        var rIn = r - 0.085, wall = 0.035, rb = bore + 0.03, steel = finishMat('stainless'), parts = [], n = lens.length;
         steel.side = T.DoubleSide;
-        for (var b = 0; b < n; b++) {
-          var bg = new T.Group(), yc = tA + 0.06 + (b + 0.5) * h;
-          // A double cone with a flat band, like a stamped cone baffle.
-          lathe(bg, [[bore + 0.03, h * 0.5], [rIn * 0.86, h * 0.12], [rIn, h * 0.1], [rIn, -h * 0.1], [rIn * 0.86, -h * 0.12], [bore + 0.16, -h * 0.46], [bore + 0.16, -h * 0.5], [bore + 0.03, h * 0.5]],
+        lens.forEach(function (bl) {
+          var bg = new T.Group(), h2 = bl / 2, tip = h2 - (rIn - wall - rb);
+          // A cone baffle with a spacer skirt: the cone points back at the gas.
+          lathe(bg, [[rIn, -h2], [rIn, h2], [rIn - wall, h2], [rb, tip], [rb, tip - 0.07], [rIn - wall, h2 - 0.1], [rIn - wall, -h2], [rIn, -h2]],
             [steel, steel, steel, steel, steel, steel, steel], 128);
-          bg.position.y = yc; spin.add(bg); parts.push({ g: bg, y: yc });
-        }
-        var P = h * 1.8, G = h * 0.9, span0 = y1 - y0;
+          bg.position.y = yc + h2; spin.add(bg); parts.push({ g: bg, y: yc + h2, len: bl }); yc += bl;
+        });
         // Exploded, the stack keeps its order: tube, blast baffle ... front baffle, cap.
-        parts.forEach(function (q, j) { q.d = tB + G + j * P - q.y; });
-        var dCap = G + (n - 1) * P + h * 0.5 + G;
+        var G = 0.45, pos = yB + G;
+        parts.forEach(function (q) { q.d = pos + q.len / 2 - q.y; pos += q.len + G; });
+        var dCap = pos - yB;
         var ease = function (x) { x = Math.max(0, Math.min(1, x)); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
-        root.userData.span = span0 + dCap;
+        root.userData.span = L + dCap;
         root.userData.explode = function (p) {
-          var ec = ease(p / 0.55);
-          capG.position.y = dCap * ec;
+          capG.position.y = dCap * ease(p / 0.55);
           parts.forEach(function (q, j) { var k = n - 1 - j; q.g.position.y = q.y + q.d * ease((p - 0.1 - k * 0.07) / 0.5); });
           spin.position.y = -dCap * ease(p) / 2;
         };
       }
-      [0, Math.PI].forEach(function (a) {
-        var h = new T.Mesh(new T.CircleGeometry(r * 0.07, 32), M.dark);
-        h.rotation.x = -Math.PI / 2; h.position.set(Math.cos(a) * r * 0.62, y1 + 0.001, Math.sin(a) * r * 0.62); (capG || spin).add(h);
-      });
       var lay = new T.Group(); lay.rotation.z = -Math.PI / 2; lay.add(spin); root.add(lay);
       root.userData.spin = spin;
       return root;
     }
 
-    // ---------- Gluon mounts ----------
+    // ---------- Gluon and Pion mounts ----------
+    // Outlines from the engineering drawings, rear (barrel) end first. Every one ends in the 1-3/8x24 thread or its seat.
+    function rings(spin, rad, ya, yb, pitch, mat) {
+      for (var y = ya + pitch; y < yb - pitch / 2; y += pitch) { var t = new T.Mesh(new T.TorusGeometry(rad, pitch * 0.3, 8, 128), mat); t.rotation.x = Math.PI / 2; t.position.y = y; spin.add(t); }
+    }
     function buildMount(cfg) {
       var root = new T.Group(), spin = new T.Group(), fin = finishMat(cfg.finish || 'nitride');
-      var pts, mats;
+      var pts, mats, HUB = 0.6875, c = 0.015;
       if (cfg.kind === 'direct') {
-        pts = [[0, -0.55], [0.24, -0.55], [0.24, -0.15], [0.3, -0.15], [0.3, -0.05], [0.42, -0.05], [0.45, -0.02], [0.45, 0.42], [0.42, 0.45], [0.3, 0.45], [0.3, 0.75], [0.27, 0.78], [0.12, 0.78], [0.12, 0], [0, 0]];
-        mats = [M.dark, fin, fin, fin, fin, M.ti, fin, M.ti, fin, fin, M.ti, fin, M.dark, M.dark];
-        for (var i = 0; i < 9; i++) { var t = new T.Mesh(new T.TorusGeometry(0.3, 0.012, 8, 96), fin); t.rotation.x = Math.PI / 2; t.position.y = 0.48 + i * 0.03; spin.add(t); }
+        // Gluon DT, 0.90 long: wrench body, the flange the can seats on, then the thread that goes into the can.
+        spin.add(flatted(0.5, 0.875, 0.22, 0.3125, fin, -0.45));
+        pts = [[0.5, -0.23], [0.75 - c, -0.23], [0.75, -0.23 + c], [0.75, -0.13 - c], [0.75 - c, -0.13], [HUB, -0.13], [HUB, 0.45 - c], [HUB - c, 0.45], [0.5, 0.45], [0.5, 0.3], [0.3125, 0.3], [0.3125, -0.23]];
+        mats = [fin, M.ti, fin, M.ti, fin, fin, M.ti, fin, M.dark, M.dark, M.dark];
+        rings(spin, HUB, -0.13, 0.45 - c, 1 / 24, fin);
       } else if (cfg.kind === 'piston') {
-        pts = [[0, -0.75], [0.2, -0.75], [0.2, -0.2], [0.27, -0.2], [0.27, 0.35], [0.36, 0.35], [0.38, 0.38], [0.38, 0.62], [0.35, 0.65], [0.12, 0.65], [0.12, 0.3], [0, 0.3]];
-        mats = [M.dark, fin, fin, M.ti, fin, fin, M.ti, fin, M.dark, M.dark, M.dark];
-        for (var p = 0; p < 12; p++) { var tp = new T.Mesh(new T.TorusGeometry(0.2, 0.01, 8, 96), fin); tp.rotation.x = Math.PI / 2; tp.position.y = -0.7 + p * 0.04; spin.add(tp); }
-        for (var q = 0; q < 8; q++) { var sp = new T.Mesh(new T.BoxGeometry(0.05, 0.22, 0.05), M.dark), aq = q * Math.PI / 4; sp.position.set(Math.cos(aq) * 0.37, 0.5, Math.sin(aq) * 0.37); sp.rotation.y = -aq; spin.add(sp); }
+        // Pion piston, 1.35 long: a keyed shank that slides in the booster, and the flange the spring holds forward.
+        spin.add(flatted(0.375, 0.66, 1.15, 0.255, fin, -0.675));
+        pts = [[0.375, 0.475], [0.4975 - c, 0.475], [0.4975, 0.475 + c], [0.4975, 0.675 - c], [0.4975 - c, 0.675], [0.205, 0.675], [0.205, 0.475]];
+        mats = [fin, M.ti, fin, M.ti, fin, M.dark];
       } else if (cfg.kind === 'spacer') {
-        pts = [[0, -0.3], [0.2, -0.3], [0.2, 0], [0.36, 0], [0.38, 0.03], [0.38, 0.4], [0.35, 0.43], [0.12, 0.43], [0.12, 0.05], [0, 0.05]];
-        mats = [M.dark, fin, fin, fin, M.ti, fin, M.dark, M.dark, M.dark];
-        for (var u = 0; u < 6; u++) { var tu = new T.Mesh(new T.TorusGeometry(0.2, 0.01, 8, 96), fin); tu.rotation.x = Math.PI / 2; tu.position.y = -0.27 + u * 0.045; spin.add(tu); }
+        // Pion Fixed, 0.73 long: a flange with wrench flats, and the thread that goes into the can in place of the booster.
+        spin.add(flatted(0.74, 1.25, 0.15, 0.255, fin, -0.365));
+        pts = [[HUB, -0.215], [HUB, 0.365 - c], [HUB - c, 0.365], [0.225, 0.365], [0.225, 0.155], [0.25, 0.155], [0.25, -0.215]];
+        mats = [fin, M.ti, fin, M.dark, M.dark, M.dark];
+        rings(spin, HUB, -0.215, 0.365 - c, 1 / 24, fin);
       } else {
         pts = [[0, -1.0], [0.22, -1.0], [0.22, -0.7], [0.36, -0.7], [0.39, -0.67], [0.39, -0.35], [0.36, -0.33], [0.36, -0.28], [0.39, -0.26], [0.39, 0.05],
           [0.44, 0.1], [0.44, 0.6], [0.36, 1.05], [0.33, 1.08], [0.14, 1.08], [0.14, 0.6], [0, 0.6]];
@@ -263,8 +320,9 @@
       kind = cfg.type;
       model = kind === 'coin' ? buildCoin() : kind === 'mount' ? buildMount(cfg) : buildCan(cfg);
       scene.add(model);
-      var sw = kind === 'coin' ? 3.2 : kind === 'mount' ? 2.3 : (model.userData.span || cfg.L || 5.4) + 0.5;
-      var sh = kind === 'coin' ? 3.3 : kind === 'mount' ? 1.3 : 2 * (cfg.r || 0.5) + 0.7, tn = Math.tan(12 * Math.PI / 180);
+      var rMax = Math.max(cfg.r || 0.5, (cfg.rear && cfg.rear.r) || 0);
+      var sw = kind === 'coin' ? 3.2 : kind === 'mount' ? Math.max(2.3, (cfg.L || 1.3) + 1.0) : (model.userData.span || cfg.L || 5.4) + 0.5;
+      var sh = kind === 'coin' ? 3.3 : kind === 'mount' ? Math.max(1.3, 2 * (cfg.r || 0.45) + 0.4) : 2 * rMax + 0.7, tn = Math.tan(12 * Math.PI / 180);
       var dist = Math.max((sw / 2) / (tn * (cfg.aspect || 1.6)), (sh / 2) / tn) * (cfg.fill || 1.12);
       pose = Object.assign({ tilt: kind === 'coin' ? -0.12 : 0.16, yawRoot: kind === 'coin' ? 0 : -0.38, roll: 0.06,
         dist: dist, yaw0: kind === 'coin' ? -0.5 : -Math.PI / 2, y: 0 }, cfg.pose || {});

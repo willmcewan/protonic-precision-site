@@ -31,7 +31,7 @@ export function about() {
     <div class="feat">
       <div><h3 class="h-s">Physics is the story</h3><p>Protons explain our name. They are never a product claim. Nothing we make uses "proton technology."</p></div>
       <div><h3 class="h-s">Specs sell the product</h3><p>dB with the test method, length, material and thread. If we haven't measured it, we don't print it.</p></div>
-      <div><h3 class="h-s">One system</h3><p>Every can, mount and piston shares one 1-3/8x24 rear thread, so the parts work together.</p></div>
+      <div><h3 class="h-s">One system</h3><p>Sidearm, Adapt and Safari share one 1-3/8x24 rear thread with every mount and piston, so the parts work together.</p></div>
     </div>
     <div class="stats" style="margin-top:clamp(36px,5vw,60px)">
       <div class="stat"><b>p<sup>+</sup></b><span>The mark · charge +1</span></div>
@@ -69,9 +69,9 @@ export function labPages() {
     <p>We think of a can as that chain of stages, not as a tube with parts inside. The design question at every stage is the same: how much energy does it take, and what does it hand on?</p>
     ${fig('exploded', 'Exploded view of a rifle suppressor: tube, cone baffles and rear mount', 1800, 1005, ILLUSTRATIVE)}
     <h2 id="blast">The blast chamber</h2>
-    <p>The first chamber sees the hottest, fastest gas on every shot and erodes first. That's why the blast baffle in Proton Adapt and Proton Safari is 17-4 stainless, and why a worn one is replaced under warranty.</p>
+    <p>The first chamber sees the hottest, fastest gas on every shot and erodes first. That's why Proton Adapt and Proton Safari give the gas a long first chamber before it meets a baffle, why that blast baffle is 17-4 stainless, and why wear on it is covered under warranty.</p>
     <h2 id="system">The system</h2>
-    <p>A can is only as good as what holds it on. Gluon mounts hold the cans on rifles and Pion pistons hold them on pistols, all on one 1-3/8x24 rear thread.</p>
+    <p>A can is only as good as what holds it on. Gluon mounts hold the cans on rifles and Pion pistons hold them on pistols, all on one 1-3/8x24 rear thread. Proton Plinker is the exception: it threads straight onto a 1/2-28 barrel.</p>
     <p><a class="btn btn--ink" href="/lab/materials/">Next: Materials ${ICON.arrow}</a></p>`);
 
   const test = article([['method', 'The method'], ['publish', 'What we publish'], ['never', 'What we never say']], `${art(testingArt())}
@@ -89,8 +89,8 @@ export function labPages() {
   const mat = article([['rule', 'The rule'], ['fe', 'Stainless'], ['al', 'Aluminum'], ['not', 'What we leave out']], `${art(materialsArt())}
     <p class="lede" style="font-size:20px;color:var(--ink)">Each can is named for its job, and the job decides the metal. Our rule is simple: the cheapest metal that does the job well.</p>
     <h2 id="rule">The rule</h2><p>Rimfire and pistol gas is mild, so those cans can be light. Rifle gas is hot, fast and abrasive, so those cans have to be tough. Paying for more metal than the job needs only puts the price up.</p>
-    ${fig('threads', 'The 1-3/8x24 rear thread of Proton Safari', 1450, 1800, 'Every can shares one 1-3/8x24 rear thread.', 'photo-inline')}
-    <h2 id="fe">17-4 stainless steel</h2><p>Mostly iron, with 17% chromium and 4% nickel, which is where the name comes from. Tough under heat and abuse, and cheap to make. It's the baffles in <a href="/suppressors/proton-plinker/">Proton Plinker</a> and <a href="/suppressors/proton-sidearm/">Proton Sidearm</a>, and the whole of <a href="/suppressors/proton-adapt/">Proton Adapt</a> and <a href="/suppressors/proton-safari/">Proton Safari</a>, blast baffle included. A worn blast baffle is replaced under warranty.</p>
+    ${fig('threads', 'The 1-3/8x24 rear thread of Proton Safari', 1450, 1800, 'Sidearm, Adapt and Safari share one 1-3/8x24 rear thread.', 'photo-inline')}
+    <h2 id="fe">17-4 stainless steel</h2><p>Mostly iron, with 17% chromium and 4% nickel, which is where the name comes from. Tough under heat and abuse, and cheap to make. It's the caps and baffles in <a href="/suppressors/proton-plinker/">Proton Plinker</a> and <a href="/suppressors/proton-sidearm/">Proton Sidearm</a>, and the whole of <a href="/suppressors/proton-adapt/">Proton Adapt</a> and <a href="/suppressors/proton-safari/">Proton Safari</a>, blast baffle included. Blast-baffle wear is covered under warranty.</p>
     <h2 id="al">7075 aluminum</h2><p>Light, and plenty strong for a tube where the pressure is far lower than a rifle's. It keeps <a href="/suppressors/proton-plinker/">Proton Plinker</a> light on a rimfire, and keeps <a href="/suppressors/proton-sidearm/">Proton Sidearm</a> from making a handgun nose-heavy.</p>
     <h2 id="not">What we leave out</h2><p>Titanium, Inconel and Stellite all have their place, and all of them cost more. None of our four cans needs them to do its job, so none of them uses them.</p>
     <p><a class="btn btn--ink" href="/lab/testing/">Next: Testing ${ICON.arrow}</a></p>`);

@@ -47,7 +47,7 @@ export const POSTS = [
       <h2>Proton Adapt</h2>
       <p>The rifle can. A .30 bore covers everything from a 5.56 AR-15 to a .300 Win Mag elk rifle. 17-4 stainless all the way through, including the blast baffle where the gas hits hardest.</p>
       <h2>Proton Safari</h2>
-      <p>A .46 bore for the big calibers: .45 ACP and 10mm pistols, and big-bore rifles like the .450 Bushmaster and .45-70. Run it long or short, and swap the front cap to tune it for the caliber.</p>
+      <p>A .46 bore for the big calibers: .45 ACP and 10mm pistols, and big-bore rifles like the .450 Bushmaster and .45-70. Run it long on a rifle or short on a pistol, with a 9mm front cap in the box.</p>
       <h2>Why "Proton"?</h2>
       <p>Every can carries the family name, the way the company carries the particle's. The second word is the job.</p>`,
   },

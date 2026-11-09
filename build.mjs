@@ -73,7 +73,7 @@ const productLine = p => `- [${p.name}](${SITE.url}${url(p)}): ${p.kicker}. ${mo
 const infoPages = pages.filter(p => !p.file && !p.html.includes('content="noindex"') && p.path !== '/' && p.path !== '/search/' && !productPaths.has(p.path) && !/^\/(suppressors|mounts|apparel)\/$/.test(p.path));
 fs.writeFileSync(path.join(DIST, 'llms.txt'), `# ${SITE.name}
 
-> ${SITE.description} Every can, mount and piston shares one 1-3/8x24 rear thread. Cans ship to any licensed FFL/SOT dealer.
+> ${SITE.description} Sidearm, Adapt and Safari share one 1-3/8x24 rear thread with every mount and piston; Plinker threads straight onto 1/2-28. Cans ship to any licensed FFL/SOT dealer.
 
 ${SITE.name} is a suppressor company run by two brothers. The four Proton cans are named for the job each does: Plinker (.22 rimfire), Sidearm (9mm), Adapt (.30 rifle) and Safari (big bore, up to .45-70). Each comes in Black, Desert Sand and Grey; Black is sold out in every size and Desert Sand and Grey are coming soon. Prices are MAP in US dollars. Sound numbers are only published with the test method, ammo and host.
 

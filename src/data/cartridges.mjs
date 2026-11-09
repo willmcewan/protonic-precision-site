@@ -15,6 +15,7 @@ export const CARTRIDGES = {
   '.45 ACP': { rim: .480, rimH: .049, groove: .396, base: .476, mouth: .473, len: .898, bullet: .452, oal: 1.275, nose: 'round' },
   '5.56 / .223': { rim: .378, rimH: .045, groove: .294, base: .3769, sh: .354, shL: 1.438, neck: .253, nL: 1.564, len: 1.760, bullet: .224, oal: 2.260, nose: 'spitzer' },
   '.300 BLK': { rim: .378, rimH: .045, groove: .294, base: .3769, sh: .3609, shL: 1.152, neck: .334, nL: 1.20, len: 1.368, bullet: .308, oal: 2.06, nose: 'spitzer' },
+  '6mm ARC': { rim: .441, rimH: .049, groove: .375, base: .441, sh: .430, shL: 1.127, neck: .274, nL: 1.200, len: 1.490, bullet: .243, oal: 2.260, nose: 'spitzer' },
   '.243 Win': { rim: .473, rimH: .054, groove: .396, base: .470, sh: .454, shL: 1.560, neck: .276, nL: 1.750, len: 2.045, bullet: .243, oal: 2.710, nose: 'spitzer' },
   '6.5 CM': { rim: .473, rimH: .054, groove: .396, base: .470, sh: .462, shL: 1.540, neck: .297, nL: 1.640, len: 1.920, bullet: .264, oal: 2.825, nose: 'spitzer' },
   '.308 Win': { rim: .473, rimH: .054, groove: .396, base: .470, sh: .454, shL: 1.560, neck: .3433, nL: 1.700, len: 2.015, bullet: .308, oal: 2.800, nose: 'spitzer' },

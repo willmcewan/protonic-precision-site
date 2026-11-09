@@ -35,7 +35,7 @@ export function categoryPages() {
     }).join('');
     const intro = {
       suppressors: `Every Protonic can is named for the job it does: Plinker for rimfire, Sidearm for 9mm, Adapt for rifles and Safari for the big bores. Black is sold out in every size; Desert Sand and Grey are coming soon.`,
-      mounts: `Gluon mounts hold Proton Adapt and Proton Safari to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Safari to a pistol or carbine. Every can uses the same 1-3/8x24 rear thread.`,
+      mounts: `Gluon mounts hold Proton Adapt and Proton Safari to a rifle. Pion pistons and spacers hold Proton Sidearm and Proton Safari to a pistol or carbine. Sidearm, Adapt and Safari share one 1-3/8x24 rear thread; Proton Plinker threads straight onto the barrel.`,
       apparel: `Coins, patches, stickers and shirts in small runs. These ship straight to you.`,
     }[c.slug];
     const body = banner(c.name, c.tag, c.eyebrow) + crumbs([['Home', '/'], [c.name, `/${c.slug}/`]]) + `
@@ -121,7 +121,7 @@ export function productPages() {
         <div class="feat" style="grid-template-columns:minmax(0,1fr)">${p.features.map(([h, t]) => `<div><h3 class="h-s">${esc(h)}</h3><p>${esc(t)}</p></div>`).join('')}</div>
       </div>
       <div class="detail" id="specs" style="margin-top:clamp(48px,6vw,80px)">
-        <div><p class="eyebrow">Specifications</p><h2 class="h-m" style="margin:8px 0 18px">${esc(p.name)} specs</h2><p class="lede">${isCan ? 'Sound numbers are published with the test method, the ammo and the host, or not at all.' : 'Specs can change without notice.'}</p></div>
+        <div><p class="eyebrow">Specifications</p><h2 class="h-m" style="margin:8px 0 18px">${esc(p.name)} specs</h2><p class="lede">${isCan ? 'Sound numbers are published with the test method, the ammo and the host, or not at all. Dimensions follow our engineering drawings, and weights are design values until we publish measured ones.' : 'Dimensions follow our engineering drawings. Specs can change without notice.'}</p></div>
         <table class="spec-table"><tbody>${specRows}</tbody></table>
       </div>
     </div></section>
@@ -137,7 +137,7 @@ export function productPages() {
       '@context': 'https://schema.org', '@type': 'Product', name: p.name, description: [p.short, ...p.long].join(' '), sku: p.slug, category: 'Firearm suppressor',
       url: SITE.url + url(p), image: views.filter(v => v[0] !== 'sizes').slice(0, 4).map(v => SITE.url + v[1]), color: p.colors.map(c => c.name).join(', '),
       brand: { '@type': 'Brand', name: SITE.name }, manufacturer: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-      additionalProperty: ['Caliber', 'Material', 'Mount', 'Diameter', 'Length', 'In the box'].filter(spec).map(k => ({ '@type': 'PropertyValue', name: k, value: spec(k) })),
+      additionalProperty: ['Caliber', 'Material', 'Mount', 'Diameter', 'Length', 'Weight', 'In the box'].filter(spec).map(k => ({ '@type': 'PropertyValue', name: k, value: spec(k) })),
       offers: { '@type': 'Offer', url: SITE.url + url(p), price: p.price, priceCurrency: 'USD', availability: 'https://schema.org/SoldOut', seller: { '@type': 'Organization', name: SITE.name } },
     }).replace(/</g, '\\u003c')}</script>` : '';
     return { path: url(p), html: page({ title: `${p.name} ${p.kicker}`, path: url(p), active: p.cat, description: `${p.name}: ${p.short}`, body, scripts, head: ld }) };
